@@ -4,6 +4,8 @@ Team Name: Runtime Terror
 
 Project Name: Task manager
 
+Project Description: A task manager where you can keep scores get notified. Maybe have it interactive with a leader board. 
+
 Meet Time: Friday 5:00pm 
 
 Blake Johnson:
