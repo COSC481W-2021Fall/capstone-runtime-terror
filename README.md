@@ -6,7 +6,7 @@ Project Name: Task manager
 
 Project Description: A task manager where you can keep scores get notified. Maybe have it interactive with a leader board. 
 
-Meet Time: Friday 5:00pm 
+Meet Time: Friday 5:00pm-6:00pm on discord
 
 Blake Johnson:
 I work as a Desktop applications devloper for inora, I am gradduating this semester. I like animes. 
