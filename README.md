@@ -25,9 +25,9 @@ I am working as an intern for Servant Systems doing development and testing, I a
 
 
 Code Review Checklist 
--[ ] Two people have reviewed this code.
--[ ] There are no merge conflicts.
--[ ]- Code has been tested and functions properly. 
--[ ]- Code is structered properly. 
--[ ]- Code doesn't conflict with other branches
--[ ]- No new bug is introduced. 
+- [ ] Two people have reviewed this code.
+- [ ] There are no merge conflicts.
+- [ ] Code has been tested and functions properly. 
+- [ ] Code is structered properly. 
+- [ ] Code doesn't conflict with other branches
+- [ ] No new bug is introduced. 
