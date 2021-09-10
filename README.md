@@ -31,3 +31,17 @@ Code Review Checklist
 - [ ] Code is structered properly. 
 - [ ] Code doesn't conflict with other branches
 - [ ] No new bug is introduced. 
+
+Commit Naming Conventions 
+Issue name_description of what was done 
+
+Pull Request Guidelines 
+- [ ] Make sure unused variables are gone.
+- [ ] Descriptive variable names. 
+- [ ] Comments are understandable. 
+- [ ] Test code works before pull request. 
+- [ ] Have a meaningful description for the pull request. 
+
+ 
+
+
