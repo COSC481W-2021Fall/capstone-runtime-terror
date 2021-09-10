@@ -35,6 +35,8 @@ Code Review Checklist
 Commit Naming Conventions 
 Issue name_description of what was done 
 
+Branch Naming: Snake_Case (this_is_snake_case)
+
 Pull Request Guidelines 
 - [ ] Make sure unused variables are gone.
 - [ ] Descriptive variable names. 
