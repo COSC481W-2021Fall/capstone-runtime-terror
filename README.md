@@ -21,3 +21,13 @@ Nick Christian: I am a senior at EMU. I am working towards my BS in Computer Sci
 
 Raquel Grogan:
 I am working as an intern for Servant Systems doing development and testing, I am currently a senior, and I enjoy making jewlery. 
+
+
+
+Code review checklist 
+[]- Two people have reviewed this code.
+[]- There are no merge conflicts.
+[]- Code has been tested and functions properly. 
+[]- Code is structered properly. 
+[]- Code doesn't conflict with other branches
+[]- No new bug is introduced. 
