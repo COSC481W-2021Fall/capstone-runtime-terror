@@ -32,8 +32,11 @@ Code Review Checklist
 - [ ] Code doesn't conflict with other branches
 - [ ] No new bug is introduced. 
 
-Commit Naming Conventions 
-Issue name_description of what was done 
+Commit Naming Conventions: 
+**git commit -m issue_name: 'description of commit'**
+- issue_name: This should be the name of the issue you are working on. 
+- 'description of commit': This should be a short description of what was changed in this commit.
+- Example: git commit -m Create_Task_Manager: Created connection to the database 
 
 Branch Naming: Snake_Case (this_is_snake_case)
 
