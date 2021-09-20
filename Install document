@@ -1,15 +1,19 @@
 
 Development
-  Github: https://github.com/ 
-  VS Code: https://code.visualstudio.com/
+-Github: https://github.com/ 
+-VS Code: https://code.visualstudio.com/
   
- get project
-  git clone https://github.com/COSC481W-2021Fall/capstone-runtime-terror
+Get project
+-git clone https://github.com/COSC481W-2021Fall/capstone-runtime-terror
 
 Packages
-  npm install
-  npm install -g nodemon
-  https://nodejs.org/en/
+-Node https://nodejs.org/en/
+  -npm install
+  -npm install -g nodemon
   
-Run
-  npm start
+  
+Run (2 Terminals)
+-In first terminal: cd client
+-npm start
+-In second terminal: cd server
+-npm start
