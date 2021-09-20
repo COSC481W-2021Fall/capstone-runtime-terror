@@ -20,8 +20,8 @@
 <p>npm install -g nodemon</p>
 
 <h2>Packages</h2> 
-Run (2 Terminals)
--In first terminal: cd client
--npm start
--In second terminal: cd server
--npm start
+<p>Run (2 Terminals)</p>
+<p>In first terminal: cd client</p>
+<p>npm start</p>
+<p>In second terminal: cd server</p>
+<p>npm start</p>
