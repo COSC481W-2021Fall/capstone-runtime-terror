@@ -11,7 +11,7 @@
 
 
 <h2>Get project</h2>  
-*git clone https://github.com/COSC481W-2021Fall/capstone-runtime-terror*
+* git clone https://github.com/COSC481W-2021Fall/capstone-runtime-terror
 
 
 <h2>Packages</h2> 
