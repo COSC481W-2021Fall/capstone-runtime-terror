@@ -31,7 +31,7 @@ env.bak/
 venv.bak/
 
 
-# Ignore the node_modules directory
+# Ignore the installed package files
 node_modules/
 
 # Ignore Logs
