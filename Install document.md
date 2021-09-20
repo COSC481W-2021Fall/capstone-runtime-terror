@@ -1,16 +1,16 @@
+<h1>Install Document</h1>
 
-<h1>Development</h1>
+<h2>Development</h2>
 -Github: https://github.com/ 
 -VS Code: https://code.visualstudio.com/
   
-  
-DataBase
+<h2>DataBase</h2>  
 
 
-Server
+<h2>Server</h2>  
 
 
-Get project
+<h2>Get project</h2>  
 -git clone https://github.com/COSC481W-2021Fall/capstone-runtime-terror
 
 Packages
