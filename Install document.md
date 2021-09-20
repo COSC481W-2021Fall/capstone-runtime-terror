@@ -6,7 +6,7 @@
   
 <h2>DataBase</h2>  
 
-=
+
 <p>Go to https://www.mongodb.com/cloud/atlas</p> 
 <p>Press start free</p> 
 <p>Set up an account</p> 
