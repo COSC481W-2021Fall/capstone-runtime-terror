@@ -41,3 +41,15 @@
 <p>npm start</p>
 <p>In second terminal: cd server</p>
 <p>npm start</p>
+
+<h2> How to connect to EC2 Server </h2>
+<p> Create free ubuntu EC2 server and download .pem file </p> 
+<p> Navigate to folder where .pem file is located </p>
+<p> Run command ssh -i <.pem file name>.pem ubuntu@<Public_IPv4_Address> (you are now sshed into server) </p>
+<p> Clone repository </p>
+<p> Execute command cd <github_repo_name> </p>
+<p> Install dependencies onto ~, server, and client folder </p>
+<p> Add your database link and ec2 IPv4 address to credentials file </p>
+<p> Add security group inbound rules to instance: </p>
+![Security Roles](/images/EC2SecurityRoles.png?raw=true "Security Roles")
+<p> Can now run application </p>
