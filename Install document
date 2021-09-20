@@ -10,3 +10,6 @@ Packages
   npm install
   npm install -g nodemon
   https://nodejs.org/en/
+  
+Run
+  npm start
