@@ -2,7 +2,7 @@
 
 <h2>Development</h2>
 <p>Github: https://github.com/</p> 
-* VS Code: https://code.visualstudio.com/
+<p>VS Code: https://code.visualstudio.com/<p>
   
 <h2>DataBase</h2>  
 
