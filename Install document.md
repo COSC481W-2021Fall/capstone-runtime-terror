@@ -11,13 +11,13 @@
 
 
 <h2>Get project</h2>  
-* git clone https://github.com/COSC481W-2021Fall/capstone-runtime-terror
+<p>git clone https://github.com/COSC481W-2021Fall/capstone-runtime-terror</p>
 
 
 <h2>Packages</h2> 
-*Node https://nodejs.org/en/
--npm install
--npm install -g nodemon
+<p>Node https://nodejs.org/en/</p>
+<p>npm install</p>
+<p>npm install -g nodemon</p>
 
 <h2>Packages</h2> 
 Run (2 Terminals)
