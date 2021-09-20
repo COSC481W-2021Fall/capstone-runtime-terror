@@ -1,4 +1,4 @@
-#ssh keys & secure credentials
+#Secure Credentials & .ssh Keys
 *.pem
 *.pub
 credentials.js
