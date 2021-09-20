@@ -27,3 +27,15 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+
+
+# Ignore the node_modules directory
+node_modules/
+
+# Ignore Logs
+logs
+*.log
+
+# Ignore the build directory
+/dist
+
