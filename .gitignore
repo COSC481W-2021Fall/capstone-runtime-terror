@@ -1,5 +1,6 @@
 *.pem
 *.pub
+credentials.js
 
 # VS Code Created Application Files
 .vscode/*
