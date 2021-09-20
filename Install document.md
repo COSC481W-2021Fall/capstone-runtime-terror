@@ -1,8 +1,8 @@
 <h1>Install Document</h1>
 
 <h2>Development</h2>
-*Github: https://github.com/ 
-*VS Code: https://code.visualstudio.com/
+* Github: https://github.com/ 
+* VS Code: https://code.visualstudio.com/
   
 <h2>DataBase</h2>  
 
