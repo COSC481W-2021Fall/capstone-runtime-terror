@@ -1,0 +1,43 @@
+#Secure Credentials & .ssh Keys
+*.pem
+*.pub
+credentials.js
+
+# VS Code Created Application Files
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# Local History for Visual Studio Code
+.history/
+
+# WindowsOS Files
+*.ds
+*.db
+*.DS_Store
+
+
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+
+# Ignore the installed package files
+node_modules/
+
+# Ignore Logs
+logs
+*.log
+
+# Ignore the build directory
+/dist
+
