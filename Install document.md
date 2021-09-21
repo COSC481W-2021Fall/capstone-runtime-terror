@@ -51,6 +51,7 @@
 <p> Install dependencies onto ~, server, and client folder </p>
 <p> Add your database link and ec2 IPv4 address to credentials file </p>
 <p> Add security group inbound rules to instance: </p>
+
 ![Security Roles](/Images/EC2SecurityRoles.png?raw=true "Security Roles")
 
 <p> Can now run application </p>
