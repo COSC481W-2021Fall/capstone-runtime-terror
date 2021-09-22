@@ -7,6 +7,9 @@
 <h2>DataBase</h2>  
 
 <li>Go to https://www.mongodb.com/cloud/atlas</li>  
+
+![Node Download](/Images/DataBase.PNG?raw=true "Node Download")
+
 <li>Press start free</li>  
 <li>Set up an account</li>  
 <li>Click build a cluster</li>  
@@ -21,6 +24,20 @@
 <li>Once cluster is deployed, click on connect.</li>  
 <li>Click on connect your applicationand paste the link into your application, replacing with the username and password you created</li>  
 
+
+<h2> How to connect to EC2 Server </h2>
+<li> Create free ubuntu EC2 server and download .pem file</li>  
+<li> Navigate to folder where .pem file is located</li> 
+<li> Execute command ssh -i {.pem file name}.pem ubuntu@{Public_IPv4_Address} (you are now sshed into server)</li> 
+<li> Clone repository</li> 
+<li> Execute command cd {github_repo_name}</li> 
+<li> Install dependencies onto ~, server, and client folder </li> 
+<li> Add your database link and ec2 IPv4 address to credentials file </li> 
+<li> Add security group inbound rules to instance:</li> 
+
+![Security Roles](/Images/EC2SecurityRoles.png?raw=true "Security Roles")
+
+<li> Can now run application</li> 
 
 
 <h2>Get project</h2>  
@@ -42,17 +59,3 @@
   <ul><li>npm install</li> 
   <li>npm start</li></ul> 
 </ul>
-
-<h2> How to connect to EC2 Server </h2>
-<li> Create free ubuntu EC2 server and download .pem file</li>  
-<li> Navigate to folder where .pem file is located</li> 
-<li> Execute command ssh -i {.pem file name}.pem ubuntu@{Public_IPv4_Address} (you are now sshed into server)</li> 
-<li> Clone repository</li> 
-<li> Execute command cd {github_repo_name}</li> 
-<li> Install dependencies onto ~, server, and client folder </li> 
-<li> Add your database link and ec2 IPv4 address to credentials file </li> 
-<li> Add security group inbound rules to instance:</li> 
-
-![Security Roles](/Images/EC2SecurityRoles.png?raw=true "Security Roles")
-
-<li> Can now run application</li> 
