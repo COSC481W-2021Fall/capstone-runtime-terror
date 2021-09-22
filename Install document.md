@@ -1,56 +1,53 @@
 <h1>Install Document</h1>
 
 <h2>Development</h2>
-<p>Github: https://github.com/</p> 
-<p>VS Code: https://code.visualstudio.com/<p>
+<li>Github: https://github.com/</li> 
+<li>VS Code: https://code.visualstudio.com/</li> 
   
 <h2>DataBase</h2>  
 
-
-<p>Go to https://www.mongodb.com/cloud/atlas</p> 
-<p>Press start free</p> 
-<p>Set up an account</p> 
-<p>Click build a cluster</p> 
-<p>Wait for cluster to deploy</p> 
-<p>Click on shared cluser</p> 
-<p>Go to Database Access</p> 
-<p>Click add new database user</p> 
-<p>Create a username and password</p> 
-<p>Go to Network Access</p> 
-<p>Click add ip address</p> 
-<p>Click add current ip address and confirm</p> 
-<p>Once cluster is deployed, click on connect.</p> 
-<p>Click on connect your applicationand paste the link into your application, replacing with the username and password you created</p> 
+<li>Go to https://www.mongodb.com/cloud/atlas</li>  
+<li>Press start free</li>  
+<li>Set up an account</li>  
+<li>Click build a cluster</li>  
+<li>Wait for cluster to deploy</li>  
+<li>Click on shared cluser</li>  
+<li>Go to Database Access</li>  
+<li>Click add new database user</li>  
+<li>Create a username and password</li>  
+<li>Go to Network Access</li>  
+<li>Click add ip address</li> 
+<li>Click add current ip address and confirm</li>  
+<li>Once cluster is deployed, click on connect.</li>  
+<li>Click on connect your applicationand paste the link into your application, replacing with the username and password you created</li>  
 
 
 
 <h2>Get project</h2>  
-<p>git clone https://github.com/COSC481W-2021Fall/capstone-runtime-terror</p>
+<li>git clone https://github.com/COSC481W-2021Fall/capstone-runtime-terror</li> 
 
 
 <h2>Packages</h2> 
-<p>Node https://nodejs.org/en/</p>
-![Node Download](/Images/Node Download.PNG?raw=true "Node Download")
-<p>npm install</p>
-<p>npm install -g nodemon</p>
-
-<h2>Packages</h2> 
-<p>Run (2 Terminals)</p>
-<p>In first terminal: cd client</p>
-<p>npm start</p>
-<p>In second terminal: cd server</p>
-<p>npm start</p>
+<li>Node https://nodejs.org/en/</li> 
+![Node Download](/Images/NodeDownload.PNG")
+<li>npm install</li> 
+<li>npm install -g nodemon</li> 
+<li>Run (2 Terminals)</li> 
+<li>In first terminal: cd client</li> 
+<li>npm start</li> 
+<li>In second terminal: cd server</li> 
+<li>npm start</li> 
 
 <h2> How to connect to EC2 Server </h2>
-<p> Create free ubuntu EC2 server and download .pem file </p> 
-<p> Navigate to folder where .pem file is located </p>
-<p> Execute command ssh -i {.pem file name}.pem ubuntu@{Public_IPv4_Address} (you are now sshed into server) </p>
-<p> Clone repository </p>
-<p> Execute command cd {github_repo_name} </p>
-<p> Install dependencies onto ~, server, and client folder </p>
-<p> Add your database link and ec2 IPv4 address to credentials file </p>
-<p> Add security group inbound rules to instance: </p>
+<li> Create free ubuntu EC2 server and download .pem file</li>  
+<li> Navigate to folder where .pem file is located</li> 
+<li> Execute command ssh -i {.pem file name}.pem ubuntu@{Public_IPv4_Address} (you are now sshed into server)</li> 
+<li> Clone repository</li> 
+<li> Execute command cd {github_repo_name}</li> 
+<li> Install dependencies onto ~, server, and client folder </li> 
+<li> Add your database link and ec2 IPv4 address to credentials file </li> 
+<li> Add security group inbound rules to instance:</li> 
 
 ![Security Roles](/Images/EC2SecurityRoles.png?raw=true "Security Roles")
 
-<p> Can now run application </p>
+<li> Can now run application</li> 
