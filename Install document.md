@@ -16,18 +16,33 @@
 <li>Click build a cluster</li>  
 <li>Go to Database Access</li>  
 <li>Click add new database user</li> 
-<ul><li>Create a new username and password</li></ul> 
+<ul><li>Create a new username and password</li></ul> </ul>
+ 
+ ![Security Roles](/Images/NewUser.PNG?raw=true "Security Roles")
+
+<ul> 
 <li>Click add current EC2 ip address and confirm</li> 
-<ul><li>See How to connect to EC2 Server </li></ul>
+<ul><li>See How to connect to EC2 Server </li></ul></ul>
+  
+  ![Security Roles](/Images/AddingIPadress.PNG?raw=true "Security Roles")
+<ul>  
 <li>Once cluster is deployed, click on connect.</li>  
 <li>Click on connect your applicationand paste the link into your application</li> 
+ </ul>
+ 
+   ![Security Roles](/Images/Connecting%20Cluster.PNG?raw=true "Security Roles")
+   
+ <ul>
 <li>Go to Sever/index</li> 
 <ul><li>Paset the link in CONNECTION_URL</li>
   <li>Replace username and password with the user you made</li></ul>
 </ul>
 
+   ![Security Roles](/Images/ConnectionURL.PNG?raw=true "Security Roles")
+
 
 <h2> How to connect to EC2 Server </h2>
+<li>Go to: https://aws.amazon.com/education/awseducate/</li>
 <li> Create free ubuntu EC2 server and download .pem file</li>  
 <li> Navigate to folder where .pem file is located</li> 
 <li> Execute command ssh -i {.pem file name}.pem ubuntu@{Public_IPv4_Address} (you are now sshed into server)</li> 
