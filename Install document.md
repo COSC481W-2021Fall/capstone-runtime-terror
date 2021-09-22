@@ -30,7 +30,7 @@
 
 <h2>Packages</h2> 
 <p>Node https://nodejs.org/en/</p>
-![Security Roles](/Images/EC2SecurityRoles.png?raw=true "Security Roles")
+![Security Roles](/Images/Node Download.PNG?raw=true "Security Roles")
 <p>npm install</p>
 <p>npm install -g nodemon</p>
 
