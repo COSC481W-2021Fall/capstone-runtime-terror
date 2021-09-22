@@ -1,12 +1,14 @@
 <h1>Install Document</h1>
 
 <h2>Development</h2>
+<ul>
 <li>Github: https://github.com/</li> 
 <li>VS Code: https://code.visualstudio.com/</li> 
+ </ul>
   
 <h2>DataBase</h2>  
 
-<li>Go to https://www.mongodb.com/cloud/atlas</li>  
+<ul><li>Go to https://www.mongodb.com/cloud/atlas</li></ul>  
 
 ![Node Download](/Images/DataBase.PNG?raw=true "Node Download")
 
@@ -42,27 +44,36 @@
 
 
 <h2> How to connect to EC2 Server </h2>
-<li>Go to: https://aws.amazon.com/education/awseducate/</li>
-<li> Create free ubuntu EC2 server and download .pem file</li>  
-<li> Navigate to folder where .pem file is located</li> 
+ <ul><li>Go to: https://aws.amazon.com/education/awseducate/</li></ul>
+ 
+   ![Security Roles](/Images/AWS.PNG?raw=true "Security Roles")
+
+ <ul><li> Create free ubuntu EC2 server and download .pem file</li></ul>  
+
+   ![Security Roles](/Images/UbuntuServer.PNG?raw=true "Security Roles")
+   
+   ![Security Roles](/Images/KeyVaule.PNG?raw=true "Security Roles")
+   
+<ul><li> Navigate to folder where .pem file is located</li> 
 <li> Execute command ssh -i {.pem file name}.pem ubuntu@{Public_IPv4_Address} (you are now sshed into server)</li> 
 <li> Clone repository</li> 
-<li> Execute command cd {github_repo_name}</li> 
+ <ul><li>See Get project</li> <li> Execute command cd {github_repo_name}</li> </ul>
 <li> Install dependencies onto ~, server, and client folder </li> 
+<ul><li>See Packages</li></ul>
 <li> Add your database link and ec2 IPv4 address to credentials file </li> 
-<li> Add security group inbound rules to instance:</li> 
+<li> Add security group inbound rules to instance:</li> </ul>
 
 ![Security Roles](/Images/EC2SecurityRoles.png?raw=true "Security Roles")
 
-<li> Can now run application</li> 
+<ul><li>See Run to start application</li> </ul>
 
 
 <h2>Get project</h2>  
-<li>git clone https://github.com/COSC481W-2021Fall/capstone-runtime-terror</li> 
+<ul><li>git clone https://github.com/COSC481W-2021Fall/capstone-runtime-terror</li> </ul>
 
 
 <h2>Packages</h2> 
-<li>Node https://nodejs.org/en/</li> 
+<ul><li>Node https://nodejs.org/en/</li></ul> 
 
 ![Node Download](/Images/Node%20Download.PNG?raw=true "Node Download")
 
@@ -70,9 +81,16 @@
   <li>Run (2 Terminals)</li> 
   <li>In first terminal: cd server</li> 
   <ul><li>npm install</li> 
-  <li>npm install -g nodemon</li> 
-  <li>npm start</li> </ul>
+  <li>npm install -g nodemon</li></ul>  
   <li>In second terminal: cd client</li> 
-  <ul><li>npm install</li> 
-  <li>npm start</li></ul> 
+  <ul><li>npm install</li></ul>
 </ul>
+
+<h2>Run</h2> 
+<ul>
+  <li>server</li> 
+  <ul><li>npm start</li> </ul>
+  <li>client</li> 
+  <ul><li>npm start</li></ul> 
+</ul>
+
