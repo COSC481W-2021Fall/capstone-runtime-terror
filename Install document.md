@@ -29,14 +29,19 @@
 
 <h2>Packages</h2> 
 <li>Node https://nodejs.org/en/</li> 
-![Node Download](/Images/NodeDownload.PNG")
-<li>npm install</li> 
-<li>npm install -g nodemon</li> 
-<li>Run (2 Terminals)</li> 
-<li>In first terminal: cd client</li> 
-<li>npm start</li> 
-<li>In second terminal: cd server</li> 
-<li>npm start</li> 
+
+![Node Download](/Images/Node%20Download.PNG?raw=true "Node Download")
+
+<ul>
+  <li>Run (2 Terminals)</li> 
+  <li>In first terminal: cd server</li> 
+  <ul><li>npm install</li> 
+  <li>npm install -g nodemon</li> 
+  <li>npm start</li> </ul>
+  <li>In second terminal: cd client</li> 
+  <ul><li>npm install</li> 
+  <li>npm start</li></ul> 
+</ul>
 
 <h2> How to connect to EC2 Server </h2>
 <li> Create free ubuntu EC2 server and download .pem file</li>  
