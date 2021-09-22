@@ -10,19 +10,21 @@
 
 ![Node Download](/Images/DataBase.PNG?raw=true "Node Download")
 
+<ul>
 <li>Press start free</li>  
 <li>Set up an account</li>  
 <li>Click build a cluster</li>  
-<li>Wait for cluster to deploy</li>  
-<li>Click on shared cluser</li>  
 <li>Go to Database Access</li>  
-<li>Click add new database user</li>  
-<li>Create a username and password</li>  
-<li>Go to Network Access</li>  
-<li>Click add ip address</li> 
-<li>Click add current ip address and confirm</li>  
+<li>Click add new database user</li> 
+<ul><li>Create a new username and password</li></ul> 
+<li>Click add current EC2 ip address and confirm</li> 
+<ul><li>See How to connect to EC2 Server </li></ul>
 <li>Once cluster is deployed, click on connect.</li>  
-<li>Click on connect your applicationand paste the link into your application, replacing with the username and password you created</li>  
+<li>Click on connect your applicationand paste the link into your application</li> 
+<li>Go to Sever/index</li> 
+<ul><li>Paset the link in CONNECTION_URL</li>
+  <li>Replace username and password with the user you made</li></ul>
+</ul>
 
 
 <h2> How to connect to EC2 Server </h2>
