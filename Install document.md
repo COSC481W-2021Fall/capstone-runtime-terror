@@ -23,8 +23,6 @@
 <p>Click on connect your applicationand paste the link into your application, replacing with the username and password you created</p> 
 
 
-<h2>Server</h2>  
-
 
 <h2>Get project</h2>  
 <p>git clone https://github.com/COSC481W-2021Fall/capstone-runtime-terror</p>
@@ -32,6 +30,7 @@
 
 <h2>Packages</h2> 
 <p>Node https://nodejs.org/en/</p>
+![Security Roles](/Images/EC2SecurityRoles.png?raw=true "Security Roles")
 <p>npm install</p>
 <p>npm install -g nodemon</p>
 
