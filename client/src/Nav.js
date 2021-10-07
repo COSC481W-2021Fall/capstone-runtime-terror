@@ -1,3 +1,4 @@
+//The Navigation Bar
 import './App.css';
 
 import {Link} from 'react-router-dom';
@@ -5,7 +6,7 @@ import {Link} from 'react-router-dom';
 function Nav() {
     return(
         <nav className='header'>
-            <ul>
+            <ul> {/* When link is clicked route to='<route_name_from_App.js>' */}
                 <Link to='/'>
                     <li>Home</li>
                 </Link>

@@ -33,6 +33,7 @@ venv.bak/
 
 # Ignore the installed package files
 node_modules/
+public/
 
 # Ignore Logs
 logs
