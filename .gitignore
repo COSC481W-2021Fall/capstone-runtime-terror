@@ -42,3 +42,7 @@ logs
 # Ignore the build directory
 /dist
 
+# Ignore automatically installed files
+.eslintrc.js
+package-lock.json
+package.json
