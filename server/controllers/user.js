@@ -5,12 +5,14 @@ import user from '../models/user.js';
 import User from '../models/user.js';
 
 
+// Authur Mike Muysenberg
 export const signin = async (req, res) => { //sign in controller
 
     const { email, password } = req.body;
 
     try{
 
+        // Task: Authenticate: Username & password match to the stored user data in the database
         const existingUser = await User.findOne({ email }); //search database for user
 
         if(!existingUser) return res.status(404).json({ message: "User Doesnt Exist." });   //if email doesnt exist, tell the user 
@@ -21,6 +23,8 @@ export const signin = async (req, res) => { //sign in controller
 
         const token = jwt.sign({ email: existingUser.email, id: existingUser._id }, 'test', { expiresIn: "1h" }); //instead of test, real applications will use the secret string that only we know. seperate env file where nonone can see it.
 
+        
+        // Task: If authentication was successful, send an 'authentication successful' message to user.
         res.status(200).json({ result: existingUser, token }); //return the webtoken and user login successful
     }catch (error){
         res.status(500).json({ message: 'something went wrong.' });
@@ -28,8 +32,7 @@ export const signin = async (req, res) => { //sign in controller
 
 }
 
-//logic for signUp
-
+//Authur Blake Johnson
 export const signup = async (req, res) => {
     const { email, password, confirmPassword, firstName, lastName } = req.body;
 
@@ -39,14 +42,22 @@ export const signup = async (req, res) => {
 
         if(existingUser) return res.status(404).json({ message: "User already exist." });   //if the user alread exist, tell the user 
 
+
+        // Task: Checks to see if the password and the confirm password are the same before entering user information
         if(password != confirmPassword) return res.status(404).json({ message: "Passwords don't match." });   //If password and confim password dont match
 
+
+        // Task: the passwords need to be encrypted/hashed in the database
         const hashPassword = await bcrypt.hash(password, 12);
 
+
+        // Task: This will have to grab the information from the front enf UI and store the user informaion into the data base
         const result = await user.create({ email, password: hashPassword, name: `${firstName}, ${lastName}` });
 
         const token = jwt.sign({ email: result.email, id: result._id }, 'test', { expiresIn: "1h" });
 
+
+        //Task: If the user successfully crates a user then they will be re directed to the main page. if not then what ever is wrong will dispaly a warning.
         res.status(200).json({ result: existingUser, token });
 
     }catch (error){
