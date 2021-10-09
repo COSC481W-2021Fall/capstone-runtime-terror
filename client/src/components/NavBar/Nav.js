@@ -1,5 +1,5 @@
 //The Navigation Bar
-import './App.css';
+import './../../App.css';
 
 import {Link} from 'react-router-dom';
 
@@ -9,10 +9,6 @@ function Nav() {
             <ul> {/* When link is clicked route to='<route_name_from_App.js>' */}
                 <Link to='/'>
                     <li>Home</li>
-                </Link>
-
-                <Link to='/Login'>
-                    <li>Login</li>
                 </Link>
 
                 <Link to='/Dashboard'>
@@ -37,6 +33,10 @@ function Nav() {
 
                 <Link to='/UserProfile'>
                     <li>UserProfile</li>
+                </Link>
+
+                <Link to='/Login'>
+                    <li>Logout</li>
                 </Link>
             </ul>
         </nav>

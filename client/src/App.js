@@ -1,13 +1,12 @@
-<<<<<<< HEAD
 import './App.css';
-import Nav from './Nav';
-import Dashboard from './Dashboard/Dashboard';
-import EditTask from './EditTask/EditTask';
-import Login from './Login/Login';
-import NewAccount from './NewAccount/NewAccount';
-import ScoreBoard from './ScoreBoard/ScoreBoard';
-import TaskDetail from './TaskDetail/TaskDetail';
-import UserProfile from './UserProfile/UserProfile';
+import Nav from './components/NavBar/Nav';
+import Dashboard from './components/Dashboard/Dashboard';
+import EditTask from './components/EditTask/EditTask';
+import auth from './components/Auth/Auth';
+import NewAccount from './components/Auth/Auth';
+import ScoreBoard from './components/ScoreBoard/ScoreBoard';
+import TaskDetail from './components/TaskDetail/TaskDetail';
+import UserProfile from './components/UserProfile/UserProfile';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'; /*Allows Routing*/
 
 function App() {
@@ -17,8 +16,9 @@ function App() {
         {/* <h1>Entire App Component</h1> */}
         <Nav /> {/* loads Nav component */}
         <Switch> {/* When you go to this path it will load the component */}
-          <Route path='/' exact component={Login} />
-          <Route path='/login' component={Login} />
+        {/* <Route path='/' exact component={Login} /> */}
+          <Route path='/' exact component={auth} />
+          <Route path='/login' component={auth} />
           <Route path='/Dashboard' component={Dashboard} />
           <Route path='/EditTask' component={EditTask} />
           <Route path='/NewAccount' component={NewAccount} />
@@ -32,15 +32,3 @@ function App() {
 }
 
 export default App;
-=======
-import signup from './signup/signup'
-function App() {
-  return (
-    <signup>
-
-    </signup>
-  )
-}
-export default signup;
-  
->>>>>>> origin/miriam_create_new_user_page_frontend
