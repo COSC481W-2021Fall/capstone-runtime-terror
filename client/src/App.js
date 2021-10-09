@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import './App.css';
 import Nav from './Nav';
 import Dashboard from './Dashboard/Dashboard';
@@ -31,3 +32,15 @@ function App() {
 }
 
 export default App;
+=======
+import signup from './signup/signup'
+function App() {
+  return (
+    <signup>
+
+    </signup>
+  )
+}
+export default signup;
+  
+>>>>>>> origin/miriam_create_new_user_page_frontend
