@@ -1,5 +1,7 @@
 import jwt from 'jsonwebtoken';
 
+// Was there a reason that we didnt implement the google token?
+
 
 const auth = async (req, res, next) =>{
 
