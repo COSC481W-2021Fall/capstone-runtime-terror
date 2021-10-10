@@ -1,1 +1,0 @@
-export const URL = 'http://34.207.236.60:5000';
