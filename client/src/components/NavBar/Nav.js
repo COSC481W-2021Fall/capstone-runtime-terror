@@ -18,27 +18,21 @@ function Nav() {
     };
 
     useEffect(() =>{
-        const token = user?.token;
+        // const token = user?.token;
         setUser(JSON.parse(localStorage.getItem('profile')));
-    }, [location]);
+    }, [location, user?.token]);
 
     return(
         <nav className='header'>
+
             <ul> {/* When link is clicked route to='<route_name_from_App.js>' */}
-                <Link to='/'>
-                    <li>Home</li>
-                </Link>
 
                 <Link to='/Dashboard'>
                     <li>Dashboard</li>
-                </Link>
+                </Link> 
 
                 <Link to='/EditTask'>
                     <li>EditTask</li>
-                </Link>
-
-                <Link to='/NewAccount'>
-                    <li>NewAccount</li>
                 </Link>
 
                 <Link to='/ScoreBoard'>
@@ -53,9 +47,10 @@ function Nav() {
                     <li>UserProfile</li>
                 </Link>
 
-                <Link to='/Login'>
+                <Link to='/'>
                     <li onClick={logout}>Logout</li>
-                </Link>
+                </Link> 
+                
             </ul>
         </nav>
     )
