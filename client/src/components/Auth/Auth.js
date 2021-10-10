@@ -5,6 +5,7 @@ import { GoogleLogin } from 'react-google-login';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 import {signin, signup} from '../../actions/auth';
+import './auth.css';
 
 
 const initialState = { firstName: '', lastName: '', email: '', password: '', confirmPassword: '' }
@@ -21,16 +22,42 @@ const Auth = () => {
 
 
     const handleSubmit = (e) => {
+        const password = formData.password;
+        const symbol = document.getElementById('symbol');
+        const length = document.getElementById('length');
+        let messages = [];
         e.preventDefault();
-        if(isSignup){
-            dispatch(signup(formData, history));
-        }else{
-            dispatch(signin(formData, history));
+        if(password.length <8 || password.charAt(0) !== '@'){
+
+            if(password.charAt(0) !== '@') symbol.style.color = 'red';
+            else symbol.style.opacity = .25; 
+            if(password.length <8) length.style.color = 'red';
+            else length.style.opacity = .25; 
+
+            messages.push('Password Not good');
+            console.log(messages);
+        } else{
+
+            if(isSignup){
+                dispatch(signup(formData, history));
+            }else{
+                dispatch(signin(formData, history));
+            }
+            console.log(formData);
         }
-        console.log(formData);
     };
 
+
     const handleChange = (e) => {
+        const password = formData.password;
+        const symbol = document.getElementById('symbol');
+        const length = document.getElementById('length');
+
+        if(password.charAt(0) === '@') symbol.style.opacity = .25; 
+        else {symbol.style.opacity = 1; symbol.style.color = 'black';}
+        if(password.length >8) length.style.opacity = .25;
+        else {length.style.opacity = 1; length.style.color = 'black';}
+
         setFormData({...formData, [e.target.name]: e.target.value});
     };
 
@@ -76,6 +103,10 @@ const Auth = () => {
 
                     <Input name="email"    label="Email Address"  handleChange={handleChange} type="email"/>
                     <Input name="password" label="Password"       handleChange={handleChange} type={showPassword ? "text" : "password"} handleShowPassword={handleShowPassword} />
+                    <ul >
+                        <li id="symbol">Need '@' symbol</li>
+                        <li id="length">Needs to be more that 8 charecters</li>
+                    </ul>
                     { isSignup && <Input name="confirmPassword" label="Repeat Password"  handleChange={handleChange} type="password" />}
                 </Grid>
                 <Button type="submit" fullWidth varient="contained" color="primary">
