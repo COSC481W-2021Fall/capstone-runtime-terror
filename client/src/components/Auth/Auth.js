@@ -3,6 +3,7 @@ import { Button, Grid, Typography, Container } from '@material-ui/core';
 import Input from './Input';
 import { GoogleLogin } from 'react-google-login';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router';
 
 
 // const initialState = { firstName: '', lastName: '', email: '', pass_word: '', confirmPassword: '' }
@@ -11,7 +12,8 @@ import { useDispatch } from 'react-redux';
 const Auth = () => {
     const [showPassword, setShowPassword]= useState(false);
     const [isSignup, setIsSignup]= useState(false);
-    const dispatch = useDispatch;
+    const dispatch = useDispatch();
+    const history = useHistory();
 
 
     const handleShowPassword = (e) => setShowPassword ((prevShowPassword) => ! prevShowPassword);
@@ -34,7 +36,8 @@ const Auth = () => {
         const token = res?.tokenId;
 
         try{
-            dispatch({ type: 'AUTH', dats: {result, token}});
+            dispatch({ type: 'AUTH', data: {result, token}});
+            history.push('/');
         }catch (error){
             console.log(error);
 

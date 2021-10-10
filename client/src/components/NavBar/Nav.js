@@ -1,9 +1,27 @@
 //The Navigation Bar
 import './../../App.css';
 
-import {Link} from 'react-router-dom';
+import {Link, useHistory, useLocation} from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
 function Nav() {
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+    const dispatch = useDispatch();
+    const history = useHistory();
+    const location = useLocation();
+
+    const logout =() =>{
+        dispatch({type: 'LOGOUT'});
+        history.push('/');
+        setUser(null);
+    };
+
+    useEffect(() =>{
+        const token = user?.token;
+        setUser(JSON.parse(localStorage.getItem('profile')));
+    }, [location]);
+
     return(
         <nav className='header'>
             <ul> {/* When link is clicked route to='<route_name_from_App.js>' */}
@@ -36,7 +54,7 @@ function Nav() {
                 </Link>
 
                 <Link to='/Login'>
-                    <li>Logout</li>
+                    <li onClick={logout}>Logout</li>
                 </Link>
             </ul>
         </nav>
