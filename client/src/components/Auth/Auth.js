@@ -4,7 +4,7 @@ import Input from './Input';
 import { GoogleLogin } from 'react-google-login';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
-import {signin, signup} from '../../actions/auth';
+import { signin, signup } from '../../actions/auth';
 import './auth.css';
 
 
@@ -12,38 +12,48 @@ const initialState = { firstName: '', lastName: '', email: '', password: '', con
 
 
 const Auth = () => {
-    const [showPassword, setShowPassword]= useState(false);
-    const [isSignup, setIsSignup]= useState(false);
+    const [showPassword, setShowPassword] = useState(false);
+    const [isSignup, setIsSignup] = useState(false);
     const [formData, setFormData] = useState(initialState);
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const handleShowPassword = () => setShowPassword ((prevShowPassword) => ! prevShowPassword);
+    const handleShowPassword = () => setShowPassword((prevShowPassword) => !prevShowPassword);
 
 
     const handleSubmit = (e) => {
         const password = formData.password;
+        const confirmPassword = formData.confirmPassword;
+
         const symbol = document.getElementById('symbol');
         const length = document.getElementById('length');
+        const confirm = document.getElementById('confirmPassword');
+
         let messages = [];
         e.preventDefault();
-        if(password.length <8 || password.charAt(0) !== '@'){
+        if (password.length < 8 || password.charAt(0) !== '@') {
 
-            if(password.charAt(0) !== '@') symbol.style.color = 'red';
-            else symbol.style.opacity = .25; 
-            if(password.length <8) length.style.color = 'red';
-            else length.style.opacity = .25; 
+            if (password.charAt(0) !== '@') symbol.style.color = 'red';
+            else symbol.style.opacity = .25;
+            if (password.length < 8) length.style.color = 'red';
+            else length.style.opacity = .25;
 
             messages.push('Password Not good');
             console.log(messages);
-        } else{
+        } else {
 
-            if(isSignup){
-                dispatch(signup(formData, history));
-            }else{
+            if (isSignup) {
+                if (password === confirmPassword) {
+                    dispatch(signup(formData, history));
+                    console.log(formData);
+                }
+                else{
+                    confirm.style.visibility = 'visible';
+                }
+            } else {
                 dispatch(signin(formData, history));
+                console.log(formData);
             }
-            console.log(formData);
         }
     };
 
@@ -53,34 +63,34 @@ const Auth = () => {
         const symbol = document.getElementById('symbol');
         const length = document.getElementById('length');
 
-        if(password.charAt(0) === '@') symbol.style.opacity = .25; 
-        else {symbol.style.opacity = 1; symbol.style.color = 'black';}
-        if(password.length >8) length.style.opacity = .25;
-        else {length.style.opacity = 1; length.style.color = 'black';}
+        if (password.charAt(0) === '@') symbol.style.opacity = .25;
+        else { symbol.style.opacity = 1; symbol.style.color = 'black'; }
+        if (password.length > 8) length.style.opacity = .25;
+        else { length.style.opacity = 1; length.style.color = 'black'; }
 
-        setFormData({...formData, [e.target.name]: e.target.value});
+        setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
     const switchMode = () => {
-        setIsSignup((prevIsSignup) => ! prevIsSignup);
+        setIsSignup((prevIsSignup) => !prevIsSignup);
         setShowPassword(false);
     };
 
-    const googleSuccess = async(res) =>{
+    const googleSuccess = async (res) => {
         const result = res?.profileObj;
         const token = res?.tokenId;
 
-        try{
-            dispatch({ type: 'AUTH', data: {result, token}});
+        try {
+            dispatch({ type: 'AUTH', data: { result, token } });
             history.push('/Dashboard');
-        }catch (error){
+        } catch (error) {
             console.log(error);
 
         }
 
     };
-    
-    const googleFailure = (error) =>{
+
+    const googleFailure = (error) => {
         console.log(error);
     };
 
@@ -96,37 +106,43 @@ const Auth = () => {
 
                     isSignup && (
                         <>
-                            <Input name="firstName" label="First Name"  handleChange={handleChange} autoFocus half />
-                            <Input name="lastName"  label="Last Name"   handleChange={handleChange}  half />
+                            <Input name="firstName" label="First Name" handleChange={handleChange} autoFocus half />
+                            <Input name="lastName" label="Last Name" handleChange={handleChange} half />
                         </>
                     )}
 
-                    <Input name="email"    label="Email Address"  handleChange={handleChange} type="email"/>
-                    <Input name="password" label="Password"       handleChange={handleChange} type={showPassword ? "text" : "password"} handleShowPassword={handleShowPassword} />
+                    <Input name="email" label="Email Address" handleChange={handleChange} type="email" />
+                    <ul >
+                        <li id="incorrect">Password Incorrect</li>
+                    </ul>
+                    <Input name="password" label="Password" handleChange={handleChange} type={showPassword ? "text" : "password"} handleShowPassword={handleShowPassword} />
                     <ul >
                         <li id="symbol">Need '@' symbol</li>
                         <li id="length">Needs to be more that 8 charecters</li>
                     </ul>
-                    { isSignup && <Input name="confirmPassword" label="Repeat Password"  handleChange={handleChange} type="password" />}
+                    {isSignup && <Input name="confirmPassword" label="Confirm Password" handleChange={handleChange} type="password" />}
+                    {isSignup && <ul id = "confirmPassword">
+                        <li id="symbol">Password and Confirm Password dont match</li>
+                    </ul>}
                 </Grid>
                 <Button type="submit" fullWidth varient="contained" color="primary">
                     {isSignup ? 'Sign Up' : 'Sign In'}
                 </Button>
-                <GoogleLogin 
+                <GoogleLogin
                     clientId="357572993334-i686h49ue0f57sh1lhvcrhgf1fdg906h.apps.googleusercontent.com"
-                    render= {(renderProps) => (
-                        <Button 
-                            fullWidth 
-                            varient="contained" 
-                            color="primary" 
-                            onClick={renderProps.onClick} 
+                    render={(renderProps) => (
+                        <Button
+                            fullWidth
+                            varient="contained"
+                            color="primary"
+                            onClick={renderProps.onClick}
                             disabled={renderProps.disabled}>
-                                Google Sign In
+                            Google Sign In
                         </Button>
                     )}
-                    onSuccess = {googleSuccess}
-                    onFailure = {googleFailure}
-                    cookiePolicy = "single_host_origin"
+                    onSuccess={googleSuccess}
+                    onFailure={googleFailure}
+                    cookiePolicy="single_host_origin"
                 />
                 <Button fullWidth varient="contained" color="primary" onClick={switchMode}>
                     {isSignup ? 'Back' : 'Create New user'}
