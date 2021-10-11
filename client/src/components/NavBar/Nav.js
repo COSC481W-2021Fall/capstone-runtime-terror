@@ -31,6 +31,12 @@ function Nav() {
         setUser(JSON.parse(localStorage.getItem('profile')));
     }, [location, user?.token]);
 
+    if (user == null){
+        return (
+
+            <h1>Runntime Terrors</h1>
+        )
+    } else{
     return(
         <nav className='header'>
 
@@ -62,7 +68,7 @@ function Nav() {
                 
             </ul>
         </nav>
-    )
+    )}
 }
 
 export default Nav;
