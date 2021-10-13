@@ -117,8 +117,8 @@ const Auth = () => {
                     </ul>
                     <Input name="password" label="Password" handleChange={handleChange} type={showPassword ? "text" : "password"} handleShowPassword={handleShowPassword} />
                     <ul >
-                        <li id="symbol">Need '@' symbol</li>
-                        <li id="length">Needs to be more that 8 charecters</li>
+                        <li id="symbol">Password must start with '@'</li>
+                        <li id="length">Password needs to be more than 8 charecters</li>
                     </ul>
                     {isSignup && <Input name="confirmPassword" label="Confirm Password" handleChange={handleChange} type="password" />}
                     {isSignup && <ul id = "confirmPassword">
