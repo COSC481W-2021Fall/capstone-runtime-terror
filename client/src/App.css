@@ -1,5 +1,32 @@
 .App {
   text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.header {
+  overflow: hidden;
+  background-color: #f1f1f1;
+  padding: 20px 10px;
+}
+
+.header li {
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 12px;
+  list-style-type: none;
+  font-size: 18px; 
+  line-height: 25px;
+  border-radius: 4px;
+}
+
+.header ul {
+  text-decoration: none;
+}
+
+.header li:hover {
+  background-color: #ddd;
+  color: black;
 }
 
 .App-logo {

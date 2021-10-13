@@ -1,0 +1,18 @@
+ul{
+
+    list-style-type: none;
+    text-align: left;
+}
+
+li{
+    padding: 5px;
+}
+
+#confirmPassword{
+    visibility: hidden;
+    color:  red;
+}
+
+#incorrect{
+    visibility: hidden;
+}

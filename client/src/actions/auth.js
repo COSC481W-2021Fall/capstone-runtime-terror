@@ -1,17 +1,25 @@
 
 import { AUTH } from '../constants/actionTypes';
-import * as api from '../api/index.js';
+import * as api from '../api/index';
+import '../components/Auth/auth.css';
 
 
 
 export const signin = (formData, history) => async (dispatch) => {
 
     try{
-        //login user
+        const { data } = await api.signIn(formData);
 
-        history.push('/') //after login, push to the homepage
+        dispatch({type: AUTH, data});
+
+        history.push('/Dashboard') //after login, push to the homepage
     }catch (error){
-        console.log(error);
+        const password = formData.password;
+        const incorrect = document.getElementById('incorrect');
+
+        incorrect.style.visibility= 'visible';
+        incorrect.style.color= 'red';
+
     }
 
 
@@ -20,9 +28,11 @@ export const signin = (formData, history) => async (dispatch) => {
 export const signup = (formData, history) => async (dispatch) => {
 
     try{
-        //sign up user user
+        const { data } = await api.signUp(formData);
 
-        history.push('/') //after login, push to the homepage
+        dispatch({type: AUTH, data});
+
+        history.push('/Dashboard') //after login, push to the homepage
     }catch (error){
         console.log(error);
     }
