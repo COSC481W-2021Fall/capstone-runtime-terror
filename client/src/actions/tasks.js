@@ -1,12 +1,15 @@
 import {CREATE} from '../constants/actionTypes';
 import * as api from '../api/index.js';
 
-export const createPost = (post) => async (dispatch) => {
+export const createTask = (task) => async (dispatch) => {
   try {
-    const { data } = await api.createPost(post);
+    const { data } = await api.createTask(task);
 
     dispatch({ type: CREATE, payload: data });
   } catch (error) {
     console.log(error.message);
   }
 };
+
+
+//Update

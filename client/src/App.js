@@ -22,6 +22,7 @@ const App = () => {
 
           {/*This loads the edittask with the wright parameters set */}
           <Route path='/EditTask'  exact component={EditTask}><EditTask currentId={currentId} setCurrentId={setCurrentId} /></Route>
+          
           <Route path='/ScoreBoard'  exact component={ScoreBoard}/>
           <Route path='/TaskDetail' exact component={TaskDetail}/>
           <Route path='/UserProfile' exact component={UserProfile} />
