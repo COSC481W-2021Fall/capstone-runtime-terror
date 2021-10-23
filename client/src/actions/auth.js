@@ -1,7 +1,5 @@
-
 import { AUTH } from '../constants/actionTypes';
 import * as api from '../api/index';
-import '../components/Auth/auth.css';
 
 
 
@@ -14,7 +12,6 @@ export const signin = (formData, history) => async (dispatch) => {
 
         history.push('/Dashboard') //after login, push to the homepage
     }catch (error){
-        const password = formData.password;
         const incorrect = document.getElementById('incorrect');
 
         incorrect.style.visibility= 'visible';
