@@ -1,19 +1,8 @@
-
 import express from 'express';
-
-import auth from '../middleware/auth.js';
+import { createTask } from '../controllers/task.js';
 
 const router = express.Router();
 
-router.get('/', getTasks);
-router.post('/', auth, createTask);
-router.patch('/:id', auth, updateTask);
-router.delete('/:id', auth, deleteTask);
-
-
+router.post('/', createTask);
 
 export default router;
-
-
-
-
