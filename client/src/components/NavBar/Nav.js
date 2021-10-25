@@ -2,6 +2,7 @@
 import './../../App.css';
 
 import {Link, useHistory, useLocation} from 'react-router-dom';
+import {Typography} from '@material-ui/core';
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import decode from 'jwt-decode';
@@ -32,9 +33,10 @@ function Nav() {
     }, [location, user?.token]);
 
     if (user == null){
-        return (
-
-            <h1>Runntime Terrors</h1>
+        return (    
+            <nav className='header'>
+                <Typography variant="h3">Runtime Terrors</Typography>
+            </nav>
         )
     } else{
     return(

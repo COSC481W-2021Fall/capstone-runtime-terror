@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Button, Grid, Typography, Container } from '@material-ui/core';
+import { Button, Grid, Typography, Container, Paper } from '@material-ui/core';
 import Input from './Input';
 import { GoogleLogin } from 'react-google-login';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 import { signin, signup } from '../../actions/auth';
 import './auth.css';
+import useStyles from './styles';
 
 
 const initialState = { firstName: '', lastName: '', email: '', password: '', confirmPassword: '' }
@@ -17,6 +18,7 @@ const Auth = () => {
     const [formData, setFormData] = useState(initialState);
     const dispatch = useDispatch();
     const history = useHistory();
+    const classes = useStyles();
 
     const handleShowPassword = () => setShowPassword((prevShowPassword) => !prevShowPassword);
 
@@ -98,6 +100,7 @@ const Auth = () => {
 
     return (
         <Container component="main" maxWidth="xs">
+            <Paper className={classes.paper}>
             <Typography variant="h4">{isSignup ? 'Sign Up' : 'Login'}</Typography>
             <br></br>
 
@@ -125,16 +128,19 @@ const Auth = () => {
                         <li id="symbol">Password and Confirm Password dont match</li>
                     </ul>}
                 </Grid>
-                <Button type="submit" fullWidth varient="contained" color="primary">
+                <Button className={classes.buttonSubmit}  variant="contained" color="primary" size="large" type="submit" fullWidth>
                     {isSignup ? 'Sign Up' : 'Sign In'}
                 </Button>
                 <GoogleLogin
                     clientId="357572993334-i686h49ue0f57sh1lhvcrhgf1fdg906h.apps.googleusercontent.com"
                     render={(renderProps) => (
                         <Button
+                            className={classes.buttonSubmit}  
+                            variant="contained" 
+                            color="primary" 
+                            size="large" 
+                            type="submit" 
                             fullWidth
-                            varient="contained"
-                            color="primary"
                             onClick={renderProps.onClick}
                             disabled={renderProps.disabled}>
                             Google Sign In
@@ -144,10 +150,11 @@ const Auth = () => {
                     onFailure={googleFailure}
                     cookiePolicy="single_host_origin"
                 />
-                <Button fullWidth varient="contained" color="primary" onClick={switchMode}>
+                <Button className={classes.buttonSubmit}  variant="contained" color="secondary" size="small" type="submit" fullWidth onClick={switchMode}>
                     {isSignup ? 'Back' : 'Create New user'}
                 </Button>
             </form>
+            </Paper>
         </Container>
     );
 
