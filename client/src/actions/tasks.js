@@ -11,7 +11,6 @@ export const createTask = (task) => async (dispatch) => {
   }
 };
 
-
 //Update
 
 export const updateTask = (id, task) => async (dispatch) =>{
@@ -23,6 +22,5 @@ export const updateTask = (id, task) => async (dispatch) =>{
 
     console.log(error);
   }
-
 
 };
