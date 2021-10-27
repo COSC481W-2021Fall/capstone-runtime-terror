@@ -11,8 +11,8 @@ export const createTask = async (req, res) => {
 
         res.status(201).json(newTask);
     } catch (error) {
-        res.status(409).json({ message: error.message });
         console.log(error);
+        alert("Task did not insert correctly, please try again.");
     }
 }
 

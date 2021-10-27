@@ -8,7 +8,7 @@ const taskSchema = mongoose.Schema({
     create_date: Date,
     complete_date: Date,
     author: String,
-    score: String
+    score: Number
 });
 
 export default mongoose.model('Task', taskSchema);
