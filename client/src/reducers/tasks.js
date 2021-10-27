@@ -1,4 +1,4 @@
-//import task from '../../../server/models/task';
+
 import { CREATE, UPDATE, GET_TASKS } from '../constants/actionTypes';
 
 export default (tasks = [], action) => {

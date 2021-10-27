@@ -22,7 +22,7 @@ function Dashboard({ setCurrentId }) {
 
     console.log(tasks);
     return(
-        /* !tasks.length ? <CircularProgress /> : (
+         !tasks.length ? <CircularProgress /> : (
             <Grid className={classes.container} container alignItems="stretch" spacing={3}>
               {tasks.map((task) => (
                 <Grid key={task._id} item xs={12} sm={6} md={6}>
@@ -30,17 +30,8 @@ function Dashboard({ setCurrentId }) {
                 </Grid>
               ))}
             </Grid>
-          ) */
-        <Router>
-        <h1>Task Dashboard Page</h1>
-            <Grid className={classes.container} container alignItems="stretch" spacing={3}>
-                <Grid item xs={12} sm={6} md={6}>
-                    <Task />
-                    <Task />
-                    <Task />
-                </Grid>
-            </Grid>
-        </Router>
+          ) 
+    
     );
 }
 

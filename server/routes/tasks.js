@@ -1,8 +1,8 @@
 import express from 'express';
-import { createTask } from '../controllers/task.js';
+import { createTask, getTasks } from '../controllers/tasks.js';
 
 const router = express.Router();
-
+router.get('/', getTasks);
 router.post('/', createTask);
 //router.patch('/:id', updaateTask);
 

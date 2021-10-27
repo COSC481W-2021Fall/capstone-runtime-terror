@@ -11,4 +11,4 @@ export const updateTask = (id, updateTask) => API.patch(`/tasks/${id}`, updateTa
 
 export const signIn =(formData) => API.post('/user/signin', formData);
 export const signUp =(formData) => API.post('/user/signup', formData);
-export const getTasks = () => API.get('/dashboard');
+export const getTasks = () => API.get('/tasks');

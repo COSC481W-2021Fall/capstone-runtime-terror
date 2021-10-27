@@ -30,17 +30,17 @@ function Task({task}) {
     return(
         <Card className={mergeClasses.card}> 
             <div className={classes.details}>
-                <Typography variant="body2">{/*  {moment(task.create_date).fromNow()} */} Date Created </Typography>
-                <Typography variant="body2" color="textSecondary" component="h2">{/* {task.category} */}Category</Typography>
+                <Typography variant="body2">  {moment(task.create_date).fromNow()} Date Created </Typography>
+                <Typography variant="body2" color="textSecondary" component="h2">{task.category}Category</Typography>
             </div>
-            <Typography className={classes.title} gutterBottom variant="h5" component="h2">{/*{task.title} */}Title</Typography>
+            <Typography className={classes.title} gutterBottom variant="h5" component="h2">{task.title}Title</Typography>
             <CardContent>
-                <Typography variant="body2" color="textSecondary" component="p">{/* {task.description} */}Description</Typography>
+                <Typography variant="body2" color="textSecondary" component="p">{task.description}Description</Typography>
             </CardContent>
             <div className={classes.details}>
-            <Typography style={{ marginBottom: 12, }} color="textSecondary" variant="body2">{/* {task.score} */}Score</Typography>
-            <Typography id ="complete_date" style={{ marginBottom: 12, }} color="textSecondary" variant="body2">{/* {task.complete_date} */}Complete Date</Typography>
-            <Typography style={{ marginBottom: 12, }} color="textSecondary" variant="body2"> {/* {task.author} */} Author</Typography>
+            <Typography style={{ marginBottom: 12, }} color="textSecondary" variant="body2">{task.score} Score</Typography>
+            <Typography id ="complete_date" style={{ marginBottom: 12, }} color="textSecondary" variant="body2"> {task.complete_date} Complete Date</Typography>
+            <Typography style={{ marginBottom: 12, }} color="textSecondary" variant="body2">  {task.author}  Author</Typography>
             </div>
             <CardActions className={classes.cardActions}>
                 <Button size="small" color="primary" onClick={() => {}}><DeleteIcon fontSize="small" /> Delete</Button>
