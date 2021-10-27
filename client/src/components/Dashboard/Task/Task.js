@@ -1,14 +1,14 @@
-//import './../../../App.css';
+import './../../../App.css';
 //import {useState} from 'react';
 import { Card, CardActions, CardContent, Button, Typography } from '@material-ui/core/';
 import DeleteIcon from '@material-ui/icons/Delete';
-//import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
+import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import { mergeClasses } from '@material-ui/styles';
 import moment from 'moment';
 import useStyles from './styles';
 
 
-function Task({task}) {
+function Task({task, setCurrentId}) {
     const classes = useStyles();
     //const [completed, setcompleted] = useState(false);
 
@@ -29,6 +29,7 @@ function Task({task}) {
     };
     return(
         <Card className={mergeClasses.card}> 
+      
             <div className={classes.details}>
                 <Typography variant="body2">  {moment(task.create_date).fromNow()} Date Created </Typography>
                 <Typography variant="body2" color="textSecondary" component="h2">{task.category}Category</Typography>
@@ -42,7 +43,16 @@ function Task({task}) {
             <Typography id ="complete_date" style={{ marginBottom: 12, }} color="textSecondary" variant="body2"> {task.complete_date} Complete Date</Typography>
             <Typography style={{ marginBottom: 12, }} color="textSecondary" variant="body2">  {task.author}  Author</Typography>
             </div>
+            
             <CardActions className={classes.cardActions}>
+          
+              <Button
+              style={{color: 'black'}}
+              size="small"
+              onClick={() => setCurrentId(task._id)}>
+              <MoreHorizIcon frontSize="default" /> 
+              </Button>
+        
                 <Button size="small" color="primary" onClick={() => {}}><DeleteIcon fontSize="small" /> Delete</Button>
                 <label>Completed: <input type="checkbox"
                 id="completed" 
