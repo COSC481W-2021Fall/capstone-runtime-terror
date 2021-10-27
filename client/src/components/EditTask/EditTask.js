@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import useStyles from '../EditTask/styles';
 import { createTask } from '../../actions/tasks';
+import { updateTask } from '../../api';
 
 const EditTask = ({ currentId, setCurrentId }) => {
   const [taskData, settaskData] = useState({ title: '', description: '', category: '', create_date: new Date(), complete_date: new Date(), author: '', score: '1'});  //inializing task values
@@ -26,15 +27,18 @@ const EditTask = ({ currentId, setCurrentId }) => {
     settaskData({ title: '', description: '', category: '', create_date: new Date(), complete_date: new Date(), author: '', score: '1' });
   };
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (currentId === 0) {
       dispatch(createTask(taskData)); //calls the funtion in actions/tasks with the taskData
       console.log(taskData);
-      clear(); //Clears the form
+      
+    }else{
+      dispatch(updateTask(currentId, taskData));
+      
     }
+    clear(); //clears the form
   };
 
   const handleDateChange = (date) =>{
@@ -44,9 +48,10 @@ const EditTask = ({ currentId, setCurrentId }) => {
   
   return (
     <div>
-    <Typography className={classes.Typography} variant="h3">{currentId ? `Editing ""` : 'Create a Task'}</Typography> {/*This is the title it is set up to display the name of the task you are editing*/}
+    <Typography className={classes.Typography} variant="h3">{currentId ? `Editing Task` : 'Create a Task'}</Typography> {/*This is the title it is set up to display the name of the task you are editing*/}
     <Container component="main" maxWidth="xs">
       <Paper className={classes.paper}>
+     
       <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}> 
 
         {/*Author this is the owner of the task. This is how we will set task to a user. we mnight be able to auto fill*/}

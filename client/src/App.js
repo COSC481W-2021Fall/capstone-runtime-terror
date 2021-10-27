@@ -12,6 +12,10 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'; /*Allow
 const App = () => {
   const [currentId, setCurrentId] = useState(0); //sets the Current task ID 
 
+   //useEffect(() => {
+    //dispatch(getPosts());
+  //}, [currentId, dispatch]);
+
   return (
     <Router>
       <div className="App">
