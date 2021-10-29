@@ -7,11 +7,14 @@ import useStyles from './styles';
 import { useHistory } from 'react-router';
 import React, { useState } from 'react';
 import 'date-fns';
+import {useDispatch} from 'react-redux';
+import {deleteTask} from '../../../actions/tasks';
 
 const Task = ({task, setCurrentId}) => {
     const classes = useStyles();
     const history = useHistory();
     const [complete, setComplete] = useState(false);
+    const dispatch = useDispatch(); //Make a dispatch object 
     // const task = useSelector((state) => (currentId ? state.tasks.find((message) => message._id === currentId) : null));
 
     const update = () => {
@@ -42,7 +45,7 @@ const Task = ({task, setCurrentId}) => {
                 <Typography className ={classes.title}  variant="h5" gutterBottom>{task.description}</Typography>
             </CardContent>
             <CardActions className={classes.cardActions}>
-                <Button size ="small" color="primary" onClick = {() =>{}}>
+                <Button size ="small" color="primary" onClick={() => dispatch(deleteTask(task._id))}>
                     <DeleteIcon fontSize="small"/>
                     Delete
                 </Button>

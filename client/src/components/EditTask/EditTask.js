@@ -6,7 +6,7 @@ import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/picker
 import { useDispatch, useSelector } from 'react-redux';
 
 import useStyles from '../EditTask/styles';
-import { createTask, updateTask } from '../../actions/tasks';
+import { createTask, updateTask} from '../../actions/tasks';
 import { useHistory } from 'react-router';
 
 const EditTask = ({ currentId, setCurrentId, linkClicked, setlinkClicked }) => {

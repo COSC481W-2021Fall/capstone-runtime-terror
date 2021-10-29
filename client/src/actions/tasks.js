@@ -1,4 +1,4 @@
-import {CREATE, UPDATE, GET_TASKS} from '../constants/actionTypes';
+import {CREATE, UPDATE, GET_TASKS, DELETE} from '../constants/actionTypes';
 import * as api from '../api/index.js';
 
 export const createTask = (task, history) => async (dispatch) => {
@@ -38,4 +38,15 @@ export const getTasks = () => async (dispatch) => {
   } catch (error) {
       console.log(error.message);
   }
+}
+
+export const deleteTask = (id) => async (dispatch) => {
+  try{
+      alert('Actions');
+      await api.deleteTask(id);
+      dispatch({type: DELETE, payload:id });
+  } catch(error) {
+      console.log(error);
+  }
+
 }
