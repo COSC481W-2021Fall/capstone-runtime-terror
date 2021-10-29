@@ -6,16 +6,27 @@ import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import decode from 'jwt-decode';
 
-function Nav() {
+const Nav = ({setlinkClicked}) => {
     const [user, setUser] = useState(null);
     const dispatch = useDispatch();
     const history = useHistory();
     const location = useLocation();
+    // const [linkClicked, setlinkClicked] = useState(false);
 
     const logout =() =>{
         dispatch({type: 'LOGOUT'});
         history.push('/');
         setUser(null);
+    };
+
+    const resetEditPage =() =>{
+        // alert('link Pushed');
+        setlinkClicked(true);
+    };
+
+    const reset =() =>{
+        // alert('link Pushed');
+        setlinkClicked(false);
     };
 
     useEffect(() =>{
@@ -44,23 +55,23 @@ function Nav() {
             <ul> {/* When link is clicked route to='<route_name_from_App.js>' */}
 
                 <Link to='/Dashboard'>
-                    <li>Dashboard</li>
+                    <li onClick={reset}>Dashboard</li>
                 </Link> 
 
                 <Link to='/EditTask'>
-                    <li>EditTask</li>
+                    <li onClick={resetEditPage}>EditTask</li>
                 </Link>
 
                 <Link to='/ScoreBoard'>
-                    <li>ScoreBoard</li>
+                    <li onClick={reset}>ScoreBoard</li>
                 </Link>
 
                 <Link to='/TaskDetail'>
-                    <li>TaskDetail</li>
+                    <li onClick={reset}>TaskDetail</li>
                 </Link>
 
                 <Link to='/UserProfile'>
-                    <li>UserProfile</li>
+                    <li onClick={reset}>UserProfile</li>
                 </Link>
                 
                 <Link to='/'>

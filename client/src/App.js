@@ -17,30 +17,25 @@ const App = () => {
   const dispatch = useDispatch();
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
   const history = useHistory();
+  const [linkClicked, setlinkClicked] = useState(false);
   
 
   useEffect(() => {
     dispatch(getTasks());
-    window.addEventListener("beforeunload", function(e) {
-      e.preventDefault();
-      dispatch({type: 'LOGOUT'});
-      setUser(null);
-      return;
-    });
   }, [currentId, dispatch]);
-
 
   return (
     <Router>
       <div className="App">
-        <Nav /> {/* loads Nav component */}
+        <Nav setlinkClicked = {setlinkClicked}/> {/* loads Nav component */}
         <Switch> {/* When you go to this path it will load the component */}
-
+          {/* {linkClicked && alert('Edit was pushed')} */}
           <Route path='/' exact component={Auth}/>
           <Route path='/Dashboard' exact component={Dashboard}><Dashboard setCurrentId={setCurrentId}/></Route>
 
           {/*This loads the edittask with the wright parameters set */}
-          <Route path='/EditTask'  exact component={EditTask}><EditTask currentId={currentId} setCurrentId={setCurrentId}/></Route>
+          <Route path='/EditTask'  exact component={EditTask}><EditTask currentId={currentId} setCurrentId={setCurrentId} 
+                                                              linkClicked={linkClicked} setlinkClicked={setlinkClicked}/></Route>
           
           <Route path='/ScoreBoard'  exact component={ScoreBoard}/>
           <Route path='/TaskDetail' exact component={TaskDetail}/>

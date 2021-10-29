@@ -17,6 +17,7 @@ const Auth = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const classes = useStyles();
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
 
     const handleShowPassword = () => setShowPassword((prevShowPassword) => !prevShowPassword);
 
@@ -97,6 +98,7 @@ const Auth = () => {
 
 
     return ( 
+        !user ? (
             <div>
                 <Container component="main" maxWidth="xs">
                     <Paper className={classes.paper}>
@@ -155,11 +157,12 @@ const Auth = () => {
                     </form>
                     </Paper>
                 </Container>
-            </div>
-        
+            </div>) : (
+                <div>
+                    {history.push('./Dashboard')}
+                </div>  )
     );
 }
-
 export default Auth;
 
 

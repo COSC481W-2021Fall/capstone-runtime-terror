@@ -5,14 +5,23 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import moment from 'moment';
 import useStyles from './styles';
 import { useHistory } from 'react-router';
+import React, { useState } from 'react';
+import 'date-fns';
 
 const Task = ({task, setCurrentId}) => {
     const classes = useStyles();
     const history = useHistory();
+    const [complete, setComplete] = useState(false);
+    // const task = useSelector((state) => (currentId ? state.tasks.find((message) => message._id === currentId) : null));
 
     const update = () => {
         setCurrentId(task._id);
         history.push('/EditTask');
+    };
+
+    const isCompleted = () => {
+        // document.getElementById("complete_date").innerHTML = Date().toString();
+        // setComplete(true);
     };
 
     return (
@@ -20,6 +29,11 @@ const Task = ({task, setCurrentId}) => {
             <div className={classes.details}>
                 <Typography variant="h6">{task.title}</Typography>
                 <Typography variant="body2">{moment(task.create_date).fromNow()}</Typography>
+                {complete &&  (
+                <>
+                    <Typography id ='complete_date' variant="body2"></Typography>
+                </>
+                )}
             </div>
             <div className= {classes.details}>
                 <Typography variant="body2" color="textSecondary">{task.category}</Typography>
@@ -36,13 +50,11 @@ const Task = ({task, setCurrentId}) => {
                     <MoreVertIcon fontSize="default"/>
                     Update
                 </Button>
-                <Button size ="small" color="primary" onClick = {() =>{}}>
+                <Button size ="small" color="primary" onClick = {isCompleted}>
                 <CheckCircleIcon fontSize="small"/>
                     Complete
                 </Button>
-
             </CardActions>
-
         </Card> 
 
     );

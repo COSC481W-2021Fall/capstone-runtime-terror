@@ -9,7 +9,7 @@ import useStyles from '../EditTask/styles';
 import { createTask, updateTask } from '../../actions/tasks';
 import { useHistory } from 'react-router';
 
-const EditTask = ({ currentId, setCurrentId }) => {
+const EditTask = ({ currentId, setCurrentId, linkClicked, setlinkClicked }) => {
   const [taskData, settaskData] = useState({ title: '', description: '', category: '', create_date: new Date(), complete_date: new Date(), author: '', score: '1'});  //inializing task values
   const task = useSelector((state) => (currentId ? state.tasks.find((message) => message._id === currentId) : null)); 
   const dispatch = useDispatch(); //Make a dispatch object 
@@ -17,13 +17,14 @@ const EditTask = ({ currentId, setCurrentId }) => {
   const [selectedDate, setselectedDate] = useState(new Date());
   const history = useHistory();
 
+
   useEffect(() => {
     if (task) settaskData(task); //this grabs the informaion from the form and updates the task
   }, [task]);
 
   //Clears the form when the user hits clear
   const clear = () => {
-    setCurrentId(0);
+    // setCurrentId(0);
     setselectedDate(new Date());
     settaskData({ title: '', description: '', category: '', create_date: new Date(), complete_date: new Date(), author: '', score: '1' });
   };
@@ -47,6 +48,7 @@ const EditTask = ({ currentId, setCurrentId }) => {
   
   return (
     <div>
+    {/* {linkClicked && (clear)} */}
     <Typography className={classes.Typography} variant="h3">{currentId ? `Editing Task: "${task.title}"` : 'Create a Task'}</Typography> {/*This is the title it is set up to display the name of the task you are editing*/}
     <Container component="main" maxWidth="xs">
       <Paper className={classes.paper}>
