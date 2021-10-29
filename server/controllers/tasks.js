@@ -1,4 +1,5 @@
 
+import mongoose from "mongoose";
 import Task from "../models/task.js";
 
 // Function to get tasks from the database
@@ -25,4 +26,16 @@ export const createTask = async (req, res) => {
         console.log(error);
         alert("Task did not insert correctly, please try again.");
     }
+}
+
+
+export const updateTask = async (req, res) => {
+    const {id: _id} = req.params;
+    const task = req.body;
+
+    if(!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send('No Post with that ID');
+
+    const updatedTask = await Task.findByIdAndUpdate(_id, task, {new: true});
+
+    res.json(updatedTask);
 }

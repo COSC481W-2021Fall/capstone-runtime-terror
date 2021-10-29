@@ -8,9 +8,7 @@ import { signin, signup } from '../../actions/auth';
 import './auth.css';
 import useStyles from './styles';
 
-
 const initialState = { firstName: '', lastName: '', email: '', password: '', confirmPassword: '' }
-
 
 const Auth = () => {
     const [showPassword, setShowPassword] = useState(false);
@@ -98,68 +96,69 @@ const Auth = () => {
 
 
 
-    return (
-        <Container component="main" maxWidth="xs">
-            <Paper className={classes.paper}>
-            <Typography variant="h4">{isSignup ? 'Sign Up' : 'Login'}</Typography>
-            <br></br>
+    return ( 
+            <div>
+                <Container component="main" maxWidth="xs">
+                    <Paper className={classes.paper}>
+                    <Typography variant="h4">{isSignup ? 'Sign Up' : 'Login'}</Typography>
+                    <br></br>
 
-            <form onSubmit={handleSubmit} >
-                <Grid container direction="row" alignItems="center" spacing={2}>{
+                    <form onSubmit={handleSubmit} >
+                        <Grid container direction="row" alignItems="center" spacing={2}>{
 
-                    isSignup && (
-                        <>
-                            <Input name="firstName" label="First Name" handleChange={handleChange} autoFocus half />
-                            <Input name="lastName" label="Last Name" handleChange={handleChange} half />
-                        </>
-                    )}
+                            isSignup && (
+                                <>
+                                    <Input name="firstName" label="First Name" handleChange={handleChange} autoFocus half />
+                                    <Input name="lastName" label="Last Name" handleChange={handleChange} half />
+                                </>
+                            )}
 
-                    <Input name="email" label="Email Address" handleChange={handleChange} type="email" />
-                    {!isSignup &&<ul >
-                        <li id="incorrect">Password Incorrect</li>
-                    </ul>}
-                    <Input name="password" label="Password" handleChange={handleChange} type={showPassword ? "text" : "password"} handleShowPassword={handleShowPassword} />
-                    <ul >
-                        <li id="symbol">Password must start with '@'</li>
-                        <li id="length">Password needs to be more than 8 charecters</li>
-                    </ul>
-                    {isSignup && <Input name="confirmPassword" label="Confirm Password" handleChange={handleChange} type="password" />}
-                    {isSignup && <ul id = "confirmPassword">
-                        <li id="symbol">Password and Confirm Password dont match</li>
-                    </ul>}
-                </Grid>
-                <Button className={classes.buttonSubmit}  variant="contained" color="primary" size="large" type="submit" fullWidth>
-                    {isSignup ? 'Sign Up' : 'Sign In'}
-                </Button>
-                <GoogleLogin
-                    clientId="357572993334-i686h49ue0f57sh1lhvcrhgf1fdg906h.apps.googleusercontent.com"
-                    render={(renderProps) => (
-                        <Button
-                            className={classes.buttonSubmit}  
-                            variant="contained" 
-                            color="primary" 
-                            size="large" 
-                            type="submit" 
-                            fullWidth
-                            onClick={renderProps.onClick}
-                            disabled={renderProps.disabled}>
-                            Google Sign In
+                            <Input name="email" label="Email Address" handleChange={handleChange} type="email" />
+                            {!isSignup &&<ul >
+                                <li id="incorrect">Password Incorrect</li>
+                            </ul>}
+                            <Input name="password" label="Password" handleChange={handleChange} type={showPassword ? "text" : "password"} handleShowPassword={handleShowPassword} />
+                            <ul >
+                                <li id="symbol">Password must start with '@'</li>
+                                <li id="length">Password needs to be more than 8 charecters</li>
+                            </ul>
+                            {isSignup && <Input name="confirmPassword" label="Confirm Password" handleChange={handleChange} type="password" />}
+                            {isSignup && <ul id = "confirmPassword">
+                                <li id="symbol">Password and Confirm Password dont match</li>
+                            </ul>}
+                        </Grid>
+                        <Button className={classes.buttonSubmit}  variant="contained" color="primary" size="large" type="submit" fullWidth>
+                            {isSignup ? 'Sign Up' : 'Sign In'}
                         </Button>
-                    )}
-                    onSuccess={googleSuccess}
-                    onFailure={googleFailure}
-                    cookiePolicy="single_host_origin"
-                />
-                <Button className={classes.buttonSubmit}  variant="contained" color="secondary" size="small" type="submit" fullWidth onClick={switchMode}>
-                    {isSignup ? 'Back' : 'Create New user'}
-                </Button>
-            </form>
-            </Paper>
-        </Container>
+                        <GoogleLogin
+                            clientId="357572993334-i686h49ue0f57sh1lhvcrhgf1fdg906h.apps.googleusercontent.com"
+                            render={(renderProps) => (
+                                <Button
+                                    className={classes.buttonSubmit}  
+                                    variant="contained" 
+                                    color="primary" 
+                                    size="large" 
+                                    type="submit" 
+                                    fullWidth
+                                    onClick={renderProps.onClick}
+                                    disabled={renderProps.disabled}>
+                                    Google Sign In
+                                </Button>
+                            )}
+                            onSuccess={googleSuccess}
+                            onFailure={googleFailure}
+                            cookiePolicy="single_host_origin"
+                        />
+                        <Button className={classes.buttonSubmit}  variant="contained" color="secondary" size="small" type="submit" fullWidth onClick={switchMode}>
+                            {isSignup ? 'Back' : 'Create New user'}
+                        </Button>
+                    </form>
+                    </Paper>
+                </Container>
+            </div>
+        
     );
-
-
-};
+}
 
 export default Auth;
 
