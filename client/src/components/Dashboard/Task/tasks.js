@@ -15,7 +15,6 @@ const Task = ({task, setCurrentId}) => {
     const history = useHistory();
     const [complete, setComplete] = useState(false);
     const dispatch = useDispatch(); //Make a dispatch object 
-    // const task = useSelector((state) => (currentId ? state.tasks.find((message) => message._id === currentId) : null));
 
     const update = () => {
         setCurrentId(task._id);
@@ -23,8 +22,15 @@ const Task = ({task, setCurrentId}) => {
     };
 
     const isCompleted = () => {
-        // document.getElementById("complete_date").innerHTML = Date().toString();
-        // setComplete(true);
+        if(complete)
+            setComplete(false);
+        else
+            setComplete(true);
+    };
+
+    const handelDeleteTask = () => {
+        dispatch(deleteTask(task._id));
+        window.location.reload(false);
     };
 
     return (
@@ -32,20 +38,17 @@ const Task = ({task, setCurrentId}) => {
             <div className={classes.details}>
                 <Typography variant="h6">{task.title}</Typography>
                 <Typography variant="body2">{moment(task.create_date).fromNow()}</Typography>
-                {complete &&  (
-                <>
-                    <Typography id ='complete_date' variant="body2"></Typography>
-                </>
-                )}
             </div>
             <div className= {classes.details}>
                 <Typography variant="body2" color="textSecondary">{task.category}</Typography>
+                {!complete ? (<Typography variant="body2" color="textSecondary">Complete Date: {moment(task.complete_date).format('D MMM')}</Typography>)
+                            : (<Typography variant="body2" color="textSecondary">Completed: {moment(new Date()).format('D MMM')}</Typography>)}
             </div>
             <CardContent>
                 <Typography className ={classes.title}  variant="h5" gutterBottom>{task.description}</Typography>
             </CardContent>
             <CardActions className={classes.cardActions}>
-                <Button size ="small" color="primary" onClick={() => dispatch(deleteTask(task._id))}>
+                <Button size ="small" color="primary" onClick={handelDeleteTask}>
                     <DeleteIcon fontSize="small"/>
                     Delete
                 </Button>

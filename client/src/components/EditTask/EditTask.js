@@ -24,7 +24,7 @@ const EditTask = ({ currentId, setCurrentId, linkClicked, setlinkClicked }) => {
 
   //Clears the form when the user hits clear
   const clear = () => {
-    // setCurrentId(0);
+    setCurrentId(0);
     setselectedDate(new Date());
     settaskData({ title: '', description: '', category: '', create_date: new Date(), complete_date: new Date(), author: '', score: '1' });
   };
@@ -42,7 +42,7 @@ const EditTask = ({ currentId, setCurrentId, linkClicked, setlinkClicked }) => {
   };
 
   const handleDateChange = (date) =>{
-    setselectedDate(date);
+    setselectedDate(date); 
     settaskData({ ...taskData, complete_date: date });
   };
   

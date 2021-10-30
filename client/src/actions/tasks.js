@@ -42,7 +42,6 @@ export const getTasks = () => async (dispatch) => {
 
 export const deleteTask = (id) => async (dispatch) => {
   try{
-      alert('Actions');
       await api.deleteTask(id);
       dispatch({type: DELETE, payload:id });
   } catch(error) {
