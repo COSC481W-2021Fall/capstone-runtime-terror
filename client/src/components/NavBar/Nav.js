@@ -59,7 +59,7 @@ const Nav = ({setlinkClicked}) => {
                 </Link> 
 
                 <Link to='/EditTask'>
-                    <li onClick={resetEditPage}>EditTask</li>
+                    <li onClick={resetEditPage}>CreateTask</li>
                 </Link>
 
                 <Link to='/ScoreBoard'>

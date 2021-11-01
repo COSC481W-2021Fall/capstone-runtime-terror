@@ -13,7 +13,6 @@ const Dashboard = ({setCurrentId}) => {
 
   return (
     !tasks.length ? <CircularProgress /> : (
-      <Paper className={classes.paper}>
         <Grid className={classes.container} container alignItems="stretch" spacing={3}>
           {tasks.map((task) => (
             <Grid key={task._id} item xs={12} sm={6} md={3}>
@@ -21,7 +20,6 @@ const Dashboard = ({setCurrentId}) => {
             </Grid>
           ))}
         </Grid>
-      </Paper>
     )
     );
 }
