@@ -36,7 +36,7 @@ const Task = ({task, setCurrentId}) => {
     return (
         <Card className={classes.card}>
             <div className={classes.details}>
-                <Typography variant="h6">{task.title}</Typography>
+                <Typography variant="body2">{task.title}</Typography>
                 <Typography variant="body2">{moment(task.create_date).fromNow()}</Typography>
             </div>
             <div className= {classes.details}>

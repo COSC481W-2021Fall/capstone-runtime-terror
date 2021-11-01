@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Grid, CircularProgress } from '@material-ui/core';
+import { Grid, CircularProgress, Paper } from '@material-ui/core';
 
 import { useSelector } from 'react-redux';
 
@@ -13,13 +13,15 @@ const Dashboard = ({setCurrentId}) => {
 
   return (
     !tasks.length ? <CircularProgress /> : (
-      <Grid className={classes.container} container alignItems="stretch" spacing={3}>
-        {tasks.map((task) => (
-          <Grid key={task._id} item xs={12} sm={6} md={3}>
-            <Task task={task} setCurrentId={setCurrentId} />
-          </Grid>
-        ))}
-      </Grid>
+      <Paper className={classes.paper}>
+        <Grid className={classes.container} container alignItems="stretch" spacing={3}>
+          {tasks.map((task) => (
+            <Grid key={task._id} item xs={12} sm={6} md={3}>
+              <Task task={task} setCurrentId={setCurrentId} />
+            </Grid>
+          ))}
+        </Grid>
+      </Paper>
     )
     );
 }
