@@ -1,5 +1,6 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import Mongoose from 'mongoose';
 import User from '../models/user.js';
 
 
@@ -28,6 +29,17 @@ export const signin = async (req, res) => { //sign in controller
     }catch (error){
         res.status(500).json({ message: 'something went wrong.' });
     }
+
+}
+
+//delete 
+export const deleteTask = async(req, res) => {
+    const { id } = req.params;
+    if(!Mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send('no post with this id');
+   //postMessage
+   // await PostMessage.findByIdAndRemove(id);
+    await postMessage.findByIdAndRemove(id);
+    res.json({message: 'Post deleted successfully'});
 
 }
 

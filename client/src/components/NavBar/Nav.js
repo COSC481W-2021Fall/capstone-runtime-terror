@@ -1,21 +1,32 @@
 //The Navigation Bar
 import './../../App.css';
-
 import {Link, useHistory, useLocation} from 'react-router-dom';
+import {Typography} from '@material-ui/core';
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import decode from 'jwt-decode';
 
-function Nav() {
-    const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+const Nav = ({setlinkClicked}) => {
+    const [user, setUser] = useState(null);
     const dispatch = useDispatch();
     const history = useHistory();
     const location = useLocation();
+    // const [linkClicked, setlinkClicked] = useState(false);
 
     const logout =() =>{
         dispatch({type: 'LOGOUT'});
         history.push('/');
         setUser(null);
+    };
+
+    const resetEditPage =() =>{
+        // alert('link Pushed');
+        setlinkClicked(true);
+    };
+
+    const reset =() =>{
+        // alert('link Pushed');
+        setlinkClicked(false);
     };
 
     useEffect(() =>{
@@ -32,40 +43,40 @@ function Nav() {
     }, [location, user?.token]);
 
     if (user == null){
-        return (
-
-            <h1>Runntime Terrors</h1>
+        return (    
+            <nav className='header'>
+                <Typography variant="h3">Runtime Terrors</Typography>
+            </nav>
         )
-    } else{
-    return(
+    }else {
+        return(
         <nav className='header'>
 
             <ul> {/* When link is clicked route to='<route_name_from_App.js>' */}
 
                 <Link to='/Dashboard'>
-                    <li>Dashboard</li>
+                    <li onClick={reset}>Dashboard</li>
                 </Link> 
 
                 <Link to='/EditTask'>
-                    <li>EditTask</li>
+                    <li onClick={resetEditPage}>CreateTask</li>
                 </Link>
 
                 <Link to='/ScoreBoard'>
-                    <li>ScoreBoard</li>
+                    <li onClick={reset}>ScoreBoard</li>
                 </Link>
 
                 <Link to='/TaskDetail'>
-                    <li>TaskDetail</li>
+                    <li onClick={reset}>TaskDetail</li>
                 </Link>
 
                 <Link to='/UserProfile'>
-                    <li>UserProfile</li>
+                    <li onClick={reset}>UserProfile</li>
                 </Link>
-
+                
                 <Link to='/'>
                     <li onClick={logout}>Logout</li>
                 </Link> 
-                
             </ul>
         </nav>
     )}
