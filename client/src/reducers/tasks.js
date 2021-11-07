@@ -1,4 +1,3 @@
-
 import { CREATE, UPDATE, GET_TASKS } from '../constants/actionTypes';
 
 export default (tasks = [], action) => {
@@ -12,6 +11,5 @@ export default (tasks = [], action) => {
         default:
             return tasks;
     }
-
 
 }

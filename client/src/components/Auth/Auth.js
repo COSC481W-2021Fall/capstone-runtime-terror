@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Grid, Typography, Container, Paper } from '@material-ui/core';
 import Input from './Input';
 import { GoogleLogin } from 'react-google-login';
@@ -19,8 +19,8 @@ const Auth = () => {
     const classes = useStyles();
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
 
-    const handleShowPassword = () => setShowPassword((prevShowPassword) => !prevShowPassword);
 
+    const handleShowPassword = () => setShowPassword((prevShowPassword) => !prevShowPassword);
 
     const handleSubmit = (e) => {
         const password = formData.password;
@@ -42,18 +42,15 @@ const Auth = () => {
             messages.push('Password Not good');
             console.log(messages);
         } else {
-
             if (isSignup) {
                 if (password === confirmPassword) {
                     dispatch(signup(formData, history));
-                    console.log(formData);
                 }
                 else{
                     confirm.style.visibility = 'visible';
                 }
             } else {
                 dispatch(signin(formData, history));
-                console.log(formData);
             }
         }
     };
@@ -83,10 +80,10 @@ const Auth = () => {
 
         try {
             dispatch({ type: 'AUTH', data: { result, token } });
-            history.push('/Dashboard');
+            window.location = '/Dashboard';
+            window.location.reload(false);
         } catch (error) {
             console.log(error);
-
         }
 
     };

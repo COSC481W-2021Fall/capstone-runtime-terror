@@ -53,7 +53,7 @@ const Task = ({task, setCurrentId}) => {
                     Delete
                 </Button>
                 <Button size ="small" color="primary" onClick ={update} >
-                    <MoreVertIcon fontSize="default"/>
+                    <MoreVertIcon fontSize="medium"/>
                     Update
                 </Button>
                 <Button size ="small" color="primary" onClick = {isCompleted}>

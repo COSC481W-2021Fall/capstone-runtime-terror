@@ -29,13 +29,14 @@ export const updateTask = (id, task, history) => async (dispatch) =>{
 };
 
 //get
-export const getTasks = () => async (dispatch) => {
+export const getTasks = (user) => async (dispatch) => {
   try {
-      const { data } = await api.getTasks();
+    console.log(user);
+    const { data } = await api.getTasks(user);
 
-      dispatch({type: GET_TASKS, payload: data});
+    dispatch({type: GET_TASKS, payload: data});
       
-  } catch (error) {
+  } catch (error) { 
       console.log(error.message);
   }
 }
@@ -43,7 +44,7 @@ export const getTasks = () => async (dispatch) => {
 export const deleteTask = (id) => async (dispatch) => {
   try{
       await api.deleteTask(id);
-      dispatch({type: DELETE, payload:id });
+      dispatch({type: DELETE, payload: id });
   } catch(error) {
       console.log(error);
   }

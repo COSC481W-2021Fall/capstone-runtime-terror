@@ -1,11 +1,13 @@
 import './../../App.css';
 //import {useHistory} from 'react-router-dom';
 
-function ScoreBoard() {
+const ScoreBoard = ({user}) => {
     return(
-        <div>
-            <h1>ScoreBoard Page</h1>
-        </div>
+        user ? (
+            <div>
+                <h1>ScoreBoard Page</h1>
+            </div>
+        ) : (window.location.pathname = "/")
     )
 }
 

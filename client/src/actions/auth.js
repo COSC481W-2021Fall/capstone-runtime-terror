@@ -10,7 +10,8 @@ export const signin = (formData, history) => async (dispatch) => {
 
         dispatch({type: AUTH, data});
 
-        history.push('/Dashboard') //after login, push to the homepage
+        window.location = '/Dashboard'; //after login, push to the homepage
+        window.location.reload(false);
     }catch (error){
         const incorrect = document.getElementById('incorrect');
 
@@ -29,12 +30,11 @@ export const signup = (formData, history) => async (dispatch) => {
 
         dispatch({type: AUTH, data});
 
-        history.push('/Dashboard') //after login, push to the homepage
+        window.location = '/Dashboard'; //after login, push to the homepage
+        window.location.reload(false);
     }catch (error){
         console.log(error);
     }
-
-
 };
 
 

@@ -9,8 +9,8 @@ import useStyles from '../EditTask/styles';
 import { createTask, updateTask} from '../../actions/tasks';
 import { useHistory } from 'react-router';
 
-const EditTask = ({ currentId, setCurrentId, linkClicked, setlinkClicked }) => {
-  const [taskData, settaskData] = useState({ title: '', description: '', category: '', create_date: new Date(), complete_date: new Date(), author: '', score: '1'});  //inializing task values
+const EditTask = ({ currentId, setCurrentId, linkClicked, setlinkClicked, user }) => {
+  const [taskData, settaskData] = useState({ title: '', description: '', category: '', create_date: new Date(), complete_date: new Date(), author: user.result.email, score: '1'});  //inializing task values
   const task = useSelector((state) => (currentId ? state.tasks.find((message) => message._id === currentId) : null)); 
   const dispatch = useDispatch(); //Make a dispatch object 
   const classes = useStyles(); //make and object for the styles.js
@@ -26,7 +26,7 @@ const EditTask = ({ currentId, setCurrentId, linkClicked, setlinkClicked }) => {
   const clear = () => {
     setCurrentId(0);
     setselectedDate(new Date());
-    settaskData({ title: '', description: '', category: '', create_date: new Date(), complete_date: new Date(), author: '', score: '1' });
+    settaskData({ title: '', description: '', category: '', create_date: new Date(), complete_date: new Date(), author: user.result.email, score: '1' });
   };
 
   const handleSubmit = async (e) => {
@@ -47,16 +47,19 @@ const EditTask = ({ currentId, setCurrentId, linkClicked, setlinkClicked }) => {
   };
   
   return (
+    user ? (
     <div>
     {/* {linkClicked && (clear)} */}
-    <Typography className={classes.Typography} variant="h3">{currentId ? `Editing Task: "${task.title}"` : 'Create a Task'}</Typography> {/*This is the title it is set up to display the name of the task you are editing*/}
+    <Typography className={classes.Typography} variant="h3">{currentId ? `Editing Task: "${task.title}"` : 'Create a Task'}</Typography> 
+    {/* This is the title it is set up to display the name of the task you are editing */}
     <Container component="main" maxWidth="xs">
       <Paper className={classes.paper}>
      
       <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}> 
-
+        {/* <Typography className={classes.Typography} variant="h3">{currentId ? `Editing Task "${task.title}"` : 'Create a Task'}</Typography>  */}
+        {/*This is the title it is set up to display the name of the task you are editing*/}
         {/*Author this is the owner of the task. This is how we will set task to a user. we mnight be able to auto fill*/}
-        <TextField name="author" variant="outlined" label="Author" fullWidth value={taskData.author} onChange={(e) => settaskData({ ...taskData, author: e.target.value })} />
+        {/* <TextField name="author" variant="outlined" label="Author" fullWidth value={taskData.author} onChange={(e) => settaskData({ ...taskData, author: e.target.value })} /> */}
         
         {/*This is the name of the task*/}
         <TextField name="title" variant="outlined" label="Title" fullWidth value={taskData.title} onChange={(e) => settaskData({ ...taskData, title: e.target.value })} />
@@ -92,6 +95,7 @@ const EditTask = ({ currentId, setCurrentId, linkClicked, setlinkClicked }) => {
       </Paper>
     </Container>
     </div>
+    ) : (window.location.pathname = "/")
   );
 };
 

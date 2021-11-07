@@ -1,11 +1,13 @@
 import './../../App.css';
 //import {useHistory} from 'react-router-dom';
 
-function TaskDetail() {
+const TaskDetail = ({user}) => {
     return(
-        <div>
-            <h1>Task Detail Page</h1>
-        </div>
+        user ? (
+            <div>
+                <h1>Task Detail Page</h1>
+            </div>
+        ) : (window.location.pathname = "/")
     )
 }
 
