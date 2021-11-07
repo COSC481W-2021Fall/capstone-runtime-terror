@@ -9,7 +9,7 @@ import useStyles from '../EditTask/styles';
 import { createTask, updateTask} from '../../actions/tasks';
 import { useHistory } from 'react-router';
 
-const EditTask = ({ currentId, setCurrentId, linkClicked, setlinkClicked, user }) => {
+const EditTask = ({ currentId, setCurrentId, user }) => {
   const [taskData, settaskData] = useState({ title: '', description: '', category: '', create_date: new Date(), complete_date: new Date(), author: user.result.email, score: '1'});  //inializing task values
   const task = useSelector((state) => (currentId ? state.tasks.find((message) => message._id === currentId) : null)); 
   const dispatch = useDispatch(); //Make a dispatch object 

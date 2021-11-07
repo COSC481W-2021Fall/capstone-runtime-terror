@@ -8,7 +8,12 @@ const taskSchema = mongoose.Schema({
     create_date: Date,
     complete_date: Date,
     author: String,
-    score: Number
+    score: Number,
+    // status: String{
+    //     'Active' 
+    //     'complete' 
+    //     'todo'
+    // },
 });
 
 export default mongoose.model('Task', taskSchema);

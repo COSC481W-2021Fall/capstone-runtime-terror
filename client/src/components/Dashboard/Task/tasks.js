@@ -18,7 +18,7 @@ const Task = ({task, setCurrentId}) => {
 
     const update = () => {
         setCurrentId(task._id);
-        history.push('/EditTask');
+        history.push('/EditTask'); //This one need to to be history or edit task wont work
     };
 
     const isCompleted = () => {
