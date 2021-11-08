@@ -15,4 +15,11 @@ export default makeStyles((theme) => ({
     padding: theme.spacing(2),
     margin: '20px 0',
   },
+  buttonDiv: {
+    textAlign: 'left',
+    margin: theme.spacing(5),
+  },
+  dropdown: {
+    width:200,
+  },
 }));
