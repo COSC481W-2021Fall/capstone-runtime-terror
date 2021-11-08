@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import useStyles from '../EditTask/styles';
 import { createTask, updateTask} from '../../actions/tasks';
 import { useHistory } from 'react-router';
+import moment from 'moment';
 
 const EditTask = ({ currentId, setCurrentId, user }) => {
   const [taskData, settaskData] = useState({ title: '', description: '', category: '', create_date: new Date(), complete_date: new Date(), author: user.result.email, score: '1'});  //inializing task values
@@ -31,14 +32,22 @@ const EditTask = ({ currentId, setCurrentId, user }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // moment(taskData.complete_date.format('D'));
+    console.log(moment(taskData.complete_date).format('D MMM yyy'));
+    const date = new Date();
+    if (moment(taskData.complete_date).format('D MMM yyy')>=moment(date).format('D MMM yyy')){
+      if (currentId) {
+        dispatch(updateTask(currentId, taskData, history));
+        
+      }else{
+        dispatch(createTask(taskData, history)); //calls the funtion in actions/tasks with the taskData
 
-    if (currentId) {
-      dispatch(updateTask(currentId, taskData, history));
-      
-    }else{
-      dispatch(createTask(taskData, history)); //calls the funtion in actions/tasks with the taskData
+      } 
+      clear(); //clears the form
+    } else {
+      window.alert('Date passed ;)');
     }
-    clear(); //clears the form
+
   };
 
   const handleDateChange = (date) =>{
@@ -77,7 +86,7 @@ const EditTask = ({ currentId, setCurrentId, user }) => {
               margin='normal'
               id= 'complete_date'
               label='Date to Complete'
-              value= {selectedDate}
+              value={taskData.complete_date}
               onChange = {handleDateChange}
               KeyboardButtonProps={{
                 'aria-label' : 'Change date'
