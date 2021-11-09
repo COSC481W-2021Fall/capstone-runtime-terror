@@ -32,10 +32,8 @@ const EditTask = ({ currentId, setCurrentId, user }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // moment(taskData.complete_date.format('D'));
-    console.log(moment(taskData.complete_date).format('D MMM yyy'));
-    const date = new Date();
-    if (moment(taskData.complete_date).format('D MMM yyy')>=moment(date).format('D MMM yyy')){
+    
+    if (taskData.complete_date.getUTCDate()>=new Date().getUTCDate() && taskData.complete_date.getUTCMonth()>=new Date().getUTCMonth() && taskData.complete_date.getUTCFullYear()>=new Date().getUTCFullYear()){
       if (currentId) {
         dispatch(updateTask(currentId, taskData, history));
         
@@ -86,7 +84,7 @@ const EditTask = ({ currentId, setCurrentId, user }) => {
               margin='normal'
               id= 'complete_date'
               label='Date to Complete'
-              value={taskData.complete_date}
+              value={currentId ? taskData.complete_date : selectedDate}
               onChange = {handleDateChange}
               KeyboardButtonProps={{
                 'aria-label' : 'Change date'
