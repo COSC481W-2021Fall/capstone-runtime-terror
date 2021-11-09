@@ -16,10 +16,13 @@ export default makeStyles((theme) => ({
     margin: '20px 0',
   },
   buttonDiv: {
-    textAlign: 'left',
+    float: 'left',
     margin: theme.spacing(5),
   },
   dropdown: {
     width:200,
+  },
+  grid: {
+    float: 'right',
   },
 }));

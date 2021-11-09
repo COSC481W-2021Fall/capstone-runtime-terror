@@ -13,9 +13,10 @@ import useStyles from './styles';
 const Dashboard = ({setCurrentId}) => {
   const tasks = useSelector((state) => state.tasks);
   const classes = useStyles();
-  const [selectedDate, setselectedDate] = useState(new Date());
+  const [sortByDateValue, setsortByDateValue] =React.useState('ascending');
   const [selectedCategory, setCategory] = React.useState('');
   const [sortByValue, setSortBy] = React.useState('category');
+  const [sortByDateType, setSortByDateType] = React.useState('completeDate');
 
   const handleSortChange = (event) => {
     setSortBy(event.target.value);
@@ -25,18 +26,23 @@ const Dashboard = ({setCurrentId}) => {
     setCategory(event.target.value);
   };
 
-  const handleDateChange = (date) =>{
-    setselectedDate(date); 
+  const handleSortDateChange = (event) =>{
+    setsortByDateValue(event.target.value); 
+  };
+
+  const handleDateTypeChange = (event) =>{
+    setSortByDateType(event.target.value); 
   };
 
   return (
     !tasks.length ? <CircularProgress /> : (
       <div>
         <form className={classes.buttonDiv}>
-          {<h1>Sort Tasks</h1>}
+          {<h1>Sort/Filter Tasks</h1>}
           {/* Radio Buttons */}
           <FormControl component="fieldset">
-            <FormLabel component="legend">Sort By:</FormLabel>
+          {(sortByValue === 'category') ? <FormLabel component="legend">Filter By:</FormLabel> 
+          : <FormLabel component="legend">Sort By:</FormLabel> }
             <RadioGroup
               row 
               aria-label="sortBy"
@@ -69,32 +75,47 @@ const Dashboard = ({setCurrentId}) => {
                 </Select>
             </FormControl>  
           : 
-          // {/*Date Picker*/}
-          <MuiPickersUtilsProvider utils={DateFnsUtils}>
-            <KeyboardDatePicker
-              disableToolbar
-              variant='inline'
-              format='MM/dd/yyy'
-              margin='normal'
-              id= 'complete_date'
-              label='Date to Sort'
-              value= {selectedDate}
-              onChange = {handleDateChange}
-              KeyboardButtonProps={{
-                'aria-label' : 'Change date'
-              }}
-            />
-          </MuiPickersUtilsProvider> 
+          <>
+          <FormControl component="fieldset">
+            <FormLabel component="legend">Sort By Date:</FormLabel>
+            <RadioGroup
+              row 
+              aria-label="sortByDate"
+              defaultValue="ascending"
+              name="row-radio-buttons-group"
+              value={sortByDateType}
+              onChange={handleDateTypeChange}
+            >
+              <FormControlLabel value="completeDate" control={<Radio />} label="Complete Date" />
+              <FormControlLabel value="startDate" control={<Radio />} label="Start Date" />
+            </RadioGroup>
+          </FormControl> <br/><br/>
+          <FormControl component="fieldset">
+            <FormLabel component="legend">Ascending / Descending</FormLabel>
+            <RadioGroup
+              row 
+              aria-label="sortByDate"
+              defaultValue="ascending"
+              name="row-radio-buttons-group"
+              value={sortByDateValue}
+              onChange={handleSortDateChange}
+            >
+              <FormControlLabel value="ascending" control={<Radio />} label="Ascending" />
+              <FormControlLabel value="descending" control={<Radio />} label="Descending" />
+            </RadioGroup>
+          </FormControl>
+          </>
         }
                         
-            {/* <TextField name="author" variant="outlined" label="Test" value={sortByValue} />{<br/>}{<br/>} */} 
+            {/* <TextField name="author" variant="outlined" label="Test" value={sortByDateValue} />{<br/>}{<br/>} */}
             {<br/>}
             {<br/>}
-            <Button variant="outlined" color="primary" type="submit">Sort</Button>{<br/>}{<br/>}
+            {(sortByValue === 'category') ? <Button variant="outlined" color="primary" type="submit">Filter</Button> 
+            : <Button variant="outlined" color="primary" type="submit">Sort</Button> } {<br/>}{<br/>}
             <Button variant="contained" color="primary" type="submit">Get All Tasks</Button> 
         </form>
 
-        <Grid className={classes.mainContainer} container alignItems="stretch" spacing={3}>
+        <Grid className={classes.grid} container alignItems="stretch" spacing={3}>
           {tasks.map((task) => (
             <Grid key={task._id} item xs={12} sm={6} md={4}>
               <Task task={task} setCurrentId={setCurrentId} />
