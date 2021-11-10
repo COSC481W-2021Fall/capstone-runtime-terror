@@ -15,14 +15,9 @@ export const getTasks = async (req, res) => {
 
 //create task function
 export const createTask = async (req, res) => {
-<<<<<<< HEAD
-    const task = req.body;
-    const newTask = new Task({...task});
-=======
     const { title, description, category, create_date, complete_date, author, score, todo, active, completed } = req.body;
 
     const newTask = new Task({ title, description, category, create_date, complete_date, author, score, todo, active, completed });
->>>>>>> origin/mike_dashboard_card_update
 
     try {
         await newTask.save();
