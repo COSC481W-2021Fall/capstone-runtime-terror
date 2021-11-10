@@ -8,7 +8,10 @@ const taskSchema = mongoose.Schema({
     create_date: Date,
     complete_date: Date,
     author: String,
-    score: Number
+    score: Number,
+    todo: { type: Boolean, default: false},
+    active: { type: Boolean, default: true},
+    completed: { type: Boolean, default: false}
 });
 
 export default mongoose.model('Task', taskSchema);
