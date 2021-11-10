@@ -41,10 +41,11 @@ const EditTask = ({ currentId, setCurrentId, user }) => {
         dispatch(createTask(taskData, history)); //calls the funtion in actions/tasks with the taskData
 
       } 
-      clear(); //clears the form
+      // clear(); //clears the form
     } else {
       window.alert('Date passed ;)');
     }
+    clear();
 
   };
 

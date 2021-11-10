@@ -2,13 +2,14 @@ import { Card, CardActions, CardContent, Button, Typography } from '@material-ui
 import DeleteIcon from '@material-ui/icons/Delete';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import ArrowForwardIos from '@mui/icons-material/ArrowForward';
 import moment from 'moment';
 import useStyles from './styles';
 import { useHistory } from 'react-router';
 import React, { useState } from 'react';
 import 'date-fns';
 import {useDispatch} from 'react-redux';
-import {deleteTask} from '../../../actions/tasks';
+import {deleteTask, updateTask} from '../../../actions/tasks';
 
 const Task = ({task, setCurrentId}) => {
     const classes = useStyles();
@@ -22,10 +23,12 @@ const Task = ({task, setCurrentId}) => {
     };
 
     const isCompleted = () => {
-        if(complete)
-            setComplete(false);
-        else
-            setComplete(true);
+        task.todo = false;
+        task.active = false;
+        task.completed = true;
+        task.complete_date = new Date();
+        dispatch(updateTask(task._id, task, history));
+
     };
 
     const handelDeleteTask = () => {
@@ -33,6 +36,13 @@ const Task = ({task, setCurrentId}) => {
         window.location.reload(false);
     };
 
+    const toDo = () => {
+        task.todo = true;
+        task.active = false;
+        task.completed = false;
+        dispatch(updateTask(task._id, task, history));
+    }
+   
     return (
         <Card className={classes.card}>
             <div className={classes.details}>
@@ -56,14 +66,19 @@ const Task = ({task, setCurrentId}) => {
                     <MoreVertIcon fontSize="medium"/>
                     Update
                 </Button>
+                <Button size ="small" color="primary" onClick = {toDo}>
+                <ArrowForwardIos fontSize="small"/>
+                    To-Do
+                </Button>
                 <Button size ="small" color="primary" onClick = {isCompleted}>
                 <CheckCircleIcon fontSize="small"/>
                     Complete
                 </Button>
             </CardActions>
         </Card> 
-
+       
     );
+
 }
 
 export default Task;

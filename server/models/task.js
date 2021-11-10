@@ -9,11 +9,9 @@ const taskSchema = mongoose.Schema({
     complete_date: Date,
     author: String,
     score: Number,
-    // status: String{
-    //     'Active' 
-    //     'complete' 
-    //     'todo'
-    // },
+    todo: { type: Boolean, default: false},
+    active: { type: Boolean, default: true},
+    completed: { type: Boolean, default: false}
 });
 
 export default mongoose.model('Task', taskSchema);
