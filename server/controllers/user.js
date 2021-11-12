@@ -32,17 +32,6 @@ export const signin = async (req, res) => { //sign in controller
 
 }
 
-//delete 
-export const deleteTask = async(req, res) => {
-    const { id } = req.params;
-    if(!Mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send('no post with this id');
-   //postMessage
-   // await PostMessage.findByIdAndRemove(id);
-    await postMessage.findByIdAndRemove(id);
-    res.json({message: 'Post deleted successfully'});
-
-}
-
 //Authur Blake Johnson
 export const signup = async (req, res) => {
     const { email, password, confirmPassword, firstName, lastName } = req.body;

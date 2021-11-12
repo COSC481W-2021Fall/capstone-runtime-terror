@@ -96,4 +96,3 @@ const EditTask = ({ currentId, setCurrentId, linkClicked, setlinkClicked }) => {
 };
 
 export default EditTask;
-

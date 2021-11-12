@@ -21,6 +21,7 @@ export default makeStyles({
     height: '100%',
     position: 'relative',
     backgroundColor: '#add8e6', 
+    width: '400px',
   },
   grid: {
     display: 'flex',
