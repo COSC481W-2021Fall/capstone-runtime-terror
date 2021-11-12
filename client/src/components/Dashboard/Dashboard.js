@@ -1,7 +1,5 @@
-import React, { useState } from 'react';
-import { Grid, CircularProgress, Button, TextField, Select, MenuItem, InputLabel, FormControl, FormLabel, FormControlLabel, RadioGroup, Radio } from '@material-ui/core';
-import DateFnsUtils from '@date-io/date-fns';
-import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
+import React, { useState} from 'react';
+import { Grid, CircularProgress, Select, MenuItem, InputLabel, FormControl, FormLabel, FormControlLabel, RadioGroup, Radio } from '@material-ui/core';
 
 
 import { useSelector } from 'react-redux';
@@ -33,6 +31,16 @@ const Dashboard = ({ setCurrentId, user }) => {
     setSortByDateType(event.target.value);
   };
 
+  const sortedComplete = (sortByDateValue === 'ascending') ? 
+      [...tasks].sort((a, b) => Date.parse(a.complete_date) - Date.parse(b.complete_date))
+    :
+      [...tasks].sort((a, b) => Date.parse(b.complete_date) - Date.parse(a.complete_date));
+
+  const sortedCreate = (sortByDateValue === 'ascending') ? 
+      [...tasks].sort((a, b) => Date.parse(a.create_date) - Date.parse(b.create_date))
+    :
+      [...tasks].sort((a, b) => Date.parse(b.create_date) - Date.parse(a.create_date));
+
   return (
     user ? (
       !tasks.length ? <CircularProgress /> : (
@@ -58,7 +66,7 @@ const Dashboard = ({ setCurrentId, user }) => {
             {(sortByValue === 'category') ?
               // {/*Category Dropdown*/}
               <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-                <InputLabel id="categoryLabel">Category</InputLabel>
+                <InputLabel id="categoryLabel">Select Category</InputLabel>
                 <Select
                   className={classes.dropdown}
                   labelId="categoryLabel"
@@ -67,7 +75,7 @@ const Dashboard = ({ setCurrentId, user }) => {
                   onChange={handleChangeCategory}
                 >
                   <MenuItem value="">
-                    <em>None</em>
+                    <em>Get All Tasks</em>
                   </MenuItem>
                   {tasks.map((task) => (
                     <MenuItem value={task.category}>{task.category}</MenuItem>
@@ -106,23 +114,31 @@ const Dashboard = ({ setCurrentId, user }) => {
                 </FormControl>
               </>
             }
-
-            {/* <TextField name="author" variant="outlined" label="Test" value={sortByDateValue} />{<br/>}{<br/>} */}
             {<br />}
             {<br />}
-            {(sortByValue === 'category') ? <Button variant="outlined" color="primary" type="submit">Filter</Button>
-              : <Button variant="outlined" color="primary" type="submit">Sort</Button>} {<br />}{<br />}
-            <Button variant="contained" color="primary" type="submit">Get All Tasks</Button>
           </form>
-
-          <Grid className={classes.grid} container alignItems="stretch" spacing={3}>
-            {tasks.map((task) => (
-              <Grid key={task._id} item xs={12} sm={6} md={4}>
-                <Task task={task} setCurrentId={setCurrentId} />
-              </Grid>
-            )
-            )}
+        <Grid className={classes.grid} container alignItems="stretch" spacing={3}>
+        {/* logic for filtering & sorting*/}
+        {selectedCategory ?
+        (tasks.filter(task => task.category === selectedCategory).map((task) => (
+            <Grid key={task._id} item xs={12} sm={6} md={4}>
+              <Task task={task} setCurrentId={setCurrentId} />
+            </Grid>
+          )))
+          // if sorting by complete date
+        : sortByDateType === "completeDate" ? 
+        (sortedComplete.map((task) => (
+          <Grid key={task._id} item xs={12} sm={6} md={4}>
+            <Task task={task} setCurrentId={setCurrentId} />
           </Grid>
+        )))
+        : //else, sort by create date
+        (sortedCreate.map((task) => (
+            <Grid key={task._id} item xs={12} sm={6} md={4}>
+              <Task task={task} setCurrentId={setCurrentId} />
+            </Grid>
+          )))}
+        </Grid>
         </div>
       )
     ) : (window.location.pathname = "/")
