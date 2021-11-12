@@ -14,6 +14,7 @@ const Dashboard = ({ setCurrentId, user }) => {
   const [selectedCategory, setCategory] = React.useState('');
   const [sortByValue, setSortBy] = React.useState('category');
   const [sortByDateType, setSortByDateType] = React.useState('completeDate');
+  const [catArray, setCatArray] = useState([]);
 
   const handleSortChange = (event) => {
     setSortBy(event.target.value);
@@ -49,6 +50,18 @@ const Dashboard = ({ setCurrentId, user }) => {
       [...filteredTasks].sort((a, b) => Date.parse(a.create_date) - Date.parse(b.create_date))
     :
       [...filteredTasks].sort((a, b) => Date.parse(b.create_date) - Date.parse(a.create_date));
+
+      
+  //get unique categories from tasks
+  function addCategory(category) {    
+    if(catArray.indexOf(category) === -1){
+      setCatArray([...catArray,category]);
+    }
+  }
+  for (var i = 0; i < tasks.length ; i++) {
+    addCategory(tasks[i].category);
+  }
+
 
   return (
     user ? (
@@ -86,9 +99,10 @@ const Dashboard = ({ setCurrentId, user }) => {
                   <MenuItem value="">
                     <em>Get All Tasks</em>
                   </MenuItem>
-                  {tasks.map((task) => (
-                    <MenuItem value={task.category}>{task.category}</MenuItem>
-                  ))}
+                  
+                  {catArray.map((cat) => (
+                  <MenuItem value={cat}>{cat}</MenuItem>
+                ))}
                 </Select>
               </FormControl>
               :
