@@ -31,15 +31,24 @@ const Dashboard = ({ setCurrentId, user }) => {
     setSortByDateType(event.target.value);
   };
 
-  const sortedComplete = (sortByDateValue === 'ascending') ? 
-      [...tasks].sort((a, b) => Date.parse(a.complete_date) - Date.parse(b.complete_date))
-    :
-      [...tasks].sort((a, b) => Date.parse(b.complete_date) - Date.parse(a.complete_date));
+  //filter tasks if a category is selected
+  let filteredTasks = [];
+  if (selectedCategory) 
+    filteredTasks = tasks.filter(task => task.category === selectedCategory) 
+  else 
+    filteredTasks = tasks;
 
-  const sortedCreate = (sortByDateValue === 'ascending') ? 
-      [...tasks].sort((a, b) => Date.parse(a.create_date) - Date.parse(b.create_date))
+  //sort tasks by complete_date
+  const sortedComplete = (sortByDateValue === 'ascending') ? 
+      [...filteredTasks].sort((a, b) => Date.parse(a.complete_date) - Date.parse(b.complete_date))
     :
-      [...tasks].sort((a, b) => Date.parse(b.create_date) - Date.parse(a.create_date));
+      [...filteredTasks].sort((a, b) => Date.parse(b.complete_date) - Date.parse(a.complete_date));
+
+  //sort tasks by create_date
+  const sortedCreate = (sortByDateValue === 'ascending') ? 
+      [...filteredTasks].sort((a, b) => Date.parse(a.create_date) - Date.parse(b.create_date))
+    :
+      [...filteredTasks].sort((a, b) => Date.parse(b.create_date) - Date.parse(a.create_date));
 
   return (
     user ? (
@@ -118,15 +127,8 @@ const Dashboard = ({ setCurrentId, user }) => {
             {<br />}
           </form>
         <Grid className={classes.grid} container alignItems="stretch" spacing={3}>
-        {/* logic for filtering & sorting*/}
-        {selectedCategory ?
-        (tasks.filter(task => task.category === selectedCategory).map((task) => (
-            <Grid key={task._id} item xs={12} sm={6} md={4}>
-              <Task task={task} setCurrentId={setCurrentId} />
-            </Grid>
-          )))
-          // if sorting by complete date
-        : sortByDateType === "completeDate" ? 
+        {/* logic for sorting*/}
+        { sortByDateType === "completeDate" ? 
         (sortedComplete.map((task) => (
           <Grid key={task._id} item xs={12} sm={6} md={4}>
             <Task task={task} setCurrentId={setCurrentId} />
