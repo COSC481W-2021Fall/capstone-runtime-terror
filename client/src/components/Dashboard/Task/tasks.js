@@ -6,7 +6,7 @@ import ArrowForwardIos from '@mui/icons-material/ArrowForward';
 import moment from 'moment';
 import useStyles from './styles';
 import { useHistory } from 'react-router';
-import React, { useState } from 'react';
+import React from 'react';
 import 'date-fns';
 import {useDispatch} from 'react-redux';
 import {deleteTask, updateTask} from '../../../actions/tasks';
@@ -14,7 +14,6 @@ import {deleteTask, updateTask} from '../../../actions/tasks';
 const Task = ({task, setCurrentId}) => {
     const classes = useStyles();
     const history = useHistory();
-    const [complete, setComplete] = useState(false);
     const dispatch = useDispatch(); //Make a dispatch object 
 
     const update = () => {
@@ -51,8 +50,7 @@ const Task = ({task, setCurrentId}) => {
             </div>
             <div className= {classes.details}>
                 <Typography variant="body2" color="textSecondary">{task.category}</Typography>
-                {!complete ? (<Typography variant="body2" color="textSecondary">Complete Date: {moment(task.complete_date).format('D MMM')}</Typography>)
-                            : (<Typography variant="body2" color="textSecondary">Completed: {moment(new Date()).format('D MMM')}</Typography>)}
+                <Typography variant="body2" color="textSecondary">Complete Date: {moment(task.complete_date).format('D MMM')}</Typography>
             </div>
             <CardContent>
                 <Typography className ={classes.title}  variant="h5" gutterBottom>{task.description}</Typography>
@@ -76,7 +74,6 @@ const Task = ({task, setCurrentId}) => {
                 </Button>
             </CardActions>
         </Card> 
-       
     );
 
 }

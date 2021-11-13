@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Button, Grid, Typography, Container, Paper } from '@material-ui/core';
 import Input from './Input';
 import { GoogleLogin } from 'react-google-login';
@@ -17,7 +17,7 @@ const Auth = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const classes = useStyles();
-    const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+    const user = JSON.parse(localStorage.getItem('profile'));
 
 
     const handleShowPassword = () => setShowPassword((prevShowPassword) => !prevShowPassword);
@@ -99,12 +99,15 @@ const Auth = () => {
             <div>
                 <Container component="main" maxWidth="xs">
                     <Paper className={classes.paper}>
+
+                    {/* Title */}
                     <Typography variant="h4">{isSignup ? 'Sign Up' : 'Login'}</Typography>
                     <br></br>
 
                     <form onSubmit={handleSubmit} >
                         <Grid container direction="row" alignItems="center" spacing={2}>{
 
+                            // Checking to see what form is currently being displayed
                             isSignup && (
                                 <>
                                     <Input name="firstName" label="First Name" handleChange={handleChange} autoFocus half />
@@ -112,10 +115,13 @@ const Auth = () => {
                                 </>
                             )}
 
+                            {/* Email */}
                             <Input name="email" label="Email Address" handleChange={handleChange} type="email" />
                             {!isSignup &&<ul >
                                 <li id="incorrect">Password Incorrect</li>
                             </ul>}
+
+                            {/* Password */}
                             <Input name="password" label="Password" handleChange={handleChange} type={showPassword ? "text" : "password"} handleShowPassword={handleShowPassword} />
                             <ul >
                                 <li id="symbol">Password must start with '@'</li>
@@ -129,6 +135,9 @@ const Auth = () => {
                         <Button className={classes.buttonSubmit}  variant="contained" color="primary" size="large" type="submit" fullWidth>
                             {isSignup ? 'Sign Up' : 'Sign In'}
                         </Button>
+
+                        {/* Google sign in button 
+                        TODO: Make it work on server - Blake Johnson*/}
                         <GoogleLogin
                             clientId="357572993334-i686h49ue0f57sh1lhvcrhgf1fdg906h.apps.googleusercontent.com"
                             render={(renderProps) => (

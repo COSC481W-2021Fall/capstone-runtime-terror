@@ -17,7 +17,8 @@ const App = () => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
   
   useEffect(() => {
-    dispatch(getTasks({user}));
+    if(user)
+      dispatch(getTasks({user}));
     setUser(JSON.parse(localStorage.getItem('profile')));
   }, [currentId, dispatch]);
 
@@ -28,12 +29,11 @@ const App = () => {
         <Switch> {/* When you go to this path it will load the component */}
           {/* {linkClicked && alert('Edit was pushed')} */}
           <Route path='/' exact component={Auth}/>
-          <Route path='/Dashboard' exact component={Dashboard}><Dashboard setCurrentId={setCurrentId} user={user}/></Route>
-          {/*This loads the edittask with the wright parameters set */}
-          <Route path='/EditTask'  exact component={EditTask}><EditTask currentId={currentId} setCurrentId={setCurrentId} user={user}/></Route>
-          <Route path='/ScoreBoard'  exact component={ScoreBoard}><ScoreBoard setCurrentId={setCurrentId} user={user}/></Route>
-          <Route path='/TaskDetail' exact component={TaskDetail}><TaskDetail setCurrentId={setCurrentId} user={user}/></Route>
-          <Route path='/UserProfile' exact component={UserProfile}><UserProfile setCurrentId={setCurrentId} user={user}/></Route>
+          <Route path='/Dashboard'><Dashboard setCurrentId={setCurrentId} user={user}/></Route>
+          <Route path='/EditTask'><EditTask currentId={currentId} setCurrentId={setCurrentId} user={user}/></Route>
+          <Route path='/ScoreBoard'><ScoreBoard setCurrentId={setCurrentId} user={user}/></Route>
+          <Route path='/TaskDetail'><TaskDetail setCurrentId={setCurrentId} user={user}/></Route>
+          <Route path='/UserProfile'><UserProfile setCurrentId={setCurrentId} user={user}/></Route>
         </Switch>
       </div>
     </Router>

@@ -1,13 +1,13 @@
 import {CREATE, UPDATE, GET_TASKS, DELETE} from '../constants/actionTypes';
 import * as api from '../api/index.js';
 
+
+//Action for creating a task
 export const createTask = (task, history) => async (dispatch) => {
   try {
     const { data } = await api.createTask(task);
 
     dispatch({ type: CREATE, payload: data });
-
-    history.push('/Dashboard') //after login, push to the homepage
   } catch (error) {
     console.log(error);
   }
@@ -19,8 +19,6 @@ export const updateTask = (id, task, history) => async (dispatch) =>{
     const { data } = await api.updateTask(id, task);
 
     dispatch({ type: UPDATE, payload: data });
-
-    history.push('/Dashboard') //after login, push to the homepage
   } catch (error) {
 
     console.log(error);
@@ -41,6 +39,7 @@ export const getTasks = (user) => async (dispatch) => {
   }
 }
 
+//Delete
 export const deleteTask = (id) => async (dispatch) => {
   try{
       await api.deleteTask(id);

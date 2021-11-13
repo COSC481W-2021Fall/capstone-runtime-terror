@@ -11,6 +11,7 @@ const Nav = () => {
     const dispatch = useDispatch();
     const location = useLocation();
 
+    //Logout 
     const logout =() =>{
         dispatch({type: 'LOGOUT'});
         window.location = '/';
@@ -27,6 +28,7 @@ const Nav = () => {
         setUser(JSON.parse(localStorage.getItem('profile')));
     }, [location, user?.token]);
 
+    //Method to re intilze the Create task after you have clicked update
     function refreshPage() {
         window.location = '/Dashboard';
         window.location.href = '/EditTask';
@@ -41,14 +43,13 @@ const Nav = () => {
     }else {
         return(
         <nav className='header'>
-
             <ul> {/* When link is clicked route to='<route_name_from_App.js>' */}
             {/* onClick={refreshPage}  */}
                 <Link to='/Dashboard'>
                     <li >Dashboard</li>
                 </Link> 
 
-                <Link onClick={refreshPage}>
+                <Link to = "" onClick={refreshPage}>
                     <li>CreateTask</li>
                 </Link>
 
