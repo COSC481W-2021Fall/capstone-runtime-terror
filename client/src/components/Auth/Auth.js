@@ -43,7 +43,7 @@ const Auth = () => {
             } else 
                 dispatch(signin(formData, history));
         } 
-        
+
         //lowercase check
         if (!/.*[a-z].*/.test(password)) Lower.style.color = 'red';
         else Lower.style.color = 'black';
@@ -124,7 +124,7 @@ const Auth = () => {
                             <Input name="password" label="Password" handleChange={handleChange} type={showPassword ? "text" : "password"} handleShowPassword={handleShowPassword} />
                             <Paper id = "passwordrules">
                                 {/* <ul > */}
-                                    <li id="symbol">A Special Charecter</li>
+                                    <li id="symbol">A Special Charecter (@$!%*?&)</li>
                                     <li id="Capital">At Least One Capital Letter </li>
                                     <li id="Lower">At Least One Lowercase Letter</li>
                                     <li id="Number">At Least One Number</li>

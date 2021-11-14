@@ -1,5 +1,5 @@
 import React, { useState} from 'react';
-import { Grid, CircularProgress, Select, MenuItem, InputLabel, FormControl, FormLabel, FormControlLabel, RadioGroup, Radio } from '@material-ui/core';
+import { Grid, CircularProgress, Select, MenuItem, Paper, InputLabel, FormControl, FormLabel, FormControlLabel, RadioGroup, Radio } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 import Task from './Task/tasks';
 import useStyles from './styles';
@@ -66,8 +66,8 @@ const Dashboard = ({ setCurrentId, user }) => {
   return (
     user ? (
       !tasks.length ? <CircularProgress /> : (
-        <div>
-          <form className={classes.buttonDiv}>
+        <div className={classes.div}>
+          <Paper className={classes.sortmenu}>
             {<h1>Sort/Filter Tasks</h1>}
             {/* Radio Buttons */}
             <FormControl component="fieldset">
@@ -139,26 +139,26 @@ const Dashboard = ({ setCurrentId, user }) => {
             }
             {<br />}
             {<br />}
-          </form>
-        <Grid className={classes.grid} container alignItems="stretch" spacing={3}>
-          {/* logic for sorting*/}
-          { sortByDateType === "completeDate" ? 
-            (sortedComplete.map((task) => (
-              task.active && (
-                <Grid key={task._id} item xs={12} sm={6} md={4}>
-                  <Task task={task} setCurrentId={setCurrentId} />
-                </Grid>
-            ))))
-          : //else, sort by create date
-            (sortedCreate.map((task) => (
-              task.active && (
-                <Grid key={task._id} item xs={12} sm={6} md={4}>
-                  <Task task={task} setCurrentId={setCurrentId} />
-                </Grid>
+          </Paper>
+          <Grid className={classes.grid} container alignItems="stretch" spacing={3}>
+            {/* logic for sorting*/}
+            { sortByDateType === "completeDate" ? 
+              (sortedComplete.map((task) => (
+                task.active && (
+                  <Grid key={task._id} item xs={12} sm={6} md={4}>
+                    <Task task={task} setCurrentId={setCurrentId} />
+                  </Grid>
               ))))
-          }
-        </Grid>
-      </div>)
+            : //else, sort by create date
+              (sortedCreate.map((task) => (
+                task.active && (
+                  <Grid key={task._id} item xs={12} sm={6} md={4}>
+                    <Task task={task} setCurrentId={setCurrentId} />
+                  </Grid>
+                ))))
+            }
+          </Grid>
+        </div>)
     ) : (window.location.pathname = "/")
   );
 }

@@ -15,7 +15,6 @@ const App = () => {
   const [currentId, setCurrentId] = useState(null); //sets the Current task ID 
   const dispatch = useDispatch();
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
-  
   useEffect(() => {
     if(user)
       dispatch(getTasks({user}));
