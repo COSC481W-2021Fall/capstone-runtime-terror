@@ -100,4 +100,3 @@ const EditTask = ({ currentId, setCurrentId, user }) => {
 };
 
 export default EditTask;
-
