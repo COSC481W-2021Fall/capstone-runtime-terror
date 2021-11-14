@@ -14,6 +14,7 @@ export default makeStyles((theme) => ({
     width: '20%',
     marginRight: '20px',
     overflow: 'Hidden',
+    background: 'lightblue',
   },
   div: {
     display: 'flex',

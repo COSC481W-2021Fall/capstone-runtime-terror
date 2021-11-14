@@ -58,7 +58,7 @@ const Nav = () => {
                 </Link>
 
                 <Link to='/TaskDetail'>
-                    <li >TaskDetail</li>
+                    <li >TaskManager</li>
                 </Link>
 
                 <Link to='/UserProfile'>
