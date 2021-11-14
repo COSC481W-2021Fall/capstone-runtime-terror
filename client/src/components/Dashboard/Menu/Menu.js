@@ -1,33 +1,26 @@
-import React, { useState} from 'react';
-import { Grid, CircularProgress, Select, MenuItem, InputLabel, FormControl, FormLabel, FormControlLabel, RadioGroup, Radio } from '@material-ui/core';
+import { Select, MenuItem, InputLabel, FormControl, FormLabel, FormControlLabel, RadioGroup, Radio } from '@material-ui/core';
 
 
-import { useSelector } from 'react-redux';
-
-import Task from './Task/tasks';
-import useStyles from './styles';
-
-import { ThemeProvider } from 'styled-components';
-import Burger from './Burger/';
-import Menu from './Menu';
-import { theme } from './theme';
+import React, {useState} from 'react';
+import { StyledMenu } from './Menu.styled';
+import { bool } from 'prop-types';
+import useStyles from './../styles';
 
 
-const Dashboard = ({ setCurrentId, user }) => {
-  const tasks = useSelector((state) => state.tasks);
-  const classes = useStyles();
-  const [sortByDateValue, setsortByDateValue] = React.useState('ascending');
-  const [selectedCategory, setCategory] = React.useState('');
-  const [sortByValue, setSortBy] = React.useState('category');
-  const [sortByDateType, setSortByDateType] = React.useState('completeDate');
-  const [catArray, setCatArray] = useState([]);
-  const [open, setOpen] = useState(false);
-  const menuId = "main-menu";
+const Menu = ({ open }) => {
+const classes = useStyles();
+const [sortByValue, setSortBy] = React.useState('category');
+const [selectedCategory, setCategory] = React.useState('');
+const [sortByDateType, setSortByDateType] = React.useState('completeDate');
+const [sortByDateValue, setsortByDateValue] = React.useState('ascending');
+const [catArray, setCatArray] = useState([]);
 
-  const handleSortChange = (event) => {
+
+
+const handleSortChange = (event) => {
     setSortBy(event.target.value);
   };
-  
+
   const handleChangeCategory = (event) => {
     setCategory(event.target.value);
   };
@@ -39,45 +32,9 @@ const Dashboard = ({ setCurrentId, user }) => {
   const handleDateTypeChange = (event) => {
     setSortByDateType(event.target.value);
   };
-
-  //filter tasks if a category is selected
-  let filteredTasks = [];
-  if (selectedCategory) 
-    filteredTasks = tasks.filter(task => task.category === selectedCategory) 
-  else 
-    filteredTasks = tasks;
-
-  //sort tasks by complete_date
-  const sortedComplete = (sortByDateValue === 'ascending') ? 
-      [...filteredTasks].sort((a, b) => Date.parse(a.complete_date) - Date.parse(b.complete_date))
-    :
-      [...filteredTasks].sort((a, b) => Date.parse(b.complete_date) - Date.parse(a.complete_date));
-
-  //sort tasks by create_date
-  const sortedCreate = (sortByDateValue === 'ascending') ? 
-      [...filteredTasks].sort((a, b) => Date.parse(a.create_date) - Date.parse(b.create_date))
-    :
-      [...filteredTasks].sort((a, b) => Date.parse(b.create_date) - Date.parse(a.create_date));
-
-      
-  //get unique categories from tasks
-  function addCategory(category) {    
-    if(catArray.indexOf(category) === -1){
-      setCatArray([...catArray,category]);
-    }
-  }
-  for (var i = 0; i < tasks.length ; i++) {
-    if((tasks[i].todo != true) && (tasks[i].completed != true)) {
-      addCategory(tasks[i].category);
-    }
-  }
-
-
   return (
-    user ? (
-      !tasks.length ? <CircularProgress /> : (
-        <div>
-          <form className={classes.buttonDiv}>
+    <StyledMenu open={open}>
+      <form className={classes.buttonDiv}>
             {<h1>Sort/Filter Tasks</h1>}
             {/* Radio Buttons */}
             <FormControl component="fieldset">
@@ -150,33 +107,10 @@ const Dashboard = ({ setCurrentId, user }) => {
             {<br />}
             {<br />}
           </form>
-          
-        <Grid className={classes.grid} container alignItems="stretch" spacing={3}>
-        {/* logic for sorting*/}
-        { sortByDateType === "completeDate" ? 
-        (sortedComplete.map((task) => (
-          <Grid key={task._id} item xs={12} sm={6} md={4}>
-            <Task task={task} setCurrentId={setCurrentId} />
-          </Grid>
-        )))
-        : //else, sort by create date
-        (sortedCreate.map((task) => (
-            <Grid key={task._id} item xs={12} sm={6} md={4}>
-              <Task task={task} setCurrentId={setCurrentId} />
-            </Grid>
-          )))}
-        </Grid>
-        {/* Burger Menu */}
-        <ThemeProvider theme={theme}>
-            <div>
-              <Burger open={open} setOpen={setOpen} aria-controls={menuId} />
-              <Menu open={open} setOpen={setOpen} id={menuId} />
-            </div>
-          </ThemeProvider>
-        </div>
-      )
-    ) : (window.location.pathname = "/")
-  );
+    </StyledMenu>
+  )
 }
-
-export default Dashboard;
+Menu.propTypes = {
+    open: bool.isRequired,
+}
+export default Menu;

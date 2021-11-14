@@ -16,7 +16,7 @@ const Task = ({task, setCurrentId}) => {
     const history = useHistory();
     const [complete, setComplete] = useState(false);
     const dispatch = useDispatch(); //Make a dispatch object 
-
+    
     const update = () => {
         setCurrentId(task._id);
         history.push('/EditTask'); //This one need to to be history or edit task wont work
@@ -28,7 +28,7 @@ const Task = ({task, setCurrentId}) => {
         task.completed = true;
         task.complete_date = new Date();
         dispatch(updateTask(task._id, task, history));
-
+        window.location.reload(false);
     };
 
     const handelDeleteTask = () => {
@@ -41,6 +41,7 @@ const Task = ({task, setCurrentId}) => {
         task.active = false;
         task.completed = false;
         dispatch(updateTask(task._id, task, history));
+        window.location.reload(false);
     }
    
     return (
