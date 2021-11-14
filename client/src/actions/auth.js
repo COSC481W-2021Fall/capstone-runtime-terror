@@ -15,7 +15,8 @@ export const signin = (formData, history) => async (dispatch) => {
         window.location.reload(false);
     }catch (error){
         const incorrect = document.getElementById('incorrect');
-
+        const wrongPassword = document.getElementById('wrongPassword');
+        wrongPassword.style.visibility= 'visible';
         incorrect.style.visibility= 'visible';
         incorrect.style.color= 'red';
 

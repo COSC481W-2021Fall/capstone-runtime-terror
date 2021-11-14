@@ -25,47 +25,44 @@ const Auth = () => {
     const handleSubmit = (e) => {
         const password = formData.password;
         const confirmPassword = formData.confirmPassword;
-
         const symbol = document.getElementById('symbol');
         const length = document.getElementById('length');
-        const confirm = document.getElementById('confirmPassword');
+        const Capital = document.getElementById('Capital');
+        const Lower = document.getElementById('Lower');
+        const Number = document.getElementById('Number');
+        const confirm = document.getElementById('confirm');
 
-        let messages = [];
         e.preventDefault();
-        if (password.length < 8 || password.charAt(0) !== '@') {
+        if (/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(password)) {
 
-            if (password.charAt(0) !== '@') symbol.style.color = 'red';
-            else symbol.style.opacity = .25;
-            if (password.length < 8) length.style.color = 'red';
-            else length.style.opacity = .25;
-
-            messages.push('Password Not good');
-            console.log(messages);
-        } else {
             if (isSignup) {
-                if (password === confirmPassword) {
+                if (password === confirmPassword) 
                     dispatch(signup(formData, history));
-                }
-                else{
+                else
                     confirm.style.visibility = 'visible';
-                }
-            } else {
+            } else 
                 dispatch(signin(formData, history));
-            }
-        }
+        } 
+        
+        //lowercase check
+        if (!/.*[a-z].*/.test(password)) Lower.style.color = 'red';
+        else Lower.style.color = 'black';
+        // uppercase check
+        if (!/.*[A-Z].*/.test(password)) Capital.style.color = 'red';
+        else Capital.style.color = 'black';
+        // number check 
+        if (!/.*\d.*/.test(password)) Number.style.color = 'red';
+        else Number.style.color = 'black';
+        // special char check
+        if (!/[@$!%*?&]/.test(password)) symbol.style.color = 'red';
+        else symbol.style.color = 'black';
+        // length check
+        if (!(password.length > 8)) length.style.color = 'red';
+        else length.style.color = 'black';
     };
 
 
     const handleChange = (e) => {
-        const password = formData.password;
-        const symbol = document.getElementById('symbol');
-        const length = document.getElementById('length');
-
-        if (password.charAt(0) === '@') symbol.style.opacity = .25;
-        else { symbol.style.opacity = 1; symbol.style.color = 'black'; }
-        if (password.length > 8) length.style.opacity = .25;
-        else { length.style.opacity = 1; length.style.color = 'black'; }
-
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
@@ -117,16 +114,23 @@ const Auth = () => {
 
                             {/* Email */}
                             <Input name="email" label="Email Address" handleChange={handleChange} type="email" />
-                            {!isSignup &&<ul >
-                                <li id="incorrect">Password Incorrect</li>
-                            </ul>}
+                            {!isSignup &&
+                                <Paper id = "wrongPassword">
+                                        <li id="incorrect">Password Incorrect</li>
+                                </Paper>
+                            }
 
                             {/* Password */}
                             <Input name="password" label="Password" handleChange={handleChange} type={showPassword ? "text" : "password"} handleShowPassword={handleShowPassword} />
-                            <ul >
-                                <li id="symbol">Password must start with '@'</li>
-                                <li id="length">Password needs to be more than 8 charecters</li>
-                            </ul>
+                            <Paper id = "passwordrules">
+                                {/* <ul > */}
+                                    <li id="symbol">A Special Charecter</li>
+                                    <li id="Capital">At Least One Capital Letter </li>
+                                    <li id="Lower">At Least One Lowercase Letter</li>
+                                    <li id="Number">At Least One Number</li>
+                                    <li id="length">Needs to be longer than 8 charecters</li>
+                                {/* </ul> */}
+                            </Paper>
                             {isSignup && <Input name="confirmPassword" label="Confirm Password" handleChange={handleChange} type="password" />}
                             {isSignup && <ul id = "confirmPassword">
                                 <li id="symbol">Password and Confirm Password dont match</li>

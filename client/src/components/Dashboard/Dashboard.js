@@ -55,8 +55,11 @@ const Dashboard = ({ setCurrentId, user }) => {
       setCatArray([...catArray,category]);
     }
   }
+  
   for (var i = 0; i < tasks.length ; i++) {
-    addCategory(tasks[i].category);
+    if((tasks[i].todo !== true) && (tasks[i].completed !== true)) {
+      addCategory(tasks[i].category);
+    }
   }
 
 
