@@ -1,5 +1,5 @@
-import React, { useState} from 'react';
-import { Grid, CircularProgress, Select, MenuItem, Paper, InputLabel, FormControl, FormLabel, FormControlLabel, RadioGroup, Radio } from '@material-ui/core';
+import React, { useState } from 'react';
+import { Grid, Select, MenuItem, Paper, InputLabel, FormControl, FormLabel, FormControlLabel, RadioGroup, Radio } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 import Task from './Task/tasks';
 import useStyles from './styles';
@@ -24,7 +24,7 @@ const Dashboard = ({ setCurrentId, user }) => {
   const handleSortChange = (event) => {
     setSortBy(event.target.value);
   };
-  
+
   const handleChangeCategory = (event) => {
     setCategory(event.target.value);
   };
@@ -39,37 +39,33 @@ const Dashboard = ({ setCurrentId, user }) => {
 
   //filter tasks if a category is selected
   let filteredTasks = [];
-  if (selectedCategory) 
-    filteredTasks = tasks.filter(task => task.category === selectedCategory) 
-  else 
+  if (selectedCategory)
+    filteredTasks = tasks.filter(task => task.category === selectedCategory)
+  else
     filteredTasks = tasks;
 
   //sort tasks by complete_date
-  const sortedComplete = (sortByDateValue === 'ascending') ? 
-      [...filteredTasks].sort((a, b) => Date.parse(a.complete_date) - Date.parse(b.complete_date))
+  const sortedComplete = (sortByDateValue === 'ascending') ?
+    [...filteredTasks].sort((a, b) => Date.parse(a.complete_date) - Date.parse(b.complete_date))
     :
-      [...filteredTasks].sort((a, b) => Date.parse(b.complete_date) - Date.parse(a.complete_date));
+    [...filteredTasks].sort((a, b) => Date.parse(b.complete_date) - Date.parse(a.complete_date));
 
   //sort tasks by create_date
-  const sortedCreate = (sortByDateValue === 'ascending') ? 
-      [...filteredTasks].sort((a, b) => Date.parse(a.create_date) - Date.parse(b.create_date))
+  const sortedCreate = (sortByDateValue === 'ascending') ?
+    [...filteredTasks].sort((a, b) => Date.parse(a.create_date) - Date.parse(b.create_date))
     :
-      [...filteredTasks].sort((a, b) => Date.parse(b.create_date) - Date.parse(a.create_date));
+    [...filteredTasks].sort((a, b) => Date.parse(b.create_date) - Date.parse(a.create_date));
 
-      
+
   //get unique categories from tasks
-  function addCategory(category) {    
-    if(catArray.indexOf(category) === -1){
-      setCatArray([...catArray,category]);
+  function addCategory(category) {
+    if (catArray.indexOf(category) === -1) {
+      setCatArray([...catArray, category]);
     }
   }
-  
-  for (var i = 0; i < tasks.length ; i++) {
-<<<<<<< HEAD
-    if((tasks[i].todo !== true) && (tasks[i].completed !== true)) {
-=======
-    if((tasks[i].todo != true) && (tasks[i].completed != true)) {
->>>>>>> origin/nick_raquel_dashboard_enhancements
+
+  for (var i = 0; i < tasks.length; i++) {
+    if ((tasks[i].todo !== true) && (tasks[i].completed !== true)) {
       addCategory(tasks[i].category);
     }
   }
@@ -77,203 +73,104 @@ const Dashboard = ({ setCurrentId, user }) => {
 
   return (
     user ? (
-      !tasks.length ? <CircularProgress /> : (
-<<<<<<< HEAD
-        <div className={classes.div}>
-          <Paper className={classes.sortmenu}>
-            {<h1>Sort/Filter Tasks</h1>}
-            {/* Radio Buttons */}
-            <FormControl component="fieldset">
-              {(sortByValue === 'category') ? <FormLabel component="legend">Filter By:</FormLabel>
-                : <FormLabel component="legend">Sort By:</FormLabel>}
-              <RadioGroup
-                row
-                aria-label="sortBy"
-                defaultValue="category"
-                name="row-radio-buttons-group"
-                value={sortByValue}
-                onChange={handleSortChange}
-              >
-                <FormControlLabel value="category" control={<Radio />} label="Category" />
-                <FormControlLabel value="date" control={<Radio />} label="Date" />
-              </RadioGroup>
-            </FormControl> {<br />}{<br />}
-            {(sortByValue === 'category') ?
-              // {/*Category Dropdown*/}
-              <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-                <InputLabel id="categoryLabel">Select Category</InputLabel>
-                <Select
-                  className={classes.dropdown}
-                  labelId="categoryLabel"
-                  label="Category"
-                  value={selectedCategory}
-                  onChange={handleChangeCategory}
-                >
-                  <MenuItem value="">
-                    <em>Get All Tasks</em>
-                  </MenuItem>
-                  
-                  {catArray.map((cat) => (
-                    <MenuItem key={cat} value={cat}>{cat}</MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-              :
-              <>
-                <FormControl component="fieldset">
-                  <FormLabel component="legend">Sort By Date:</FormLabel>
-                  <RadioGroup
-                    row
-                    aria-label="sortByDate"
-                    defaultValue="ascending"
-                    name="row-radio-buttons-group"
-                    value={sortByDateType}
-                    onChange={handleDateTypeChange}
-                  >
-                    <FormControlLabel value="completeDate" control={<Radio />} label="Complete Date" />
-                    <FormControlLabel value="startDate" control={<Radio />} label="Start Date" />
-                  </RadioGroup>
-                </FormControl> <br /><br />
-                <FormControl component="fieldset">
-                  <FormLabel component="legend">Ascending / Descending</FormLabel>
-                  <RadioGroup
-                    row
-                    aria-label="sortByDate"
-                    defaultValue="ascending"
-                    name="row-radio-buttons-group"
-                    value={sortByDateValue}
-                    onChange={handleSortDateChange}
-                  >
-                    <FormControlLabel value="ascending" control={<Radio />} label="Ascending" />
-                    <FormControlLabel value="descending" control={<Radio />} label="Descending" />
-                  </RadioGroup>
-                </FormControl>
-              </>
-            }
-            {<br />}
-            {<br />}
-          </Paper>
-          <Grid className={classes.grid} container alignItems="stretch" spacing={3}>
-            {/* logic for sorting*/}
-            { sortByDateType === "completeDate" ? 
-              (sortedComplete.map((task) => (
-                task.active && (
-                  <Grid key={task._id} item xs={12} sm={6} md={4}>
-                    <Task task={task} setCurrentId={setCurrentId} />
-                  </Grid>
-              ))))
-            : //else, sort by create date
-              (sortedCreate.map((task) => (
-                task.active && (
-                  <Grid key={task._id} item xs={12} sm={6} md={4}>
-                    <Task task={task} setCurrentId={setCurrentId} />
-                  </Grid>
-                ))))
-            }
-          </Grid>
-        </div>)
-=======
-        <div>
-          
+      <div>
         <Grid className={classes.grid} container alignItems="stretch" spacing={3}>
-        {/* logic for sorting*/}
-        { sortByDateType === "completeDate" ? 
-        (sortedComplete.map((task) => (
-          <Grid key={task._id} item xs={12} sm={6} md={4}>
-            <Task task={task} setCurrentId={setCurrentId} />
-          </Grid>
-        )))
-        : //else, sort by create date
-        (sortedCreate.map((task) => (
-            <Grid key={task._id} item xs={12} sm={6} md={4}>
-              <Task task={task} setCurrentId={setCurrentId} />
-            </Grid>
-          )))}
+          {/* logic for sorting*/}
+          {sortByDateType === "completeDate" ?
+            (sortedComplete.map((task) => (
+              <Grid key={task._id} item xs={12} sm={6} md={4}>
+                <Task task={task} setCurrentId={setCurrentId} />
+              </Grid>
+            )))
+            : //else, sort by create date
+            (sortedCreate.map((task) => (
+              <Grid key={task._id} item xs={12} sm={6} md={4}>
+                <Task task={task} setCurrentId={setCurrentId} />
+              </Grid>
+            )))}
         </Grid>
         {/* Burger Menu */}
         <ThemeProvider theme={theme}>
-            <div>
-              <Burger open={open} setOpen={setOpen} aria-controls={menuId} />
-              <StyledMenu open={open}>
-                <form className={classes.buttonDiv}>
-                  {<h1>Sort/Filter Tasks</h1>}
-                  {/* Radio Buttons */}
-                  <FormControl component="fieldset">
-                    {(sortByValue === 'category') ? <FormLabel component="legend">Filter By:</FormLabel>
-                      : <FormLabel component="legend">Sort By:</FormLabel>}
-                    <RadioGroup
-                      row
-                      aria-label="sortBy"
-                      defaultValue="category"
-                      name="row-radio-buttons-group"
-                      value={sortByValue}
-                      onChange={handleSortChange}
+          <div>
+            <Burger open={open} setOpen={setOpen} aria-controls={menuId} />
+            <StyledMenu open={open}>
+              <form className={classes.buttonDiv}>
+                {<h1>Sort/Filter Tasks</h1>}
+                {/* Radio Buttons */}
+                <FormControl component="fieldset">
+                  {(sortByValue === 'category') ? <FormLabel component="legend">Filter By:</FormLabel>
+                    : <FormLabel component="legend">Sort By:</FormLabel>}
+                  <RadioGroup
+                    row
+                    aria-label="sortBy"
+                    defaultValue="category"
+                    name="row-radio-buttons-group"
+                    value={sortByValue}
+                    onChange={handleSortChange}
+                  >
+                    <FormControlLabel value="category" control={<Radio />} label="Category" />
+                    <FormControlLabel value="date" control={<Radio />} label="Date" />
+                  </RadioGroup>
+                </FormControl> {<br />}{<br />}
+                {(sortByValue === 'category') ?
+                  // {/*Category Dropdown*/}
+                  <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
+                    <InputLabel id="categoryLabel">Select Category</InputLabel>
+                    <Select
+                      className={classes.dropdown}
+                      labelId="categoryLabel"
+                      label="Category"
+                      value={selectedCategory}
+                      onChange={handleChangeCategory}
                     >
-                      <FormControlLabel value="category" control={<Radio />} label="Category" />
-                      <FormControlLabel value="date" control={<Radio />} label="Date" />
-                    </RadioGroup>
-                  </FormControl> {<br />}{<br />}
-                  {(sortByValue === 'category') ?
-                    // {/*Category Dropdown*/}
-                    <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-                      <InputLabel id="categoryLabel">Select Category</InputLabel>
-                      <Select
-                        className={classes.dropdown}
-                        labelId="categoryLabel"
-                        label="Category"
-                        value={selectedCategory}
-                        onChange={handleChangeCategory}
-                      >
-                        <MenuItem value="">
-                          <em>Get All Tasks</em>
-                        </MenuItem>
-                        
-                        {catArray.map((cat) => (
+                      <MenuItem value="">
+                        <em>Get All Tasks</em>
+                      </MenuItem>
+
+                      {catArray.map((cat) => (
                         <MenuItem value={cat}>{cat}</MenuItem>
                       ))}
-                      </Select>
+                    </Select>
+                  </FormControl>
+                  :
+                  <>
+                    <FormControl component="fieldset">
+                      <FormLabel component="legend">Sort By Date:</FormLabel>
+                      <RadioGroup
+                        row
+                        aria-label="sortByDate"
+                        defaultValue="ascending"
+                        name="row-radio-buttons-group"
+                        value={sortByDateType}
+                        onChange={handleDateTypeChange}
+                      >
+                        <FormControlLabel value="completeDate" control={<Radio />} label="Complete Date" />
+                        <FormControlLabel value="startDate" control={<Radio />} label="Start Date" />
+                      </RadioGroup>
+                    </FormControl> <br /><br />
+                    <FormControl component="fieldset">
+                      <FormLabel component="legend">Ascending / Descending</FormLabel>
+                      <RadioGroup
+                        row
+                        aria-label="sortByDate"
+                        defaultValue="ascending"
+                        name="row-radio-buttons-group"
+                        value={sortByDateValue}
+                        onChange={handleSortDateChange}
+                      >
+                        <FormControlLabel value="ascending" control={<Radio />} label="Ascending" />
+                        <FormControlLabel value="descending" control={<Radio />} label="Descending" />
+                      </RadioGroup>
                     </FormControl>
-                    :
-                    <>
-                      <FormControl component="fieldset">
-                        <FormLabel component="legend">Sort By Date:</FormLabel>
-                        <RadioGroup
-                          row
-                          aria-label="sortByDate"
-                          defaultValue="ascending"
-                          name="row-radio-buttons-group"
-                          value={sortByDateType}
-                          onChange={handleDateTypeChange}
-                        >
-                          <FormControlLabel value="completeDate" control={<Radio />} label="Complete Date" />
-                          <FormControlLabel value="startDate" control={<Radio />} label="Start Date" />
-                        </RadioGroup>
-                      </FormControl> <br /><br />
-                      <FormControl component="fieldset">
-                        <FormLabel component="legend">Ascending / Descending</FormLabel>
-                        <RadioGroup
-                          row
-                          aria-label="sortByDate"
-                          defaultValue="ascending"
-                          name="row-radio-buttons-group"
-                          value={sortByDateValue}
-                          onChange={handleSortDateChange}
-                        >
-                          <FormControlLabel value="ascending" control={<Radio />} label="Ascending" />
-                          <FormControlLabel value="descending" control={<Radio />} label="Descending" />
-                        </RadioGroup>
-                      </FormControl>
-                    </>
-                  }
-                  {<br />}
-                  {<br />}
-                </form>
-              </StyledMenu>
-            </div>
-          </ThemeProvider>
-        </div>
-      )
->>>>>>> origin/nick_raquel_dashboard_enhancements
+                  </>
+                }
+                {<br />}
+                {<br />}
+              </form>
+            </StyledMenu>
+          </div>
+        </ThemeProvider>
+      </div>
     ) : (window.location.pathname = "/")
   );
 }
