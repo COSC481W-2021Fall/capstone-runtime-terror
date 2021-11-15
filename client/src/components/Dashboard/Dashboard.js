@@ -4,6 +4,12 @@ import { useSelector } from 'react-redux';
 import Task from './Task/tasks';
 import useStyles from './styles';
 
+import { ThemeProvider } from 'styled-components';
+import Burger from './Burger/';
+import { StyledMenu } from './Menu/Menu.styled';
+import { theme } from './theme';
+
+
 const Dashboard = ({ setCurrentId, user }) => {
   const tasks = useSelector((state) => state.tasks);
   const classes = useStyles();
@@ -12,11 +18,13 @@ const Dashboard = ({ setCurrentId, user }) => {
   const [sortByValue, setSortBy] = useState('category');
   const [sortByDateType, setSortByDateType] = useState('completeDate');
   const [catArray, setCatArray] = useState([]);
+  const [open, setOpen] = useState(false);
+  const menuId = "main-menu";
 
   const handleSortChange = (event) => {
     setSortBy(event.target.value);
   };
-
+  
   const handleChangeCategory = (event) => {
     setCategory(event.target.value);
   };
@@ -57,7 +65,11 @@ const Dashboard = ({ setCurrentId, user }) => {
   }
   
   for (var i = 0; i < tasks.length ; i++) {
+<<<<<<< HEAD
     if((tasks[i].todo !== true) && (tasks[i].completed !== true)) {
+=======
+    if((tasks[i].todo != true) && (tasks[i].completed != true)) {
+>>>>>>> origin/nick_raquel_dashboard_enhancements
       addCategory(tasks[i].category);
     }
   }
@@ -66,6 +78,7 @@ const Dashboard = ({ setCurrentId, user }) => {
   return (
     user ? (
       !tasks.length ? <CircularProgress /> : (
+<<<<<<< HEAD
         <div className={classes.div}>
           <Paper className={classes.sortmenu}>
             {<h1>Sort/Filter Tasks</h1>}
@@ -159,6 +172,108 @@ const Dashboard = ({ setCurrentId, user }) => {
             }
           </Grid>
         </div>)
+=======
+        <div>
+          
+        <Grid className={classes.grid} container alignItems="stretch" spacing={3}>
+        {/* logic for sorting*/}
+        { sortByDateType === "completeDate" ? 
+        (sortedComplete.map((task) => (
+          <Grid key={task._id} item xs={12} sm={6} md={4}>
+            <Task task={task} setCurrentId={setCurrentId} />
+          </Grid>
+        )))
+        : //else, sort by create date
+        (sortedCreate.map((task) => (
+            <Grid key={task._id} item xs={12} sm={6} md={4}>
+              <Task task={task} setCurrentId={setCurrentId} />
+            </Grid>
+          )))}
+        </Grid>
+        {/* Burger Menu */}
+        <ThemeProvider theme={theme}>
+            <div>
+              <Burger open={open} setOpen={setOpen} aria-controls={menuId} />
+              <StyledMenu open={open}>
+                <form className={classes.buttonDiv}>
+                  {<h1>Sort/Filter Tasks</h1>}
+                  {/* Radio Buttons */}
+                  <FormControl component="fieldset">
+                    {(sortByValue === 'category') ? <FormLabel component="legend">Filter By:</FormLabel>
+                      : <FormLabel component="legend">Sort By:</FormLabel>}
+                    <RadioGroup
+                      row
+                      aria-label="sortBy"
+                      defaultValue="category"
+                      name="row-radio-buttons-group"
+                      value={sortByValue}
+                      onChange={handleSortChange}
+                    >
+                      <FormControlLabel value="category" control={<Radio />} label="Category" />
+                      <FormControlLabel value="date" control={<Radio />} label="Date" />
+                    </RadioGroup>
+                  </FormControl> {<br />}{<br />}
+                  {(sortByValue === 'category') ?
+                    // {/*Category Dropdown*/}
+                    <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
+                      <InputLabel id="categoryLabel">Select Category</InputLabel>
+                      <Select
+                        className={classes.dropdown}
+                        labelId="categoryLabel"
+                        label="Category"
+                        value={selectedCategory}
+                        onChange={handleChangeCategory}
+                      >
+                        <MenuItem value="">
+                          <em>Get All Tasks</em>
+                        </MenuItem>
+                        
+                        {catArray.map((cat) => (
+                        <MenuItem value={cat}>{cat}</MenuItem>
+                      ))}
+                      </Select>
+                    </FormControl>
+                    :
+                    <>
+                      <FormControl component="fieldset">
+                        <FormLabel component="legend">Sort By Date:</FormLabel>
+                        <RadioGroup
+                          row
+                          aria-label="sortByDate"
+                          defaultValue="ascending"
+                          name="row-radio-buttons-group"
+                          value={sortByDateType}
+                          onChange={handleDateTypeChange}
+                        >
+                          <FormControlLabel value="completeDate" control={<Radio />} label="Complete Date" />
+                          <FormControlLabel value="startDate" control={<Radio />} label="Start Date" />
+                        </RadioGroup>
+                      </FormControl> <br /><br />
+                      <FormControl component="fieldset">
+                        <FormLabel component="legend">Ascending / Descending</FormLabel>
+                        <RadioGroup
+                          row
+                          aria-label="sortByDate"
+                          defaultValue="ascending"
+                          name="row-radio-buttons-group"
+                          value={sortByDateValue}
+                          onChange={handleSortDateChange}
+                        >
+                          <FormControlLabel value="ascending" control={<Radio />} label="Ascending" />
+                          <FormControlLabel value="descending" control={<Radio />} label="Descending" />
+                        </RadioGroup>
+                      </FormControl>
+                    </>
+                  }
+                  {<br />}
+                  {<br />}
+                </form>
+              </StyledMenu>
+            </div>
+          </ThemeProvider>
+        </div>
+      )
+>>>>>>> origin/nick_raquel_dashboard_enhancements
     ) : (window.location.pathname = "/")
   );
 }
