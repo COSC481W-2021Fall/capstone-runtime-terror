@@ -11,7 +11,7 @@ import { useDispatch } from 'react-redux';
 import { updateTask } from '../../../actions/tasks';
 
 
-const Task = ({ task, setCurrentId }) => {
+const Task = ({task}) => {
     const classes = useStyles();
     const history = useHistory();
     const dispatch = useDispatch(); //Make a dispatch object 
