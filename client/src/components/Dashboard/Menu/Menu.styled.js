@@ -5,36 +5,12 @@ export const StyledMenu = styled.nav`
   flex-direction: column;
   justify-content: center;
   background: ${({ theme }) => theme.primaryLight};
-  height: 100vh;
+  height: 800px;
   text-align: left;
-  padding: 2rem;
+  padding: 20px;
   position: absolute;
-  top: 0;
+  top: 131.5px;
   left: 0;
   transition: transform 0.3s ease-in-out;
-  transform: ${({ open }) => open ? 'translateX(0)' : 'translateX(-100%)'};
-  
-  @media (max-width: ${({ theme }) => theme.mobile}) {
-    width: 100%;
-  }
-
-  a {
-    font-size: 2rem;
-    text-transform: uppercase;
-    padding: 2rem 0;
-    font-weight: bold;
-    letter-spacing: 0.5rem;
-    color: ${({ theme }) => theme.primaryDark};
-    text-decoration: none;
-    transition: color 0.3s linear;
-    
-    @media (max-width: ${({ theme }) => theme.mobile}) {
-      font-size: 1.5rem;
-      text-align: center;
-    }
-
-    &:hover {
-      color: ${({ theme }) => theme.primaryHover};
-    }
-  }
+  transform: ${({ open }) => open ? 'translate3d(0px, 0px, 0px)' : 'translate3d(-100%, 0px, 0px)'};
 `;
