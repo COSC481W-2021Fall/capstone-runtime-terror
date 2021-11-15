@@ -2,7 +2,7 @@ import { AUTH } from '../constants/actionTypes';
 import * as api from '../api/index';
 
 
-
+//Signing in to current account
 export const signin = (formData, history) => async (dispatch) => {
 
     try{
@@ -10,10 +10,13 @@ export const signin = (formData, history) => async (dispatch) => {
 
         dispatch({type: AUTH, data});
 
-        history.push('/Dashboard') //after login, push to the homepage
+        //after login, push to the homepage
+        window.location = '/Dashboard'; 
+        window.location.reload(false);
     }catch (error){
         const incorrect = document.getElementById('incorrect');
-
+        const wrongPassword = document.getElementById('wrongPassword');
+        wrongPassword.style.visibility= 'visible';
         incorrect.style.visibility= 'visible';
         incorrect.style.color= 'red';
 
@@ -22,6 +25,7 @@ export const signin = (formData, history) => async (dispatch) => {
 
 };
 
+//Creating a new user
 export const signup = (formData, history) => async (dispatch) => {
 
     try{
@@ -29,12 +33,12 @@ export const signup = (formData, history) => async (dispatch) => {
 
         dispatch({type: AUTH, data});
 
-        history.push('/Dashboard') //after login, push to the homepage
+        //after login, push to the homepage
+        window.location = '/Dashboard';
+        window.location.reload(false);
     }catch (error){
         console.log(error);
     }
-
-
 };
 
 

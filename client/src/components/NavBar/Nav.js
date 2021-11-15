@@ -1,46 +1,38 @@
 //The Navigation Bar
 import './../../App.css';
-import {Link, useHistory, useLocation} from 'react-router-dom';
+import {Link, useLocation} from 'react-router-dom';
 import {Typography} from '@material-ui/core';
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import decode from 'jwt-decode';
 
-const Nav = ({setlinkClicked}) => {
+const Nav = () => {
     const [user, setUser] = useState(null);
     const dispatch = useDispatch();
-    const history = useHistory();
     const location = useLocation();
-    // const [linkClicked, setlinkClicked] = useState(false);
 
+    //Logout 
     const logout =() =>{
         dispatch({type: 'LOGOUT'});
-        history.push('/');
+        window.location = '/';
         setUser(null);
-    };
-
-    const resetEditPage =() =>{
-        // alert('link Pushed');
-        setlinkClicked(true);
-    };
-
-    const reset =() =>{
-        // alert('link Pushed');
-        setlinkClicked(false);
     };
 
     useEffect(() =>{
         const token = user?.token;
-
         if(token){
             const decodedToken = decode(token);
 
             if(decodedToken.exp * 1000 < new Date().getTime()) logout();
         }
-
-
         setUser(JSON.parse(localStorage.getItem('profile')));
     }, [location, user?.token]);
+
+    //Method to re intilze the Create task after you have clicked update
+    function refreshPage() {
+        window.location = '/Dashboard';
+        window.location.href = '/EditTask';
+    }
 
     if (user == null){
         return (    
@@ -51,27 +43,26 @@ const Nav = ({setlinkClicked}) => {
     }else {
         return(
         <nav className='header'>
-
             <ul> {/* When link is clicked route to='<route_name_from_App.js>' */}
-
+            {/* onClick={refreshPage}  */}
                 <Link to='/Dashboard'>
-                    <li onClick={reset}>Dashboard</li>
+                    <li >Dashboard</li>
                 </Link> 
 
-                <Link to='/EditTask'>
-                    <li onClick={resetEditPage}>CreateTask</li>
+                <Link to = "" onClick={refreshPage}>
+                    <li>CreateTask</li>
                 </Link>
 
                 <Link to='/ScoreBoard'>
-                    <li onClick={reset}>ScoreBoard</li>
+                    <li >ScoreBoard</li>
                 </Link>
 
                 <Link to='/TaskDetail'>
-                    <li onClick={reset}>TaskDetail</li>
+                    <li >TaskManager</li>
                 </Link>
 
                 <Link to='/UserProfile'>
-                    <li onClick={reset}>UserProfile</li>
+                    <li >UserProfile</li>
                 </Link>
                 
                 <Link to='/'>

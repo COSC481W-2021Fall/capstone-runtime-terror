@@ -17,58 +17,52 @@ const Auth = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const classes = useStyles();
-    const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+    const user = JSON.parse(localStorage.getItem('profile'));
+
 
     const handleShowPassword = () => setShowPassword((prevShowPassword) => !prevShowPassword);
-
 
     const handleSubmit = (e) => {
         const password = formData.password;
         const confirmPassword = formData.confirmPassword;
-
         const symbol = document.getElementById('symbol');
         const length = document.getElementById('length');
-        const confirm = document.getElementById('confirmPassword');
+        const Capital = document.getElementById('Capital');
+        const Lower = document.getElementById('Lower');
+        const Number = document.getElementById('Number');
+        const confirm = document.getElementById('confirm');
 
-        let messages = [];
         e.preventDefault();
-        if (password.length < 8 || password.charAt(0) !== '@') {
-
-            if (password.charAt(0) !== '@') symbol.style.color = 'red';
-            else symbol.style.opacity = .25;
-            if (password.length < 8) length.style.color = 'red';
-            else length.style.opacity = .25;
-
-            messages.push('Password Not good');
-            console.log(messages);
-        } else {
+        if (/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(password)) {
 
             if (isSignup) {
-                if (password === confirmPassword) {
+                if (password === confirmPassword) 
                     dispatch(signup(formData, history));
-                    console.log(formData);
-                }
-                else{
+                else
                     confirm.style.visibility = 'visible';
-                }
-            } else {
+            } else 
                 dispatch(signin(formData, history));
-                console.log(formData);
-            }
-        }
+        } 
+
+        //lowercase check
+        if (!/.*[a-z].*/.test(password)) Lower.style.color = 'red';
+        else Lower.style.color = 'black';
+        // uppercase check
+        if (!/.*[A-Z].*/.test(password)) Capital.style.color = 'red';
+        else Capital.style.color = 'black';
+        // number check 
+        if (!/.*\d.*/.test(password)) Number.style.color = 'red';
+        else Number.style.color = 'black';
+        // special char check
+        if (!/[@$!%*?&]/.test(password)) symbol.style.color = 'red';
+        else symbol.style.color = 'black';
+        // length check
+        if (!(password.length > 8)) length.style.color = 'red';
+        else length.style.color = 'black';
     };
 
 
     const handleChange = (e) => {
-        const password = formData.password;
-        const symbol = document.getElementById('symbol');
-        const length = document.getElementById('length');
-
-        if (password.charAt(0) === '@') symbol.style.opacity = .25;
-        else { symbol.style.opacity = 1; symbol.style.color = 'black'; }
-        if (password.length > 8) length.style.opacity = .25;
-        else { length.style.opacity = 1; length.style.color = 'black'; }
-
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
@@ -83,10 +77,10 @@ const Auth = () => {
 
         try {
             dispatch({ type: 'AUTH', data: { result, token } });
-            history.push('/Dashboard');
+            window.location = '/Dashboard';
+            window.location.reload(false);
         } catch (error) {
             console.log(error);
-
         }
 
     };
@@ -102,12 +96,15 @@ const Auth = () => {
             <div>
                 <Container component="main" maxWidth="xs">
                     <Paper className={classes.paper}>
+
+                    {/* Title */}
                     <Typography variant="h4">{isSignup ? 'Sign Up' : 'Login'}</Typography>
                     <br></br>
 
                     <form onSubmit={handleSubmit} >
                         <Grid container direction="row" alignItems="center" spacing={2}>{
 
+                            // Checking to see what form is currently being displayed
                             isSignup && (
                                 <>
                                     <Input name="firstName" label="First Name" handleChange={handleChange} autoFocus half />
@@ -115,15 +112,25 @@ const Auth = () => {
                                 </>
                             )}
 
+                            {/* Email */}
                             <Input name="email" label="Email Address" handleChange={handleChange} type="email" />
-                            {!isSignup &&<ul >
-                                <li id="incorrect">Password Incorrect</li>
-                            </ul>}
+                            {!isSignup &&
+                                <Paper id = "wrongPassword">
+                                        <li id="incorrect">Password Incorrect</li>
+                                </Paper>
+                            }
+
+                            {/* Password */}
                             <Input name="password" label="Password" handleChange={handleChange} type={showPassword ? "text" : "password"} handleShowPassword={handleShowPassword} />
-                            <ul >
-                                <li id="symbol">Password must start with '@'</li>
-                                <li id="length">Password needs to be more than 8 charecters</li>
-                            </ul>
+                            <Paper id = "passwordrules">
+                                {/* <ul > */}
+                                    <li id="symbol">A Special Charecter (@$!%*?&)</li>
+                                    <li id="Capital">At Least One Capital Letter </li>
+                                    <li id="Lower">At Least One Lowercase Letter</li>
+                                    <li id="Number">At Least One Number</li>
+                                    <li id="length">Needs to be longer than 8 charecters</li>
+                                {/* </ul> */}
+                            </Paper>
                             {isSignup && <Input name="confirmPassword" label="Confirm Password" handleChange={handleChange} type="password" />}
                             {isSignup && <ul id = "confirmPassword">
                                 <li id="symbol">Password and Confirm Password dont match</li>
@@ -132,6 +139,9 @@ const Auth = () => {
                         <Button className={classes.buttonSubmit}  variant="contained" color="primary" size="large" type="submit" fullWidth>
                             {isSignup ? 'Sign Up' : 'Sign In'}
                         </Button>
+
+                        {/* Google sign in button 
+                        TODO: Make it work on server - Blake Johnson*/}
                         <GoogleLogin
                             clientId="357572993334-i686h49ue0f57sh1lhvcrhgf1fdg906h.apps.googleusercontent.com"
                             render={(renderProps) => (

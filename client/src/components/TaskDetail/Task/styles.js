@@ -4,7 +4,7 @@ export default makeStyles({
   media: {
     height: 0,
     paddingTop: '56.25%',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    backgroundColor: 'grey',
     backgroundBlendMode: 'darken',
   },
   border: {
@@ -16,15 +16,15 @@ export default makeStyles({
   card: {
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'space-between',
-    borderRadius: '15px',
-    height: '100%',
+    // justifyContent: 'space-between',
+    // borderRadius: '15px',
+    height: '130px',
     position: 'relative',
-    backgroundColor: '#add8e6', 
+    backgroundColor: 'lightgrey', 
+    width: '400px',
   },
   grid: {
     display: 'flex',
-    height: '300px',
   },
   details: {
     display: 'flex',
@@ -32,10 +32,10 @@ export default makeStyles({
     margin: '20px',
   },
   title: {
-    padding: '0 16px',
+    margin: 'auto'
   },
   cardActions: {
-    padding: '0 14px 20px 4px',
+    padding: '0 16px 8px 16px',
     display: 'flex',
     justifyContent: 'space-between',
   },

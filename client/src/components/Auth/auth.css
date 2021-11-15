@@ -6,6 +6,8 @@ ul{
 
 li{
     padding: 5px;
+    list-style-type: none;
+    text-align: left;
 }
 
 #confirmPassword{
@@ -13,7 +15,23 @@ li{
     color:  red;
 }
 
-#incorrect{
+#incorrect, #wrongPassword {
     visibility: hidden;
 }
+
+#passwordrules{
+    margin: auto;
+    padding: 10px;
+    background-color: lightgray;
+    margin-bottom: 20px;
+    width: 90%;
+}
+
+#wrongPassword{
+    margin: auto;
+    padding: 10px;
+    background-color: lightgray;
+    width: 90%;
+}
+
 

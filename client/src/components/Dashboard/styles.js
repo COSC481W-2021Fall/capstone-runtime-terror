@@ -1,18 +1,18 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
-  mainContainer: {
+  dropdown: {
+    width: '200px',
+  },
+  grid: {
+    float: 'right',
+    height: '50%',
+  },
+  div: {
     display: 'flex',
-    alignItems: 'center',
-  },
-  smMargin: {
-    margin: theme.spacing(1),
-  },
-  actionDiv: {
-    textAlign: 'center',
-  },  
+    marginTop: '20px'
+  }, 
   paper: {
-    padding: theme.spacing(2),
-    margin: '20px 0',
+    padding: '20px'
   },
 }));

@@ -1,7 +1,6 @@
-
 import { CREATE, UPDATE, GET_TASKS } from '../constants/actionTypes';
 
-export default (tasks = [], action) => {
+const tasks = (tasks = [], action) => {
     switch (action.type) {
         case CREATE:
             return [...tasks, action.payload];
@@ -13,5 +12,7 @@ export default (tasks = [], action) => {
             return tasks;
     }
 
-
 }
+
+
+export default tasks;
