@@ -5,6 +5,7 @@ export default makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     textAlign: 'center',
+    color: '24305E'
   },
   smMargin: {
     margin: theme.spacing(1),
@@ -18,9 +19,9 @@ export default makeStyles((theme) => ({
     // marginRight: '5%',
     marginLeft: 'auto',
     marginRight: 'auto',
-    background: 'lightgreen',
+    background: '#24305E',
     width: '400px',
-
+    color: '#A8D0E6'
   },
   grid: {
     float: 'right',

@@ -48,19 +48,23 @@ const Task = ({task}) => {
                     <Typography className={classes.title} variant="h5" gutterBottom>{task.title}</Typography>
                 </div>
                 <div >
-                    <Typography variant="body2" color="textSecondary">{task.category}</Typography>
-                    <Typography variant="body2">{moment(task.create_date).fromNow()}</Typography>
-                    {!task.completed ? (<Typography variant="body2" color="textSecondary">Complete Date: {moment(task.complete_date).format('D MMM')}</Typography>)
-                        : (<Typography variant="body2" color="textSecondary">Completed: {moment(new Date()).format('D MMM')}</Typography>)}
+                    <Typography className={classes.typography} variant="body2" color="textSecondary">{task.category}</Typography>
+                    <Typography className={classes.typography} variant="body2">{moment(task.create_date).fromNow()}</Typography>
+                    {!task.completed ? (<Typography className={classes.typography} variant="body2" >Complete Date: {moment(task.complete_date).format('D MMM')}</Typography>)
+                        : (<Typography className={classes.typography} variant="body2" >Completed: {moment(new Date()).format('D MMM')}</Typography>)}
                 </div>
                 <CardActions className={classes.cardActions}>
                     <Button size="small" color="default" onClick={isTodo}>
-                        <ArrowForwardIos fontSize="small" />
-                        Todo
+                        <ArrowForwardIos className={classes.button} fontSize="small" />
+                        <div className={classes.buttonText}>
+                            Todo
+                        </div>
                     </Button>
                     <Button size="small" color="default" onClick={isCompleted}>
-                        <CheckCircleIcon fontSize="small" />
-                        Complete
+                        <CheckCircleIcon className={classes.button} fontSize="small" />
+                        <div className={classes.buttonText}>
+                            Complete
+                        </div>
                     </Button>
                 </CardActions>
             </Card>
@@ -70,32 +74,36 @@ const Task = ({task}) => {
                     <Typography className={classes.title} variant="h5" gutterBottom>{task.title}</Typography>
                 </div>
                 <div >
-                    <Typography variant="body2" color="textSecondary">{task.category}</Typography>
-                    <Typography variant="body2">{moment(task.create_date).fromNow()}</Typography>
-                    {!task.completed ? (<Typography variant="body2" color="textSecondary">Complete Date: {moment(task.complete_date).format('D MMM')}</Typography>)
-                        : (<Typography variant="body2" color="textSecondary">Completed: {moment(new Date()).format('D MMM')}</Typography>)}
+                    <Typography className={classes.typography} variant="body2" color="textSecondary">{task.category}</Typography>
+                    <Typography className={classes.typography} variant="body2">{moment(task.create_date).fromNow()}</Typography>
+                    {!task.completed ? (<Typography className={classes.typography} variant="body2" color="textSecondary">Complete Date: {moment(task.complete_date).format('D MMM')}</Typography>)
+                        : (<Typography className={classes.typography} variant="body2" color="textSecondary">Completed: {moment(new Date()).format('D MMM')}</Typography>)}
                 </div>
                 <CardActions className={classes.cardActions}>
                     <Button size="small" color="default" onClick={isActive}>
-                        <AlarmIcon  fontSize="small" />
-                        Active
+                        <AlarmIcon className={classes.button} fontSize="small" />
+                        <div className={classes.buttonText}>
+                            Active
+                        </div>
                     </Button>
                     <Button size="small" color="default" onClick={isCompleted}>
-                        <CheckCircleIcon fontSize="small" />
-                        Complete
+                        <CheckCircleIcon className={classes.button} fontSize="small" />
+                        <div className={classes.buttonText}>
+                            Complete
+                        </div>
                     </Button>
                 </CardActions>
             </Card>
-        ) : (
+        ) : (   //complete column
             <Card className={classes.card}>
                 <div>
                     <Typography className={classes.title} variant="h5" gutterBottom>{task.title}</Typography>
                 </div>
                 <div >
-                    <Typography variant="body2" color="textSecondary">{task.category}</Typography>
-                    <Typography variant="body2">{moment(task.create_date).fromNow()}</Typography>
-                    {!task.completed ? (<Typography variant="body2" color="textSecondary">Complete Date: {moment(task.complete_date).format('D MMM')}</Typography>)
-                        : (<Typography variant="body2" color="textSecondary">Completed: {moment(new Date()).format('D MMM')}</Typography>)}
+                    <Typography className={classes.typography} variant="body2" color="textSecondary">{task.category}</Typography>
+                    <Typography className={classes.typography} variant="body2">{moment(task.create_date).fromNow()}</Typography>
+                    {!task.completed ? (<Typography className={classes.typography} variant="body2" >Complete Date: {moment(task.complete_date).format('D MMM')}</Typography>)
+                        : (<Typography className={classes.typography} variant="body2" >Completed: {moment(new Date()).format('D MMM')}</Typography>)}
                 </div>
             </Card>
         )
