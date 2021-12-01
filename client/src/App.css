@@ -3,6 +3,10 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
+body{
+  background-color: #ABD0E6;
+}
+
 .header {
   overflow: hidden;
   background-color: #24305E;
