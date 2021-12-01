@@ -20,7 +20,7 @@ export default makeStyles({
     // borderRadius: '15px',
     height: '130px',
     position: 'relative',
-    backgroundColor: '#F2C76E', 
+    backgroundColor: '#F8E9A1', 
     width: '400px',
   },
   grid: {
