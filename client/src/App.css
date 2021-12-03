@@ -3,10 +3,13 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
+body{
+  background-color: #ABD0E6;
+}
+
 .header {
   overflow: hidden;
-  /* color of nav bar */
-  background-color: #24305E; 
+  background-color: #24305E;
   padding: 20px 10px;
 }
 
@@ -14,7 +17,7 @@
 
 .header li {
   float: left;
-  color: #ABD0E6;
+  color: #A8D0E6;
   text-align: center;
   padding: 12px;
   list-style-type: none;
