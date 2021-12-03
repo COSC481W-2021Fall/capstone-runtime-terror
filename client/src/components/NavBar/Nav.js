@@ -37,7 +37,10 @@ const Nav = () => {
     if (user == null){
         return (    
             <nav className='header'>
-                <Typography variant="h3">Runtime Terrors</Typography>
+            
+             
+            <Typography variant="h3">Runtime Terrors </Typography>  
+            
             </nav>
         )
     }else {
