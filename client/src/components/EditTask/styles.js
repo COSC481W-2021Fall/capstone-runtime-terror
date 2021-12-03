@@ -33,9 +33,5 @@ export default makeStyles((theme) => ({
   Typography: {
     margin: '20px 450px',
     color: '#24305E',
-  },
-  Typography: {
-    margin: '20px 450px',
-    color: '#24305E',
-  },
+  }
 }));
