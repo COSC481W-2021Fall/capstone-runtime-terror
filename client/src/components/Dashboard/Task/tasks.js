@@ -50,26 +50,30 @@ const Task = ({task, setCurrentId}) => {
                 <Typography variant="body2">{moment(task.create_date).fromNow()}</Typography>
             </div>
             <div className= {classes.details}>
-                <Typography variant="body2" color="textSecondary">{task.category}</Typography>
-                <Typography variant="body2" color="textSecondary">Complete Date: {moment(task.complete_date).format('D MMM')}</Typography>
+                <Typography className={classes.category} variant="body2" color="textSecondary">{task.category}</Typography>
+                <Typography className={classes.complete} variant="body2" color="textSecondary">Complete Date: {moment(task.complete_date).format('D MMM')}</Typography>
             </div>
             <CardContent>
-                <Typography className ={classes.title}  variant="h5" gutterBottom>{task.description}</Typography>
+                <Typography className ={classes.description}  variant="h5" gutterBottom>{task.description}</Typography>
             </CardContent>
             <CardActions className={classes.cardActions}>
-                <Button size ="small" color="primary" onClick={handelDeleteTask}>
+                <Button 
+                    className={classes.cardAction} size ="small" color="primary" onClick={handelDeleteTask}>
                     <DeleteIcon fontSize="small"/>
                     Delete
                 </Button>
-                <Button size ="small" color="primary" onClick ={update} >
+                <Button
+                    className={classes.cardAction} size ="small" color="primary" onClick ={update} >
                     <MoreVertIcon fontSize="medium"/>
                     Update
                 </Button>
-                <Button size ="small" color="primary" onClick = {toDo}>
+                <Button 
+                    className={classes.cardAction} size ="small" color="primary" onClick = {toDo}>
                 <ArrowForwardIos fontSize="small"/>
                     To-Do
                 </Button>
-                <Button size ="small" color="primary" onClick = {isCompleted}>
+                <Button 
+                    className={classes.cardAction} size ="small" color="primary" onClick = {isCompleted}>
                 <CheckCircleIcon fontSize="small"/>
                     Complete
                 </Button>
