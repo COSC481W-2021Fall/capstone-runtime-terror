@@ -75,7 +75,7 @@ const Dashboard = ({ setCurrentId, user }) => {
     user ? (
       !tasks.length ? <CircularProgress /> : (
         <div className={classes.div}>
-          <Grid style={open ? ({ paddingLeft: '300px' }) : ({})}id='main' className={classes.grid} container alignItems="stretch" spacing={3}>
+          <Grid style={open ? ({ paddingLeft: '300px' }) : ({})}id='main' className={classes.grid} container alignItems="flex-start" spacing={3}>
             {/* logic for sorting*/}
             {sortByDateType === "completeDate" ?
               (sortedComplete.map((task) => (
@@ -95,7 +95,7 @@ const Dashboard = ({ setCurrentId, user }) => {
             {/* Burger Menu */}
             <ThemeProvider theme={theme}>
               <Burger open={open} setOpen={setOpen} aria-controls={menuId} />
-              <StyledMenu open={open}>
+              <StyledMenu className={classes.menu} open={open}>
                 {<h1>Sort/Filter Tasks</h1>}
                 {/* Radio Buttons */}
                 <FormControl component="fieldset">

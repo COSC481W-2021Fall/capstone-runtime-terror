@@ -6,20 +6,9 @@ import thunk from 'redux-thunk';
 
 import { reducers } from './reducers';
 import App from './App';
-import { createMuiTheme, ThemeProvider } from "@material-ui/core";
 
 
 const store = createStore(reducers, compose(applyMiddleware(thunk)));
-const theme = createMuiTheme({
-  palette: {
-     primary: {
-        main: "#24305E"
-               },
-     secondary: {
-        main: "#24305E"
-                }
-              }
-            },
 
 
 ReactDOM.render(
@@ -27,4 +16,4 @@ ReactDOM.render(
     <App/>
   </Provider>,
   document.getElementById('root'),
-));
+);
