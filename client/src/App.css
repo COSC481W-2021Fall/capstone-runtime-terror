@@ -23,6 +23,10 @@
 .header ul {
   text-decoration: none;
 }
+body{
+  background-color: #ABD0E6;
+}
+
 
 .header li:hover {
   background-color: #ddd;
