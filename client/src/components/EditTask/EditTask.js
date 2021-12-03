@@ -62,13 +62,13 @@ const EditTask = ({ currentId, setCurrentId, user }) => {
         <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}> 
           
           {/*This is the name of the task*/}
-          <TextField name="title" variant="outlined" label="Title" fullWidth value={taskData.title} onChange={(e) => settaskData({ ...taskData, title: e.target.value })} />
+          <TextField style={{backgroundColor: "#F3CFC6"}} name="title" variant="outlined" label="Title" fullWidth value={taskData.title} onChange={(e) => settaskData({ ...taskData, title: e.target.value })} />
           
           {/*Decription of task*/}
-          <TextField name="description" variant="outlined" label="Description" fullWidth multiline rows={4} value={taskData.description} onChange={(e) => settaskData({ ...taskData, description: e.target.value })} />
+          <TextField style={{backgroundColor: "#F3CFC6"}} name="description" variant="outlined" label="Description" fullWidth multiline rows={4} value={taskData.description} onChange={(e) => settaskData({ ...taskData, description: e.target.value })} />
           
           {/*Put the task in what we are calling a sub task*/}
-          <TextField name="category" variant="outlined" label="Category" fullWidth value={taskData.category} onChange={(e) => settaskData({ ...taskData, category: e.target.value })} />
+          <TextField style={{backgroundColor: "#F3CFC6"}} name="category" variant="outlined" label="Category" fullWidth value={taskData.category} onChange={(e) => settaskData({ ...taskData, category: e.target.value })} />
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
               <KeyboardDatePicker
                 disableToolbar
@@ -90,7 +90,7 @@ const EditTask = ({ currentId, setCurrentId, user }) => {
           <Button className={classes.buttonSubmit} variant="contained" color="primary" size="large" type="submit" fullWidth>Submit</Button>
           
           {/*Button to clear form*/}
-          <Button variant="contained" color="secondary" size="small" onClick={clear} fullWidth>Clear</Button>
+          <Button className={classes.buttonClear} variant="contained" size="small" onClick={clear} fullWidth>Clear</Button>
         </form>
         </Paper>
       </Container>
