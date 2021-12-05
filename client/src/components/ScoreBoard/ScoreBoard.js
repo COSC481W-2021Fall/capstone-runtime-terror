@@ -1,41 +1,49 @@
 import './../../App.css';
 
-import { Card, Typography } from '@material-ui/core/';
-import { useSelector } from 'react-redux';
+import { Grid, CircularProgress, Paper} from '@material-ui/core';
+import { useEffect } from 'react';
 import React from 'react';
-import {useDispatch} from 'react-redux';
-import {getUser} from '../../actions/auth';
-
+import { useDispatch } from 'react-redux';
+import { getUser } from '../../actions/auth';
+import { useSelector } from 'react-redux';
+import useStyles from './styles';
+import Task from './Task/tasks';
 
 
 //import {useHistory} from 'react-router-dom';
 
-const ScoreBoard = ({user}) => {
-    const users = useSelector((state) => state.users);
-
+const ScoreBoard = ({ user }) => {
+    const classes = useStyles();
+    const auth = useSelector((state) => state.auth);
     const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(getUser(user));
+    }, [dispatch]);
 
-    dispatch(getUser(user));
+    // console.log(auth);
 
-    
+    auth.user.score.sort();
 
     //task managament page - grab 1 comuln and a row will be a user and a score
     //above the column; if current user, display user name and placment score \
     //displayed at the top and also displayed in descending order
-    return(
+    return (
         user ? (
-            <Card>
-            <div >
-                
-                <Typography variant="body2">{user.email}</Typography>
-                <Typography variant="body2">{user.name}</Typography>
-            </div>
-            <div >
-                <Typography variant="body2" color="textSecondary">{user.score}</Typography>
-            </div>
-            </Card>
-        ) : (window.location.pathname = "/ScoreBoard")
-    )
+            !auth.length ? <CircularProgress /> : (
+                <Grid className={classes.grid} container alignItems="stretch">
+                    <Paper className={classes.paper}>
+                        <h1>ACTIVE</h1>
+                        {auth.map((user) => ( 
+                            <Grid key={user._id}>
+                                <Task user={user} />
+                                <span>&nbsp;</span>
+                            </Grid>
+                        ))}
+                    </Paper>
+                </Grid>
+            )
+        ) : (window.location.pathname = "/")
+    );
 }
 
 export default ScoreBoard;

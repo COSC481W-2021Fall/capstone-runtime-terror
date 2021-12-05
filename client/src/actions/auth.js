@@ -45,6 +45,8 @@ export const signup = (formData, history) => async (dispatch) => {
 export const getUser = (user) => async (dispatch) => {
     try {
       console.log(user);
+      console.log(user.result.score);
+      console.log(user.result.email);
       const { data } = await api.getUser(user);
   
       dispatch({type: GET_USER, payload: data});
