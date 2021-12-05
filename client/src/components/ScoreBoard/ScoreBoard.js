@@ -20,20 +20,18 @@ const ScoreBoard = ({ user }) => {
         dispatch(getUser(user));
     }, [dispatch]);
 
-    // console.log(auth);
-
-    auth.user.score.sort();
+    const myData = [].concat(auth).sort((a, b) => a.score > b.score ? -1 : 1);
 
     //task managament page - grab 1 comuln and a row will be a user and a score
     //above the column; if current user, display user name and placment score \
     //displayed at the top and also displayed in descending order
     return (
         user ? (
-            !auth.length ? <CircularProgress /> : (
+            !myData.length ? <CircularProgress /> : (
                 <Grid className={classes.grid} container alignItems="stretch">
                     <Paper className={classes.paper}>
                         <h1>ACTIVE</h1>
-                        {auth.map((user) => ( 
+                        {myData.map((user) => ( 
                             <Grid key={user._id}>
                                 <Task user={user} />
                                 <span>&nbsp;</span>
