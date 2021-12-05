@@ -31,16 +31,16 @@ const EditTask = ({ currentId, setCurrentId, user }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    if (taskData.complete_date.getUTCDate()>=new Date().getUTCDate() && taskData.complete_date.getUTCMonth()>=new Date().getUTCMonth() && taskData.complete_date.getUTCFullYear()>=new Date().getUTCFullYear()){
+    if (Date.parse(taskData.complete_date)>=Date.parse(new Date()) -86400000){
       if (currentId) {
         dispatch(updateTask(currentId, taskData, history));
+        clear();
         
       }else{
-        //calls the funtion in actions/tasks with the taskData
-        dispatch(createTask(taskData, history));
+          //calls the funtion in actions/tasks with the taskData
+          dispatch(createTask(taskData, history));
+          clear();
       } 
-      clear();
     } else {
       window.alert('Date passed ;)');
     } 
@@ -50,6 +50,7 @@ const EditTask = ({ currentId, setCurrentId, user }) => {
     setselectedDate(date); 
     settaskData({ ...taskData, complete_date: date });
   };
+
   
   return (
     user ? (

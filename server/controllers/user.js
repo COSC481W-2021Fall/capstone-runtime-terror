@@ -13,10 +13,14 @@ export const signin = async (req, res) => { //sign in controller
     try{
 
         // Task: Authenticate: Username & password match to the stored user data in the database
-        const existingUser = await User.findOne({ email }); //search database for user
+        let existingUser = await User.findOne({ email }); //search database for user
 
         if(!existingUser) return res.status(404).json({ message: "User Doesnt Exist." });   //if email doesnt exist, tell the user 
-
+        console.log(existingUser);
+        if (existingUser.password === 'temp'){
+            const hashedPassword = await bcrypt.hash(password, 12);
+            existingUser = await User.findOneAndUpdate({email}, { password: hashedPassword }, {new: true});
+        }
         const isPasswordCorrect = await bcrypt.compare(password, existingUser.password);  //check if the password is correct
 
         if(!isPasswordCorrect) return res.status(400).json({ message: "invalid credentials" });     //if password is wrong, tell user
@@ -79,7 +83,14 @@ export const updateScore = async (req, res) => {
     const {email: email} = req.params;
     const user = req.body;
     try {
-        const updatedScore = await User.findOneAndUpdate({email}, { score: user.result.score }, {new: true});
+        const existingUser = await User.findOne({ email }); //search database for user
+        let updatedScore = [];
+        if(existingUser) {
+            updatedScore = await User.findOneAndUpdate({email}, { score: user.result.score }, {new: true});
+        } else {
+            updatedScore = await User.create({ email, password: 'temp', name: user.result.name, score: 1});
+        }
+
         res.json(updatedScore);
     } catch (error) {
         res.status(404).json({message: error.message});
