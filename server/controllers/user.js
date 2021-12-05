@@ -65,6 +65,17 @@ export const signup = async (req, res) => {
     }
 }
 
+export const getUser = async (req, res) => {
+    const { user } = req.body;
+    try {
+        console.log(user.result.score);
+        const userScore = await User.find({ author: user.result.email, score: user.result.score }); //search database for user
+        res.status(200).json(userScore);
+    } catch (error) {
+        res.status(404).json({message: error.message});
+    }
+}
+
 
 
 
