@@ -7,6 +7,7 @@ const userSchema = mongoose.Schema({
     password: { type: String, required: true },
     score: { type: Number, default: 0},
     id: { type: String },
+    score: { type: Number, default: 0}
 })
 
 export default mongoose.model("User", userSchema);

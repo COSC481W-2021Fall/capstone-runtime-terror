@@ -1,4 +1,4 @@
-import {AUTH, LOGOUT, UPDATESCORE} from '../constants/actionTypes';
+import {AUTH, LOGOUT, UPDATESCORE, GET_USER} from '../constants/actionTypes';
 
 const authReducer = (state = {authData: null}, action) => {
     switch (action.type) {
@@ -10,6 +10,11 @@ const authReducer = (state = {authData: null}, action) => {
             return {...state, authData: null};
         case UPDATESCORE:
             return { ...state, authData: action?.data};
+
+        case GET_USER:
+            console.log(action.payload);
+            return action.payload;
+
         default:
             return state;
     }

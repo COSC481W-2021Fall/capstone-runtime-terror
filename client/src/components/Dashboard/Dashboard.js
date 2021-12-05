@@ -56,6 +56,7 @@ const Dashboard = ({ setCurrentId, user }) => {
     :
     [...filteredTasks].sort((a, b) => Date.parse(b.create_date) - Date.parse(a.create_date));
 
+    console.log(tasks);
 
   //get unique categories from tasks
   function addCategory(category) {
