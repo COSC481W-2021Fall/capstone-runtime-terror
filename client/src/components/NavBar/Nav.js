@@ -62,10 +62,6 @@ const Nav = () => {
                 <Link to='/TaskDetail'>
                     <li >TaskManager</li>
                 </Link>
-
-                <Link to='/UserProfile'>
-                    <li >UserProfile</li>
-                </Link>
                 
                 <Link to='/'>
                     <li onClick={logout}>Logout</li>

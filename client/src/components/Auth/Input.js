@@ -11,8 +11,7 @@ const Input = ({name, handleChange, label, half, autoFocus, type, handleShowPass
 
         <Grid item xs={12} sm={half ? 6:12}>
             <TextField 
-            style={{backgroundColor: "#F3CFC6"}}
-
+                style={{backgroundColor: "#F3CFC6"}}
                 name={name}
                 onChange={handleChange}
                 variant="outlined"

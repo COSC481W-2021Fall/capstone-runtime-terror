@@ -18,9 +18,9 @@ export default makeStyles({
     flexDirection: 'column',
     // justifyContent: 'space-between',
     // borderRadius: '15px',
-    height: '130px',
+    // height: '130px',
     position: 'relative',
-    backgroundColor: 'lightgrey', 
+    backgroundColor: '#F8E9A1', 
     width: '400px',
   },
   grid: {
@@ -32,11 +32,22 @@ export default makeStyles({
     margin: '20px',
   },
   title: {
-    margin: 'auto'
+    overflowWrap: 'break-word',
+    margin: 'auto',
+    color: '#F76C6C'
   },
   cardActions: {
     padding: '0 16px 8px 16px',
     display: 'flex',
     justifyContent: 'space-between',
   },
+  typography: {
+    color: '#24305E',
+  },
+  button: {
+    color: '#F76C6C',
+  },
+  buttonText: {
+    color: '#24305E',
+  }
 });

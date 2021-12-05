@@ -1,23 +1,29 @@
-import { Card, CardActions, Button, Typography } from '@material-ui/core/';
-import ArrowForwardIos from '@mui/icons-material/ArrowForward';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import AlarmIcon  from '@mui/icons-material/Alarm';
-import moment from 'moment';
+import { Card, Typography } from '@material-ui/core/';
 import useStyles from './styles';
 import React from 'react';
 import 'date-fns';
 
 const Task = ({user}) => {
     const classes = useStyles();
-
+    const currUser= JSON.parse(localStorage.getItem('profile'));
+    console.log(currUser.result.email === user.email);
     
     return (
-        <Card className={classes.card}>
-            <div >
-                <Typography variant="body2" color="textSecondary">{user.email}</Typography>
-                <Typography variant="body2">{user.score}</Typography>
-            </div>
-        </Card>
+        currUser.result.email === user.email ? (
+            <Card className={classes.card} style={{backgroundColor: "#F76C6C"}}>
+                <div>
+                    <Typography className={classes.title} style={{color: "#24305E"}}variant="h5" gutterBottom>{user.email}</Typography>
+                    <Typography className={classes.typography} style={{color: "#F8E9A1"}} variant="h6">Score: {user.score}</Typography>
+                </div>
+            </Card>
+        ):(
+            <Card className={classes.card}>
+                <div>
+                    <Typography className={classes.title} variant="h5" gutterBottom>{user.email}</Typography>
+                    <Typography className={classes.typography} variant="h6">Score: {user.score}</Typography>
+                </div>
+            </Card>
+        )
     );
 }
 

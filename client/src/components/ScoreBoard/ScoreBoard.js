@@ -30,7 +30,7 @@ const ScoreBoard = ({ user }) => {
             !myData.length ? <CircularProgress /> : (
                 <Grid className={classes.grid} container alignItems="stretch">
                     <Paper className={classes.paper}>
-                        <h1>ACTIVE</h1>
+                        <h1>SCORE</h1>
                         {myData.map((user) => ( 
                             <Grid key={user._id}>
                                 <Task user={user} />

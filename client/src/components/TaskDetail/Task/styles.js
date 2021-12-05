@@ -18,7 +18,8 @@ export default makeStyles({
     flexDirection: 'column',
     // justifyContent: 'space-between',
     // borderRadius: '15px',
-    height: '130px',
+    // height: '130px',
+    // padding: '5px',
     position: 'relative',
     backgroundColor: '#F8E9A1', 
     width: '400px',
@@ -32,6 +33,7 @@ export default makeStyles({
     margin: '20px',
   },
   title: {
+    overflowWrap: 'break-word',
     margin: 'auto',
     color: '#F76C6C'
   },
@@ -41,6 +43,7 @@ export default makeStyles({
     justifyContent: 'space-between',
   },
   typography: {
+    overflowWrap: 'break-word',
     color: '#24305E'
   },
   button: {
