@@ -66,5 +66,15 @@ export const signup = async (req, res) => {
 }
 
 
+export const updateScore = async (req, res) => {
+    const {email: email} = req.params;
+    const user = req.body;
+        
+    const updatedScore = await User.findOneAndUpdate({email}, { score: user.result.score }, {new: true});
+
+    res.json(updatedScore);
+}
+
+
 
 

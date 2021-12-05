@@ -17,6 +17,7 @@ const EditTask = ({ currentId, setCurrentId, user }) => {
   const [selectedDate, setselectedDate] = useState(new Date());
   const history = useHistory();
 
+  console.log(user);
   useEffect(() => {
     if (task) settaskData(task); //this grabs the informaion from the form and updates the task
   }, [task]);

@@ -9,6 +9,7 @@ import React from 'react';
 import 'date-fns';
 import { useDispatch } from 'react-redux';
 import { updateTask } from '../../../actions/tasks';
+import { updateScore } from '../../../actions/auth';
 
 
 const Task = ({task}) => {
@@ -22,6 +23,10 @@ const Task = ({task}) => {
         task.completed = true;
         task.complete_date = new Date();
         dispatch(updateTask(task._id, task, history));
+        const user = JSON.parse(localStorage.getItem('profile'));
+        user.result.score += 1;
+        localStorage.setItem('profile', JSON.stringify(user));
+        dispatch(updateScore(user.result.email, user, history));
 
     };
     const isActive = () => {

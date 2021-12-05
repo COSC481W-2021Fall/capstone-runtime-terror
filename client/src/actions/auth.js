@@ -1,4 +1,4 @@
-import { AUTH } from '../constants/actionTypes';
+import { AUTH, UPDATESCORE } from '../constants/actionTypes';
 import * as api from '../api/index';
 
 
@@ -43,10 +43,16 @@ export const signup = (formData, history) => async (dispatch) => {
 
 
 
-
-
-
-
-
-
+//Update
+export const updateScore = (email, user, history) => async (dispatch) =>{
+    try {
+      const { data } = await api.updateScore(email, user);
+  
+      dispatch({ type: UPDATESCORE, payload: data });
+    } catch (error) {
+  
+      console.log(error);
+    }
+  
+};
 

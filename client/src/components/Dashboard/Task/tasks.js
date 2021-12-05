@@ -10,6 +10,7 @@ import React from 'react';
 import 'date-fns';
 import {useDispatch} from 'react-redux';
 import {deleteTask, updateTask} from '../../../actions/tasks';
+import { updateScore } from '../../../actions/auth';
 
 const Task = ({task, setCurrentId}) => {
     const classes = useStyles();
@@ -27,6 +28,10 @@ const Task = ({task, setCurrentId}) => {
         task.completed = true;
         task.complete_date = new Date();
         dispatch(updateTask(task._id, task, history));
+        const user = JSON.parse(localStorage.getItem('profile'));
+        user.result.score += 1;
+        localStorage.setItem('profile', JSON.stringify(user));
+        dispatch(updateScore(user.result.email, user, history));
         window.location.reload(false);
     };
 

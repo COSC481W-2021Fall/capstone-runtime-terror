@@ -12,3 +12,4 @@ export const updateTask = (id, updateTask) => API.patch(`/tasks/${id}`, updateTa
 //Account Manipulation
 export const signIn =(formData) => API.post('/user/signin', formData);
 export const signUp =(formData) => API.post('/user/signup', formData);
+export const updateScore = (email, updateScore) => API.patch(`/user/${email}`, updateScore);
