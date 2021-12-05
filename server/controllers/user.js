@@ -1,6 +1,5 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import Mongoose from 'mongoose';
 import User from '../models/user.js';
 
 
@@ -16,7 +15,7 @@ export const signin = async (req, res) => { //sign in controller
         let existingUser = await User.findOne({ email }); //search database for user
 
         if(!existingUser) return res.status(404).json({ message: "User Doesnt Exist." });   //if email doesnt exist, tell the user 
-        console.log(existingUser);
+        
         if (existingUser.password === 'temp'){
             const hashedPassword = await bcrypt.hash(password, 12);
             existingUser = await User.findOneAndUpdate({email}, { password: hashedPassword }, {new: true});
@@ -85,13 +84,13 @@ export const updateScore = async (req, res) => {
     try {
         const existingUser = await User.findOne({ email }); //search database for user
         let updatedScore = [];
+
         if(existingUser) {
-            updatedScore = await User.findOneAndUpdate({email}, { score: user.result.score }, {new: true});
+            updatedScore = await User.findOneAndUpdate({email}, { score: existingUser.score+1 }, {new: true});
         } else {
             updatedScore = await User.create({ email, password: 'temp', name: user.result.name, score: 1});
         }
-
-        res.json(updatedScore);
+        res.json({updatedScore});
     } catch (error) {
         res.status(404).json({message: error.message});
     }

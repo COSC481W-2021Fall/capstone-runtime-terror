@@ -12,7 +12,6 @@ const authReducer = (state = {authData: null}, action) => {
             return { ...state, authData: action?.data};
 
         case GET_USER:
-            console.log(action.payload);
             return action.payload;
 
         default:

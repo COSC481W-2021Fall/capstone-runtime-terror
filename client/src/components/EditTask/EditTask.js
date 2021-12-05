@@ -10,14 +10,13 @@ import { createTask, updateTask} from '../../actions/tasks';
 import { useHistory } from 'react-router';
 
 const EditTask = ({ currentId, setCurrentId, user }) => {
-  const [taskData, settaskData] = useState({ title: '', description: '', category: '', create_date: new Date(), complete_date: new Date(), author: user.result.email, score: '1'});  //inializing task values
+  const [taskData, settaskData] = useState({ title: '', description: '', category: '', create_date: new Date(), complete_date: new Date(), author: '', score: '1'});  //inializing task values
   const task = useSelector((state) => (currentId ? state.tasks.find((message) => message._id === currentId) : null)); 
   const dispatch = useDispatch(); //Make a dispatch object 
   const classes = useStyles(); //make and object for the styles.js
   const [selectedDate, setselectedDate] = useState(new Date());
   const history = useHistory();
 
-  console.log(user);
   useEffect(() => {
     if (task) settaskData(task); //this grabs the informaion from the form and updates the task
   }, [task]);
@@ -62,15 +61,14 @@ const EditTask = ({ currentId, setCurrentId, user }) => {
         <Paper className={classes.paper}>
       
         <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}> 
-          
           {/*This is the name of the task*/}
-          <TextField style={{backgroundColor: "#F3CFC6"}} name="title" variant="outlined" label="Title" fullWidth value={taskData.title} onChange={(e) => settaskData({ ...taskData, title: e.target.value })} />
+          <TextField style={{backgroundColor: "#F3CFC6"}} name="title" variant="outlined" label="Title" fullWidth value={taskData.title} onChange={(e) => settaskData({ ...taskData, title: e.target.value, author: user.result.email})} />
           
           {/*Decription of task*/}
-          <TextField style={{backgroundColor: "#F3CFC6"}} name="description" variant="outlined" label="Description" fullWidth multiline rows={4} value={taskData.description} onChange={(e) => settaskData({ ...taskData, description: e.target.value })} />
+          <TextField style={{backgroundColor: "#F3CFC6"}} name="description" variant="outlined" label="Description" fullWidth multiline rows={4} value={taskData.description} onChange={(e) => settaskData({ ...taskData, description: e.target.value, author: user.result.email })} />
           
           {/*Put the task in what we are calling a sub task*/}
-          <TextField style={{backgroundColor: "#F3CFC6"}} name="category" variant="outlined" label="Category" fullWidth value={taskData.category} onChange={(e) => settaskData({ ...taskData, category: e.target.value })} />
+          <TextField style={{backgroundColor: "#F3CFC6"}} name="category" variant="outlined" label="Category" fullWidth value={taskData.category} onChange={(e) => settaskData({ ...taskData, category: e.target.value, author: user.result.email  })} />
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
               <KeyboardDatePicker
                 disableToolbar

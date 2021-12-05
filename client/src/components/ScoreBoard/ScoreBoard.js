@@ -1,6 +1,6 @@
 import './../../App.css';
 
-import { Grid, CircularProgress, Paper} from '@material-ui/core';
+import { Grid, Typography, Paper} from '@material-ui/core';
 import { useEffect } from 'react';
 import React from 'react';
 import { useDispatch } from 'react-redux';
@@ -16,6 +16,7 @@ const ScoreBoard = ({ user }) => {
     const classes = useStyles();
     const auth = useSelector((state) => state.auth);
     const dispatch = useDispatch();
+
     useEffect(() => {
         dispatch(getUser(user));
     }, [dispatch]);
@@ -27,13 +28,13 @@ const ScoreBoard = ({ user }) => {
     //displayed at the top and also displayed in descending order
     return (
         user ? (
-            !myData.length ? <CircularProgress /> : (
+            myData.length<1 ? <Typography className={classes.Typography} variant="h3">There are no Users!</Typography>  : (
                 <Grid className={classes.grid} container alignItems="stretch">
                     <Paper className={classes.paper}>
                         <h1>SCORE</h1>
-                        {myData.map((user) => ( 
-                            <Grid key={user._id}>
-                                <Task user={user} />
+                        {myData.map((users) => ( 
+                            <Grid key={users._id}>
+                                <Task users={users} />
                                 <span>&nbsp;</span>
                             </Grid>
                         ))}

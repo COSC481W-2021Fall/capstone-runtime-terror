@@ -20,4 +20,8 @@ export default makeStyles((theme) => ({
   menu: {
     color: '#24305E',
   },
+  Typography: {
+    margin: '20px 450px',
+    color: '#24305E',
+  }
 }));

@@ -24,8 +24,6 @@ const Task = ({task}) => {
         task.complete_date = new Date();
         dispatch(updateTask(task._id, task, history));
         const user = JSON.parse(localStorage.getItem('profile'));
-        user.result.score += 1;
-        localStorage.setItem('profile', JSON.stringify(user));
         dispatch(updateScore(user.result.email, user, history));
 
     };
