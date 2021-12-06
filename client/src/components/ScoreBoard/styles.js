@@ -31,5 +31,8 @@ export default makeStyles((theme) => ({
   h1:{
     display: 'flex',
     textAlign: 'center',
+  },Typography: {
+    margin: '20px 450px',
+    color: '#24305E',
   }
 }));

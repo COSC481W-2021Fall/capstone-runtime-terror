@@ -29,7 +29,6 @@ export const updateTask = (id, task, history) => async (dispatch) =>{
 //get
 export const getTasks = (user) => async (dispatch) => {
   try {
-    console.log(user);
     const { data } = await api.getTasks(user);
 
     dispatch({type: GET_TASKS, payload: data});
@@ -49,3 +48,4 @@ export const deleteTask = (id) => async (dispatch) => {
   }
 
 }
+

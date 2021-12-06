@@ -5,7 +5,6 @@ import Task from "../models/task.js";
 export const getTasks = async (req, res) => {
     const {user} = req.body;
     try {
-        console.log(user.result.email);
         const taskMessages = await Task.find({author: user.result.email}); //search database for user
         res.status(200).json(taskMessages);
     } catch (error) {

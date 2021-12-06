@@ -1,3 +1,6 @@
+body {
+    background-color: #A8D0E6;
+}
 ul{
 
     list-style-type: none;
@@ -19,19 +22,56 @@ li{
     visibility: hidden;
 }
 
+body{
+    background-color: #ABD0E6;
+}
+.header li #logout{
+    float:right;
+}
+.header li #logout:hover{
+    background-color: #24305E;
+}
+buttonSubmit {
+    color: yellow;
+
+}
+h4{
+color: #24305E;
+}
+
+li{
+    color: #24305E;   
+}
+
+
+.loginsign {
+    background-color: #F76C6C;
+}
+
+.IconButton {
+   
+    background-color : white;  
+}
+
+
 #passwordrules{
     margin: auto;
     padding: 10px;
-    background-color: lightgray;
+    background-color:#F8E981;;
     margin-bottom: 20px;
     width: 90%;
 }
 
+
 #wrongPassword{
     margin: auto;
     padding: 10px;
-    background-color: lightgray;
+    background-color: #24305E;
     width: 90%;
 }
+.button {
+    background-color: #4CAF50; 
+}
+
 
 

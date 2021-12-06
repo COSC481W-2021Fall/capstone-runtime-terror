@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Grid, CircularProgress, Select, MenuItem,InputLabel, FormControl, FormLabel, FormControlLabel, RadioGroup, Radio } from '@material-ui/core';
+import { Grid, Typography, Select, MenuItem,InputLabel, FormControl, FormLabel, FormControlLabel, RadioGroup, Radio } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 import Task from './Task/tasks';
 import useStyles from './styles';
@@ -70,12 +70,18 @@ const Dashboard = ({ setCurrentId, user }) => {
     }
   }
 
+  var taskCount = 0;
+  for (var j = 0; j < tasks.length; j++) {
+    if ((tasks[j].active === true)) {
+      taskCount++;
+    }
+  }
 
   return (
     user ? (
-      !tasks.length ? <CircularProgress /> : (
+      taskCount < 1 ? <Typography className={classes.Typography} variant="h3">You have no active tasks!</Typography>  : (
         <div className={classes.div}>
-          <Grid style={open ? ({ paddingLeft: '300px' }) : ({})}id='main' className={classes.grid} container alignItems="stretch" spacing={3}>
+          <Grid style={open ? ({ paddingLeft: '300px' }) : ({})}id='main' className={classes.grid} container alignItems="flex-start" spacing={3}>
             {/* logic for sorting*/}
             {sortByDateType === "completeDate" ?
               (sortedComplete.map((task) => (
@@ -95,7 +101,7 @@ const Dashboard = ({ setCurrentId, user }) => {
             {/* Burger Menu */}
             <ThemeProvider theme={theme}>
               <Burger open={open} setOpen={setOpen} aria-controls={menuId} />
-              <StyledMenu open={open}>
+              <StyledMenu className={classes.menu} open={open}>
                 {<h1>Sort/Filter Tasks</h1>}
                 {/* Radio Buttons */}
                 <FormControl component="fieldset">

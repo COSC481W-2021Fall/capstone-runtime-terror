@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { TextField, Button, Typography, Paper, Container} from '@material-ui/core';
 import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
-import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers'
+import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import { useDispatch, useSelector } from 'react-redux';
 
 import useStyles from '../EditTask/styles';
@@ -30,16 +30,16 @@ const EditTask = ({ currentId, setCurrentId, user }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    if (taskData.complete_date.getUTCDate()>=new Date().getUTCDate() && taskData.complete_date.getUTCMonth()>=new Date().getUTCMonth() && taskData.complete_date.getUTCFullYear()>=new Date().getUTCFullYear()){
+    if (Date.parse(taskData.complete_date)>=Date.parse(new Date()) -86400000){
       if (currentId) {
         dispatch(updateTask(currentId, taskData, history));
+        clear();
         
       }else{
-        //calls the funtion in actions/tasks with the taskData
-        dispatch(createTask(taskData, history));
+          //calls the funtion in actions/tasks with the taskData
+          dispatch(createTask(taskData, history));
+          clear();
       } 
-      clear();
     } else {
       window.alert('Date passed ;)');
     } 
@@ -49,6 +49,7 @@ const EditTask = ({ currentId, setCurrentId, user }) => {
     setselectedDate(date); 
     settaskData({ ...taskData, complete_date: date });
   };
+
   
   return (
     user ? (
@@ -60,15 +61,14 @@ const EditTask = ({ currentId, setCurrentId, user }) => {
         <Paper className={classes.paper}>
       
         <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}> 
-          
           {/*This is the name of the task*/}
-          <TextField name="title" variant="outlined" label="Title" fullWidth value={taskData.title} onChange={(e) => settaskData({ ...taskData, title: e.target.value })} />
+          <TextField style={{backgroundColor: "#F3CFC6"}} name="title" variant="outlined" label="Title" fullWidth value={taskData.title} onChange={(e) => settaskData({ ...taskData, title: e.target.value, author: user.result.email})} />
           
           {/*Decription of task*/}
-          <TextField name="description" variant="outlined" label="Description" fullWidth multiline rows={4} value={taskData.description} onChange={(e) => settaskData({ ...taskData, description: e.target.value })} />
+          <TextField style={{backgroundColor: "#F3CFC6"}} name="description" variant="outlined" label="Description" fullWidth multiline rows={4} value={taskData.description} onChange={(e) => settaskData({ ...taskData, description: e.target.value, author: user.result.email })} />
           
           {/*Put the task in what we are calling a sub task*/}
-          <TextField name="category" variant="outlined" label="Category" fullWidth value={taskData.category} onChange={(e) => settaskData({ ...taskData, category: e.target.value })} />
+          <TextField style={{backgroundColor: "#F3CFC6"}} name="category" variant="outlined" label="Category" fullWidth value={taskData.category} onChange={(e) => settaskData({ ...taskData, category: e.target.value, author: user.result.email  })} />
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
               <KeyboardDatePicker
                 disableToolbar
@@ -90,7 +90,7 @@ const EditTask = ({ currentId, setCurrentId, user }) => {
           <Button className={classes.buttonSubmit} variant="contained" color="primary" size="large" type="submit" fullWidth>Submit</Button>
           
           {/*Button to clear form*/}
-          <Button variant="contained" color="secondary" size="small" onClick={clear} fullWidth>Clear</Button>
+          <Button className={classes.buttonClear} variant="contained" size="small" onClick={clear} fullWidth>Clear</Button>
         </form>
         </Paper>
       </Container>

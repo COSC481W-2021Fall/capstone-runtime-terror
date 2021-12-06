@@ -10,9 +10,18 @@ export default makeStyles((theme) => ({
   },
   div: {
     display: 'flex',
-    marginTop: '20px'
+    marginTop: '20px',
+    marginLeft: '20px',
+    marginRight: '20px',
   }, 
   paper: {
-    padding: '20px'
+    padding: '20px',
   },
+  menu: {
+    color: '#24305E',
+  },
+  Typography: {
+    margin: '20px 450px',
+    color: '#24305E',
+  }
 }));

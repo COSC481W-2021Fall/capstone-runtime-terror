@@ -19,7 +19,6 @@ export default makeStyles({
     // justifyContent: 'space-between',
     // borderRadius: '15px',
     // height: '130px',
-    // padding: '5px',
     position: 'relative',
     backgroundColor: '#F8E9A1', 
     width: '400px',
@@ -43,8 +42,7 @@ export default makeStyles({
     justifyContent: 'space-between',
   },
   typography: {
-    overflowWrap: 'break-word',
-    color: '#24305E'
+    color: '#24305E',
   },
   button: {
     color: '#F76C6C',

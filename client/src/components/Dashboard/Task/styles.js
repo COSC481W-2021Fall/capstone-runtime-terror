@@ -20,7 +20,8 @@ export default makeStyles({
     borderRadius: '15px',
     height: '100%',
     position: 'relative',
-    backgroundColor: '#add8e6', 
+    backgroundColor: '#F8E9A1', 
+    color: '#24305E',
   },
   grid: {
     display: 'flex',
@@ -30,13 +31,30 @@ export default makeStyles({
     display: 'flex',
     justifyContent: 'space-between',
     margin: '20px',
+    color: '#24305E',
   },
-  title: {
+  category: {
+    color: '#24305E',
+  },
+  complete: {
+    color: '#24305E',
+  },
+  description: {
     padding: '0 16px',
+    color: '#F76C6C',
+    overflowWrap: 'break-word',
+    whiteSpace: 'break-spaces',
   },
   cardActions: {
-    padding: '0 14px 20px 4px',
+    padding: '0 4px 20px 4px',
     display: 'flex',
     justifyContent: 'space-between',
+    primary: 'black',
+  },
+  cardAction: {
+    color: '#24305E',
+    "&:hover": {
+      backgroundColor: "#F76C6C"
+    },
   },
 });

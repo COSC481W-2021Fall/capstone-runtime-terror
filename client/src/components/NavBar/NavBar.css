@@ -5,6 +5,13 @@
 background-color:#f1f1f1;
   
 }
+h1 {
+    background-color: green;
+  }
+  .Typography  {
+    background-color: green;
+  }
+
 .header li #logout Button{
     background-color:#5a3ebd;
     border-radius:6px;
@@ -23,3 +30,6 @@ background-color:#f1f1f1;
     position:relative;
     top:1px;
 }
+
+
+
